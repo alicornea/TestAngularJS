@@ -1,0 +1,18 @@
+ <table>
+      <thead>
+      <tr>
+        <th>Project</th>
+        <th>Description</th>
+        <th><a href="#/test/new">add new</a></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="project in actions.rows | filter:search | orderBy:'doc.name'">
+        <td><a href="{{project.doc.site}}" target="_blank">{{project.doc.name}}</a></td>
+        <td>{{project.doc.description}}</td>
+        <td>
+          <a href="#/test/edit/{{project.doc._id}}">edit</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>

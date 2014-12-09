@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('tutorialWebApp', [
-  'ngRoute'
+  'ngRoute', 'ngResource'
 ]);
 
 /**
@@ -23,6 +23,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/pricing", {templateUrl: "partials/pricing.html", controller: "PageCtrl"})
     .when("/services", {templateUrl: "partials/services.html", controller: "PageCtrl"})
     .when("/contact", {templateUrl: "partials/contact.html", controller: "PageCtrl"})
+    .when("/test", {templateUrl: "partials/test.html", controller: "TestCtrl"})
+    .when("/test/edit/:actionid", {templateUrl: "partials/testedit.html", controller: "TestEditCtrl"})
+    .when("/test/new", {templateUrl: "partials/testedit.html", controller: "TestNewCtrl"})
     // Blog
     .when("/blog", {templateUrl: "partials/blog.html", controller: "BlogCtrl"})
     .when("/blog/post", {templateUrl: "partials/blog_item.html", controller: "BlogCtrl"})
@@ -53,3 +56,5 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
     selector: "a[data-toggle=tooltip]"
   })
 });
+
+
