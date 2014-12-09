@@ -5,7 +5,7 @@ angular.module('tutorialWebApp').controller('TestCtrl', ['$scope', 'ProjectCouch
 			console.log("test Controller reporting for duty.");
 
 			var promise = ProjectCouch.get({
-					q : '_all_docs',
+					q : '_design/actions/_view/actions',
 					include_docs : 'true',
 					limit : 10
 				});
