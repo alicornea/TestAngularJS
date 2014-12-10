@@ -135,3 +135,8 @@ footer {
         /* increases the carousel height so it looks good on phones */
     }
 }
+
+.login-form {
+    margin-top: 10px;
+    text-align: right;
+}
