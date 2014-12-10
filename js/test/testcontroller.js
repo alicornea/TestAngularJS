@@ -8,7 +8,7 @@ angular.module('tutorialWebApp').controller('TestCtrl', ['$scope', 'ProjectCouch
 					q : '_design',
 					r : 'actions',
 					s : '_view',
-					t : 'actions',
+					t : 'getAll',
 					include_docs : 'true',
 					limit : 10
 				});
