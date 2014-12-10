@@ -21,7 +21,7 @@
 
         $scope.save = function () {
             $scope.job.update(function () {
-                $location.path('/');
+                $location.path('/jobs');
             });
         };
     };
