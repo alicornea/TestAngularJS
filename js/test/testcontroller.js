@@ -6,7 +6,7 @@ angular.module('tutorialWebApp').controller('TestCtrl', ['$scope', 'ProjectCouch
 
 			var promise = ProjectCouch.get({
 					q : '_design',
-					r : 'actions',
+					r : 'jobs',
 					s : '_view',
 					t : 'getAll',
 					include_docs : 'true',
