@@ -20,8 +20,8 @@ app.config(['$routeProvider', function ($routeProvider) {
       // Pages
       .when("/about", { templateUrl: "partials/about.html", controller: "PageCtrl" })
       .when("/jobs", { templateUrl: "partials/jobs.html", controller: "JobsCtrl" })
-      .when("/job/edit/:actionid", { templateUrl: "partials/job.html", controller: "JobCtrl" })
-      .when("/job/new", { templateUrl: "partials/job.html", controller: "JobCtrl" })
+      .when("/job/edit/:jobid", { templateUrl: "partials/job.html", controller: "JobCtrl" })
+      .when("/job/new", { templateUrl: "partials/job.html", controller: "NewJobCtrl" })
       .when("/faq", { templateUrl: "partials/faq.html", controller: "PageCtrl" })
       .when("/pricing", { templateUrl: "partials/pricing.html", controller: "PageCtrl" })
       .when("/services", { templateUrl: "partials/services.html", controller: "PageCtrl" })
@@ -29,6 +29,10 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when("/test", { templateUrl: "partials/test.html", controller: "TestCtrl" })
       .when("/test/edit/:actionid", { templateUrl: "partials/testedit.html", controller: "TestEditCtrl" })
       .when("/test/new", { templateUrl: "partials/testedit.html", controller: "TestNewCtrl" })
+      //actions
+      .when("/actions", { templateUrl: "partials/action/list.html", controller: "ActionListCtrl" })
+      .when("/action/edit/:actionid", { templateUrl: "partials/action/edit.html", controller: "ActionEditCtrl" })
+      .when("/action/new", { templateUrl: "partials/action/edit.html", controller: "ActionNewCtrl" })
       // Blog
       .when("/blog", { templateUrl: "partials/blog.html", controller: "BlogCtrl" })
       .when("/blog/post", { templateUrl: "partials/blog_item.html", controller: "BlogCtrl" })

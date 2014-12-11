@@ -152,3 +152,17 @@ height: 100%;
   background: #fffff;
 
 }
+
+table, td, th {
+    border: 1px solid blue;
+    text-align: center 
+}
+
+th {
+    background-color: #428bca;
+    color: white;
+}
+
+td {
+    padding: 15px;
+}
