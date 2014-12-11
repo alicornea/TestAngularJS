@@ -32,6 +32,16 @@ app.config(['$routeProvider', function ($routeProvider) {
       // Blog
       .when("/blog", { templateUrl: "partials/blog.html", controller: "BlogCtrl" })
       .when("/blog/post", { templateUrl: "partials/blog_item.html", controller: "BlogCtrl" })
+      //Complaints
+      .when("/Complaints", {
+ templateUrl: "partials/complaints/Complaints.html",
+ controller: "ComplaintsCtrl"})
+      .when("/Complaint/Edit/:id", {
+ templateUrl: "partials/complaints/ComplaintInput.html", controller: "ComplaintEditCtrl"})
+      .when("/Complaint/Add", { templateUrl: "partials/complaints/ComplaintInput.html", controller: "ComplaintAddCtrl"})
+      .when("/Complaint/:id", {
+ templateUrl: "partials/complaints/Complaint.html",
+ controller: "ComplaintCtrl"})
       // else 404
       .otherwise("/404", { templateUrl: "partials/404.html", controller: "PageCtrl" });
 }]);

@@ -1,0 +1,32 @@
+<div>
+  New complaint :
+  <br/>
+  <br />Refference Number :
+  <input ng-model="complaint.doc.refNo" required placeholder="1234">
+  <br />
+  <br />Text :
+  <input ng-model="complaint.doc.text" required placeholder="some text">
+  <br />
+  <br />Type :
+  <select ng-init="complaint.doc.type=complaint.doc.type || Types[0].Name" ng-model="complaint.doc.type">
+    <option ng-repeat="type in Types" value="{{type.Name}}">
+      {{type.Name}}
+    </option>
+  </select>
+  <br/>
+  <br />Workgroup :
+  <select ng-init="complaint.doc.workgroup=complaint.doc.workgroup || Workgroups[0].Name" ng-model="complaint.doc.workgroup">
+    <option ng-repeat="workgroup in Workgroups" value="{{workgroup.Name}}">
+      {{workgroup.Name}}
+    </option>
+  </select>
+  <br />
+  <br />
+  <br />
+  <input type="hidden" ng-model="complaint.doc.item" ng-init="complaint.doc.item=complaint.doc.item || 'complaint'">
+  <a ng-hide="complaint.doc._id" href="#" ng-click="saveComplaint()">Save</a>
+  <a ng-hide="!complaint.doc._id" href="#" ng-click="updateComplaint()">Update</a>
+  <a href="#/Complaints">Cancel</a>
+  <br />
+  <br />
+</div>

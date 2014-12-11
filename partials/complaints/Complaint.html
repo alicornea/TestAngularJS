@@ -1,0 +1,22 @@
+<div>
+  Number : {{complaint.doc._id}}
+  <br />Refference Number : {{complaint.doc.refNo}}
+  <br />Text : {{complaint.doc.text}}
+  <br />Type :  <select>
+    <option ng-selected="type.Name == complaint.doc.type" ng-repeat="type in Types" value="{{type.Name}}">
+      {{type.Name}}
+    </option>
+  </select>
+  <br />Workgroup :
+  <select>
+    <option ng-selected="workgroup.Name == complaint.doc.workgroup" ng-repeat="workgroup in Workgroups" value="{{workgroup.Name}}">
+      {{workgroup.Name}}
+    </option>
+  </select>
+  <br />Last modification date : {{complaint.doc.date}}
+  <br />
+  <br />
+  <a href="#/Complaints">Back</a>
+  <br />
+  <br />
+</div>
