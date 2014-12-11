@@ -7,6 +7,8 @@
                 <th>Date Created</th>
                 <th>Created by</th>
                 <th>Job Description</th>                
+                <th>Profession</th>
+                <th>Delete</th>
                 <th><a href="#/job/new">add new</a></th>
             </tr>
         </thead>
@@ -17,6 +19,10 @@
                 <td>{{job.doc.date}}</td>
                 <td>{{job.doc.created}}</td>
                 <td>{{job.doc.desc}}</td>
+                <td>{{job.doc.profession}}</td>
+                <td>
+                    <a ng-click="deleteJob(job.doc)">delete</a>
+                </td>
                 <td>
                     <a href="#/job/edit/{{job.doc._id}}">edit</a>
                 </td>

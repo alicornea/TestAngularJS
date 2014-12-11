@@ -1,8 +1,8 @@
 ﻿(function () {
 
-    //var app = angular.module("tutorialWebApp");
+    var app = angular.module("tutorialWebApp");
     
-    var JobsCtrl = function ($scope, ProjectCouch) {
+    var JobsCtrl = function ($scope, $location, ProjectCouch) {
         console.log("test Jobs reporting for duty.");
 
         var promise = ProjectCouch.get({
@@ -23,8 +23,14 @@
         };
 
         promise.$promise.then(ProcessData, ProcessError);
+
+        $scope.deleteJob = function (job) {
+            new ProjectCouch(job).destroy(function () {
+                $location.path("/jobs/")
+            });
+        };
     };
 
-    app.controller("JobsCtrl", ['$scope', 'ProjectCouch', JobsCtrl]);
+    app.controller("JobsCtrl", ['$scope', '$location', 'ProjectCouch', JobsCtrl]);
 
 }());

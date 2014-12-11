@@ -20,8 +20,8 @@ app.config(['$routeProvider', function ($routeProvider) {
       // Pages
       .when("/about", { templateUrl: "partials/about.html", controller: "PageCtrl" })
       .when("/jobs", { templateUrl: "partials/jobs.html", controller: "JobsCtrl" })
-      .when("/job/edit/:actionid", { templateUrl: "partials/job.html", controller: "JobCtrl" })
-      .when("/job/new", { templateUrl: "partials/job.html", controller: "JobCtrl" })
+      .when("/job/edit/:jobid", { templateUrl: "partials/job.html", controller: "JobCtrl" })
+      .when("/job/new", { templateUrl: "partials/job.html", controller: "NewJobCtrl" })
       .when("/faq", { templateUrl: "partials/faq.html", controller: "PageCtrl" })
       .when("/pricing", { templateUrl: "partials/pricing.html", controller: "PageCtrl" })
       .when("/services", { templateUrl: "partials/services.html", controller: "PageCtrl" })
