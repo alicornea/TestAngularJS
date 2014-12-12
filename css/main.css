@@ -163,6 +163,11 @@ th {
     color: white;
 }
 
+
+th a{
+    color: white;
+}
+
 td {
     padding: 15px;
 }
