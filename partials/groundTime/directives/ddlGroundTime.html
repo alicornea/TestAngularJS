@@ -1,3 +1,3 @@
-<select name="groundTime" ng-model="groundTime.selectedGroundTime" ng-options="groundTime.doc.selectedAircraft + '_' + groundTime .doc.location + '_' + groundTime.doc.station  +'_' + groundTime.doc.startDate + '_' + groundTime.doc.startTime + '_' + groundTime.doc.endDate + '_'  + groundTime.doc.endTime for groundTime in groundTimes">
+<select style="width:160px" name="groundTime" ng-model="groundTime.selectedGroundTime" ng-options="groundTime.doc.selectedAircraft + '_' + groundTime .doc.location + '_' + groundTime.doc.station  +'_' + groundTime.doc.startDate + '_' + groundTime.doc.startTime + '_' + groundTime.doc.endDate + '_'  + groundTime.doc.endTime for groundTime in groundTimes">
 	<option value='' class="hide">--Select Ground Time--</option>
 </select>

@@ -30,7 +30,9 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when("/test/edit/:actionid", { templateUrl: "partials/testedit.html", controller: "TestEditCtrl" })
       .when("/test/new", { templateUrl: "partials/testedit.html", controller: "TestNewCtrl" })
 
+      //groundTime
       .when("/groundtime/new", { templateUrl: "partials/groundTime/newGroundTime.html", controller: "GroundTimeNewCtrl" })
+      .when("/groundtime/edit/:id", { templateUrl: "partials/groundTime/newGroundTime.html", controller: "GroundTimeEditCtrl" })
 
       //actions
       .when("/actions", { templateUrl: "partials/action/list.html", controller: "ActionListCtrl" })

@@ -1,0 +1,9 @@
+<fieldset style="border:1px solid grey"><legend>Create/Edit GrountTime</legend><select name="groundTime" ng-model="groundTime.selectedGroundTime" ng-options="groundTime.doc.selectedAircraft + '_' + groundTime .doc.location + '_' + groundTime.doc.station  +'_' + groundTime.doc.startDate + '_' + groundTime.doc.startTime + '_' + groundTime.doc.endDate + '_'  + groundTime.doc.endTime for groundTime in groundTimes">
+	
+	<option value=''>--New Ground Time--</option>
+
+
+</select>
+<br/>
+<input type="button" value="Create/Edit Groundtime" ng-click="gotoGroundTime(groundTime)" />
+</fieldset> 
