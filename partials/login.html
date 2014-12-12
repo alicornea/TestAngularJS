@@ -1,7 +1,7 @@
 <div class="login-form" ng-controller="LoginController">
-    <div ng-if="isAuthenticated() == 1" span style="color:white">
-        <span>Hello {{username}}!</span>
-        <button ng-click="logout()">Logout</button>
+    <div ng-if="isAuthenticated() == 1">
+        <span style="color:white">Hello {{username}}!</span>
+        <button ng-click="logout()" style="color:black">Logout</button>
     </div>
     <div ng-if="isAuthenticated() != 1">
         <form ng-submit="login(credentials)" name="loginform">

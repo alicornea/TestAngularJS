@@ -7,18 +7,20 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('tutorialWebApp', [
-  'ngRoute', 'ngResource'
+  'ngRoute', 'ngResource',
+
+  'constants'
 ]);
 
 /**
  * Configure the Routes
  */
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
     $routeProvider
       // Home
       .when("/", { templateUrl: "partials/home.html", controller: "PageCtrl" })
       // Pages
-      .when("/about", { templateUrl: "partials/about.html", controller: "PageCtrl" })
+      .when("/about", { templateUrl: "partials/about.html", controller: "PageCtrl", authorizedRoles: [USER_ROLES.admin ] })
       .when("/jobs", { templateUrl: "partials/jobs.html", controller: "JobsCtrl" })
       .when("/job/edit/:jobid", { templateUrl: "partials/job.html", controller: "JobCtrl" })
       .when("/job/new", { templateUrl: "partials/job.html", controller: "NewJobCtrl" })
