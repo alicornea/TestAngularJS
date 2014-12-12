@@ -2,19 +2,36 @@
 
     var app = angular.module("tutorialWebApp");
 
+
     var ActionListCtrl = function ($scope, ProjectCouch) {
-        console.log("list actions");
-        var action1 = { "compliantNo": "1", "title": "my title", "description": "this is the description.", "status": "green", "createDate": "10/10/1021", "changeDate": "10/10/1021", "issueByUser": "aura" };
-        var action2 = { "compliantNo": "2", "title": "my dsdae", "description": "this is thdsadasrdation.", "status": "green", "createDate": "10/12/1021", "changeDate": "10/10/1021", "issueByUser": "aura" };
-        var list = [];
-        list.push(action1);
-        list.push(action2);
-        $scope.actions = list;
+
+        var promise = ProjectCouch.get({
+            q: '_design',
+            r: '_actions',
+            s: '_view',
+            t: 'getAll',
+            include_docs: 'true',
+            limit: 10
+        });
+        promise.$promise.then(function (data) {
+            $scope.actions = data;
+            //alert(JSON.stringify(data))
+        }, function (reason) {
+            alert(reason);
+        });
 
     };
 
-    var ActionNewCtrl = function ($scope, ProjectCouch) {
-        console.log("new action")
+    var ActionNewCtrl = function ($scope, ProjectCouch, $location) {
+        console.log("new action");
+        
+        $scope.save = function()
+        {
+            console.log($scope.action)
+            ProjectCouch.save($scope.action, function (action) {
+                $location.path('/actions/');
+            });
+        }
     };
 
     var ActionEditCtrl = function ($scope, ProjectCouch) {
@@ -22,7 +39,7 @@
     };
 
     app.controller("ActionListCtrl", ['$scope', 'ProjectCouch', ActionListCtrl]);
-    app.controller("ActionNewCtrl", ['$scope', 'ProjectCouch', ActionNewCtrl]);
-    app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', ActionEditCtrl]);
+    app.controller("ActionNewCtrl", ['$scope', 'ProjectCouch', '$location', ActionNewCtrl]);
+    app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', '$location', ActionEditCtrl]);
 
 }());
