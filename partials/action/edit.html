@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-lg-4">
                 <label for="complaintNo">Complaint No.</label>
-                <input type="text" name="complaintNo" ng-model="action.complaintNo" class="form-control" id="complaintNo" required>
+                <input type="text" name="complaintNo" ng-model="action.complaintId" class="form-control" id="complaintNo" required>
                 <span ng-show="ActionForm.complaintNo.$error.required" class="help-inline">
                     Required
                 </span>
@@ -29,31 +29,14 @@
         </div>
         <div class="row">
             <div class="form-group col-lg-4">
-                <label for="createDate">Create date</label>
-                <input type="text" name="createDate" class="form-control" id="createDate" required ng-model="action.createDate">
-                <span ng-show="ActionForm.createDate.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-lg-4">
-                <label for="changeDate">Change date</label>
-                <input type="text" name="changeDate" class="form-control" id="changeDate" required ng-model="action.changeDate">
-                <span ng-show="ActionForm.changeDate.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-lg-4">
-                <label for="issueByUser">Issue by user</label>
-                <input type="text" name="issueByUser" class="form-control" id="issueByUser" required ng-model="action.issueByUser">
+                <label for="issueByUser">Issue by user</label>                                                        
+                <input type="text" name="issueByUser" class="form-control" id="issueByUser" required ng-model="action.issuebyUser">
                 <span ng-show="ActionForm.issueByUser.$error.required" class="help-inline">
                     Required
                 </span>
             </div>
         </div>
+        <input type="hidden" name="item" ng-model="action.item" ng-init="action.item=action.item || 'actions'">
         <div class="row">
             <div class="form-group col-lg-12">
                 <label for="description">Description</label>
@@ -63,7 +46,8 @@
                 </span>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Submit</button>
+        <button ng-click="destroy()" ng-show="action._id" class="btn btn-danger">Delete</button>
     </form>
     
 </div>
