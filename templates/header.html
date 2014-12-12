@@ -1,12 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <div class="login-form" ng-controller="LoginController">
-      <form ng-submit="login(credentials)">
-        <input type="text" required="" placeholder="Username" ng-model="credentials.username">
-        <input type="password" required="" placeholder="Password" ng-model="credentials.password" />
-        <input type="submit" value="Log in" />
-      </form>
-    </div>
+    <div ng-include='"partials/login.html"'></div>
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -34,10 +28,6 @@
         <li><a href="#/test">test</a>
         </li>
 	<li><a href="#/jobs">Jobs</a>
-        </li>
-	<li><a href="#/Complaints">Complaints</a>
-	</li>
-        <li><a href="#/actions">Actions</a>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
