@@ -1,0 +1,34 @@
+﻿
+<div class="container">
+    <h1>Actions List</h1>
+
+    <a href="#/action/new" class="btn btn-primary">add new</a>
+   
+    <table style="margin-top:6px;">
+        <thead>
+            <tr>
+                <th>Compliant No.</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Create Date</th>
+                <th>Change Date</th>
+                <th>Issue by User</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'doc.title'">
+                <td>{{action.doc.complaintId}}</td>
+                <td>{{action.doc.title}}</td>
+                <td>{{action.doc.description}}</td>
+                <td>{{action.doc.status}}</td>
+                <td>{{action.doc.createDate}}</td>
+                <td>{{action.doc.changeDate}}</td>
+                <td>{{action.doc.title}}</td>
+                <td><a href="#/action/edit/{{action.doc._id}}">Edit</a>&nbsp;
+                    <a>Delete</a> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

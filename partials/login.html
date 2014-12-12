@@ -1,0 +1,21 @@
+<div class="login-form" ng-controller="LoginController">
+    <div ng-if="isAuthenticated() == 1" span style="color:white">
+        <span>Hello {{username}}!</span>
+        <button ng-click="logout()">Logout</button>
+    </div>
+    <div ng-if="isAuthenticated() != 1">
+        <form ng-submit="login(credentials)" name="loginform">
+            <input type="text" name="username" required placeholder="Username" ng-model="credentials.username" ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <input type="password" name="password" required placeholder="Password" ng-model="credentials.password" ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <button type="submit">Log in</button>
+            <div style="color:red" ng-show="loginform.username.$dirty && loginform.username.$invalid">
+                <span ng-show="loginform.username.$error.required">Username Required!</span>
+                <span ng-show="loginform.username.$error.pattern">Username has incorrect format!</span>
+            </div>
+            <div style="color:red" ng-show="loginform.password.$dirty && loginform.password.$invalid">
+                <span ng-show="loginform.password.$error.required">Password Required!</span>
+                <span ng-show="loginform.password.$error.pattern">Password has incorrect format!</span>
+            </div>
+        </form>
+    </div>
+</div>
