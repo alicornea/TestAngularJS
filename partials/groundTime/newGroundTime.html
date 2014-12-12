@@ -1,0 +1,45 @@
+<form name="groundTimeForm">
+<ul>	
+	<li>
+		<label for="station">Station </label>
+		<select name="station" ng-model="groundTime.station" ng-options="station for station in stations" class="form-control" >
+			<option value="" style="display:none">--Select Station--</option>
+		</select>
+		 <span ng-show="groundTimeForm.site.$error.required" class="help-inline">
+            Required</span>
+	</li>
+	<li>
+		<label for="location">Location </label>
+		<select name="location" ng-model="groundTime.location" ng-options="location for location in locations" class="form-control" required>
+			<option value="" style="display:none">--Select Location--</option>
+		</select>
+		 <span ng-show="groundTimeForm.site.$error.required" class="help-inline">
+            Required</span>
+	</li>
+	<li class="form-group ">
+		<label for="aircrafts">Select Aircrafts</label>
+		<select rows="10" name="selectedAircraft" ng-model="groundTime.selectedAircraft" ng-options="aircraft for aircraft in availableAircrafts" class="form-control" >
+			<option value="" style="display:none">--Select Aircraft--</option>
+		</select>
+	</li>
+
+	<li class="form-group col-lg-4">
+		<label for="startDate">Ground Time Start </label>
+		<input type="date" name="startDate" ng-model="groundTime.startDate" class="form-control" required /> <input type="time" ng-model="groundTime.startTime" class="form-control" required/>
+		 <span ng-show="groundTimeForm.startDate.$error.required" class="help-inline">
+            Required</span>
+	</li>
+	<li class="form-group col-lg-4">
+		<label for="endDate">Ground Time End </label>
+		<input type="date" name="endDate" ng-model="groundTime.endDate" class="form-control"  required /> <input type="time" ng-model="groundTime.endTime" class="form-control" name="endTime" required/>
+
+		 <span ng-show="groundTimeForm.endDate.$error.required || groundTimeForm.endTime.$error.required " class="help-inline">
+            Required</span>
+
+	</li>	
+</ul>
+<div style="clear:both"></div>
+<input type="hidden" ng-model="groundTime.item" ng-init="groundTime.item='groundTime'"/>
+<input type="button" value="Create" ng-click="saveGroundTime()" ng-disabled="isClean() || groundTimeForm.$invalid"
+              class="btn btn-primary"/>
+</form>

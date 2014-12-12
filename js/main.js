@@ -29,6 +29,7 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when("/test", { templateUrl: "partials/test.html", controller: "TestCtrl" })
       .when("/test/edit/:actionid", { templateUrl: "partials/testedit.html", controller: "TestEditCtrl" })
       .when("/test/new", { templateUrl: "partials/testedit.html", controller: "TestNewCtrl" })
+      .when("/groundtime/new", { templateUrl: "partials/groundTime/newGroundTime.html", controller: "GroundTimeNewCtrl" })
       // Blog
       .when("/blog", { templateUrl: "partials/blog.html", controller: "BlogCtrl" })
       .when("/blog/post", { templateUrl: "partials/blog_item.html", controller: "BlogCtrl" })

@@ -35,8 +35,8 @@ function($scope,ProjectCouch,$location,$routeParams){
     return angular.equals(self.original, $scope.action);
   }
 
-  $scope.destroy = function() {
-    self.original.destroy(function() {
+  $scope.destroy = function(actiune) {
+    actiune.destroy(function() {
       $location.path('/test');
     });
   };
