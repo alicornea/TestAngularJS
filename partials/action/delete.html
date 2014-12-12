@@ -1,0 +1,38 @@
+﻿
+<div class="container">
+    <div class="ng-pristine ng-valid" name="ActionForm">
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label>Complaint Id:</label>
+                <span>{{ action.complaintId}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label>Title: </label>
+                <span> {{ action.title}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label>Status: </label>
+                <span>{{action.status}}<span/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label>Issue by user: </label>
+                <span>{{action.issuebyUser}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-4">
+                <label>Description: </label>
+                <span>{{action.description}}</span>
+            </div>
+        </div>
+ 
+        <button ng-click="destroy()" ng-show="action._id" class="btn btn-danger">Delete</button>
+        <a href="#/actions" class="btn">Cancel</a>
+    
+</div>

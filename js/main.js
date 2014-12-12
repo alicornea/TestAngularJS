@@ -36,20 +36,16 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when("/actions", { templateUrl: "partials/action/list.html", controller: "ActionListCtrl" })
       .when("/action/edit/:actionid", { templateUrl: "partials/action/edit.html", controller: "ActionEditCtrl" })
       .when("/action/new", { templateUrl: "partials/action/edit.html", controller: "ActionNewCtrl" })
+      .when("/action/delete/:actionid", { templateUrl: "partials/action/delete.html", controller: "ActionDeleteCtrl" })
 
       // Blog
       .when("/blog", { templateUrl: "partials/blog.html", controller: "BlogCtrl" })
       .when("/blog/post", { templateUrl: "partials/blog_item.html", controller: "BlogCtrl" })
       //Complaints
-      .when("/Complaints", {
- templateUrl: "partials/complaints/Complaints.html",
- controller: "ComplaintsCtrl"})
-      .when("/Complaint/Edit/:id", {
- templateUrl: "partials/complaints/ComplaintInput.html", controller: "ComplaintEditCtrl"})
+      .when("/Complaints", { templateUrl: "partials/complaints/Complaints.html", controller: "ComplaintsCtrl"})
+      .when("/Complaint/Edit/:id", { templateUrl: "partials/complaints/ComplaintInput.html", controller: "ComplaintEditCtrl"})
       .when("/Complaint/Add", { templateUrl: "partials/complaints/ComplaintInput.html", controller: "ComplaintAddCtrl"})
-      .when("/Complaint/:id", {
- templateUrl: "partials/complaints/Complaint.html",
- controller: "ComplaintCtrl"})
+      .when("/Complaint/:id", { templateUrl: "partials/complaints/Complaint.html", controller: "ComplaintCtrl"})
       // else 404
       .otherwise("/404", { templateUrl: "partials/404.html", controller: "PageCtrl" });
 }]);
