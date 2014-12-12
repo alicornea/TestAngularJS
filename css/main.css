@@ -171,3 +171,8 @@ th a{
 td {
     padding: 15px;
 }
+
+
+.leftNavigation{  width:200px;  background: #fff}
+.acDataLeftNavigation{height:400px;box-shadow: 1px 1px 1px #000; }
+.groundTimeBox{box-shadow: 1px 1px 1px #000; }
