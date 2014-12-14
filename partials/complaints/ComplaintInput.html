@@ -1,32 +1,38 @@
-<div>
-  New complaint :
-  <br/>
-  <br />Refference Number :
-  <input ng-model="complaint.doc.refNo" required placeholder="1234">
-  <br />
-  <br />Text :
-  <input ng-model="complaint.doc.text" required placeholder="some text">
-  <br />
-  <br />Type :
-  <select ng-init="complaint.doc.type=complaint.doc.type || Types[0].Name" ng-model="complaint.doc.type">
-    <option ng-repeat="type in Types" value="{{type.Name}}">
-      {{type.Name}}
-    </option>
+<div class="complaintContainer">
+  <div class="complaintTitle">
+    <span ng-hide="complaint.doc._id">New complaint</span>
+    <span ng-hide="!complaint.doc._id">Edit complaint</span>
+  </div>
+  <div class="complaint">
+    <label for="" class="complaintLabel">Refference Number :</label>
+    <input ng-model="complaint.doc.refNo" required placeholder="912452" class="complaintInput">
+  </div>
+  <div class="complaint">
+    <label for="" class="complaintLabel">Text :</label>
+    <input ng-model="complaint.doc.text" required placeholder="Input text here" class="complaintInput">
+  </div>
+  <div class="complaint">
+    <label for="" class="complaintLabel">Type :</label>
+    <select ng-init="complaint.doc.type=complaint.doc.type || Types[0].Name" ng-model="complaint.doc.type" class="complaintInput">
+      <option ng-repeat="type in Types" value="{{type.Name}}">
+        {{type.Name}}
+      </option>
   </select>
-  <br/>
-  <br />Workgroup :
-  <select ng-init="complaint.doc.workgroup=complaint.doc.workgroup || Workgroups[0].Name" ng-model="complaint.doc.workgroup">
-    <option ng-repeat="workgroup in Workgroups" value="{{workgroup.Name}}">
-      {{workgroup.Name}}
-    </option>
-  </select>
-  <br />
-  <br />
+  </div>
+  <div class="complaint">
+    <label for="" class="complaintLabel">Workgroup :</label>
+    <select ng-init="complaint.doc.workgroup=complaint.doc.workgroup || Workgroups[0].Name" ng-model="complaint.doc.workgroup" class="complaintInput">
+      <option ng-repeat="workgroup in Workgroups" value="{{workgroup.Name}}" class="complaintInput">
+        {{workgroup.Name}}
+      </option>
+    </select>
+  </div>
+  
   <br />
   <input type="hidden" ng-model="complaint.doc.item" ng-init="complaint.doc.item=complaint.doc.item || 'complaint'">
-  <a ng-hide="complaint.doc._id" href="#" ng-click="saveComplaint()">Save</a>
-  <a ng-hide="!complaint.doc._id" href="#" ng-click="updateComplaint()">Update</a>
-  <a href="#/Complaints">Cancel</a>
-  <br />
-  <br />
+  <div style="text-align:center">
+    <a ng-hide="complaint.doc._id" href="#" ng-click="saveComplaint()" class="btn btnComplaint icon-save"><span>Save</span></a>
+    <a ng-hide="!complaint.doc._id" href="#" ng-click="updateComplaint()" class="btn btnComplaint icon-save"><span>Update</span></a>
+    <a class="btn btnComplaint icon-arrow-left" href="#/Complaints"><span>Cancel</span></a>
+  </div>
 </div>

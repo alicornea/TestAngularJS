@@ -1,9 +1,6 @@
 (function(){
 
 app.controller('ComplaintsCtrl', function($scope, $location, ProjectCouch) {
-  $scope.Types = getTypes();
-  $scope.Workgroups = getWorkgroups();
-
   var promise = ProjectCouch.get({
     q: '_design',
     r: 'complaint',

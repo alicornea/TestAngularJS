@@ -15,6 +15,7 @@ html, body {
 body {
     padding-top: 100px;
     padding-bottom: 20px;
+    margin: 45px;
 }
 
 .dropdown {
