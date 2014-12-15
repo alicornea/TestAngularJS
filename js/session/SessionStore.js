@@ -4,6 +4,9 @@
 
         var sessionStorage = $window.sessionStorage;
 
+
+
+
         return {
             get: function(item) {
                 return JSON.parse(sessionStorage.getItem(item) || null);
