@@ -1,35 +1,36 @@
 (function() {
 
-    var SessionStore = function($window) {
+    var SessionStore = function($window, SESSION_STORE_KEYS) {
 
         var sessionStorage = $window.sessionStorage;
 
+        var userInfo = function(value) {
+            if (!angular.isDefined(value)) {
+                return get(SESSION_STORE_KEYS.userInfo);
+            }
 
+            set(SESSION_STORE_KEYS.userInfo, value);
+        };
 
+        var get = function(key) {
+            return JSON.parse(sessionStorage.getItem(key) || null);
+        };
+
+        var set = function(key, value) {
+            if (key !== null || value !== null) {
+                sessionStorage.setItem(key, JSON.stringify(value));
+            }
+        }
 
         return {
-            get: function(item) {
-                return JSON.parse(sessionStorage.getItem(item) || null);
-            },
-
-            set: function(item, value) {
-                if (item !== null || value !== null) {
-                    sessionStorage.setItem(item, JSON.stringify(value));
-                }
-            },
+            userInfo: userInfo,
 
             clear: function() {
                 sessionStorage.clear();
             },
-
-            remove: function(item) {
-                if (item !== null) {
-                    sessionStorage.removeItem(item);
-                }
-            }
         };
     };
 
     var app = angular.module("mrgApp");
-    app.factory("SessionStore", ['$window', SessionStore]);
+    app.factory("SessionStore", ['$window', 'SESSION_STORE_KEYS', SessionStore]);
 }());
