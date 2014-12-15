@@ -2,7 +2,9 @@
 
     var app = angular.module("tutorialWebApp");
 
-     var ActionNewCtrl = function ($scope, ProjectCouch, $location) {
+     var ActionNewCtrl = function ($scope, ProjectCouch, $location, $routeParams) {
+        
+        $scope.complaintId = $routeParams.complaintid;
         
         $scope.save = function()
         {
@@ -51,6 +53,6 @@
 
 
 
-    app.controller("ActionNewCtrl", ['$scope', 'ProjectCouch', '$location', ActionNewCtrl]);
+    app.controller("ActionNewCtrl", ['$scope', 'ProjectCouch', '$location','$routeParams', ActionNewCtrl]);
 
 }());

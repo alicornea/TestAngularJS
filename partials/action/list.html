@@ -2,8 +2,6 @@
 <div class="container">
     <h1>Actions List</h1>
 
-    <a href="#/action/new" class="btn btn-primary">add new</a>
-   
     <table style="margin-top:6px;">
         <thead>
             <tr>
@@ -27,7 +25,7 @@
                 <td>{{action.doc.changeDate}}</td>
                 <td>{{action.doc.issuebyUser}}</td>
                 <td><a href="#/action/edit/{{action.doc._id}}">Edit</a>&nbsp;
-                    <a href="#/action/delete/{{action.doc._id}}">Delete</a> </td>
+                <a href="#/action/delete/{{action.doc._id}}">Delete</a> </td>
             </tr>
         </tbody>
     </table>

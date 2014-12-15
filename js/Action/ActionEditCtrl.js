@@ -8,12 +8,7 @@
             self.original = action;
             $scope.action = new ProjectCouch(self.original);
          });
-        
-          $scope.destroy = function() {
-            self.original.destroy(function() {
-                $location.path('/actions');
-             });
-          };
+
 
           $scope.save = function() {
             $scope.action.changeDate = getCurrentDate();

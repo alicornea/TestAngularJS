@@ -1,12 +1,11 @@
 ﻿<div class="container">
     <form role="form" method="POST" action="#" class="ng-pristine ng-valid" name="ActionForm">
         <div class="row">
+        <input type="hidden" name="item" ng-model="action.complaintId" ng-init="action.complaintId=complaintId">
             <div class="form-group col-lg-4">
-                <label for="complaintNo">Complaint No.</label>
-                <input type="text" name="complaintNo" ng-model="action.complaintId" class="form-control" id="complaintNo" required>
-                <span ng-show="ActionForm.complaintNo.$error.required" class="help-inline">
-                    Required
-                </span>
+                <label for="complaintNo">Complaint Id:</label>
+                <span> {{ action.complaintId }} </span>
+
             </div>
         </div>
         <div class="row">
@@ -47,7 +46,6 @@
             </div>
         </div>
         <button type="button" class="btn btn-primary" ng-click="save()">Submit</button>
-        <button ng-click="destroy()" ng-show="action._id" class="btn btn-danger">Delete</button>
     </form>
     
 </div>

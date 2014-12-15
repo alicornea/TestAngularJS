@@ -39,7 +39,7 @@ app.config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES
       //actions
       .when("/actions", { templateUrl: "partials/action/list.html", controller: "ActionListCtrl" })
       .when("/action/edit/:actionid", { templateUrl: "partials/action/edit.html", controller: "ActionEditCtrl" })
-      .when("/action/new", { templateUrl: "partials/action/edit.html", controller: "ActionNewCtrl" })
+      .when("/action/new/:complaintid", { templateUrl: "partials/action/edit.html", controller: "ActionNewCtrl" })
       .when("/action/delete/:actionid", { templateUrl: "partials/action/delete.html", controller: "ActionDeleteCtrl" })
 
       // Blog
