@@ -2,23 +2,29 @@
     angular.module('mrgApp')
         .service('DataService', function(ProjectCouch) {
             this.getComplaintTypes = function() {
-                var types = [];
-                for (var i = 1; i < 5; i++)
-                    types.push({
-                        'Name': 'Type' + i
-                    });
+                var promise = ProjectCouch.get({
+                    q: '_design',
+                    r: 'complaintType',
+                    s: '_view',
+                    t: 'getAll',
+                    include_docs: 'true',
+                    limit: 20
+                });
 
-                return types;
+                return promise.$promise;
             };
 
             this.getWorkgroups = function() {
-                var workgroups = [];
-                for (var i = 1; i < 5; i++)
-                    workgroups.push({
-                        'Name': 'Workgroup' + i
-                    });
+                var promise = ProjectCouch.get({
+                    q: '_design',
+                    r: 'workgroup',
+                    s: '_view',
+                    t: 'getAll',
+                    include_docs: 'true',
+                    limit: 20
+                });
 
-                return workgroups;
+                return promise.$promise;
             };
         })
 }());
