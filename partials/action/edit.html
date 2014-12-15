@@ -20,11 +20,14 @@
         <div class="row">
             <div class="form-group col-lg-4">
                 <label for="status">Status</label>
-                <input type="text" name="status" class="form-control" id="status" required ng-model="action.status">
-                <span ng-show="ActionForm.status.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
+          
+            <select ng-init="action.status=action.status || statuses[0].name" ng-model="action.status" class="form-control">
+                <option ng-repeat="status in statuses" value="{{status.name}}">
+                  {{status.name}}
+                 </option>
+            </select>
+        </div>
+
         </div>
         <div class="row">
             <div class="form-group col-lg-4">
