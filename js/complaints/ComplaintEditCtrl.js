@@ -1,30 +1,16 @@
-(function(){
-var app = angular.module("mrgApp");
-app.controller('ComplaintEditCtrl', function($scope, $routeParams, $location, ProjectCouch) {
-  $scope.Types = getTypes();
-$scope.Workgroups = getWorkgroups();
+(function() {
+    angular.module("mrgApp").controller('ComplaintEditCtrl', function($scope, $routeParams, ComplaintsService, DataService) {
+        $scope.Types = DataService.getComplaintTypes();
+        $scope.Workgroups = DataService.getWorkgroups();
 
-  var promise = ProjectCouch.get({
-    q: '_design',
-    r: 'complaint',
-    s: '_view',
-    t: 'getAll',
-    include_docs: 'true',
-    limit: 1,
-    key: "\"" + $routeParams.id + "\""
-  });
-  promise.$promise.then(function(data) {
-    $scope.complaint = data.rows[0];
-  }, function(reason) {
-    alert(reason);
-  });
+        ComplaintsService.getComplaint($routeParams.id).then(function(data) {
+            $scope.complaint = data.rows[0];
+        }, function(reason) {
+            alert(reason);
+        });
 
-  $scope.updateComplaint = function() {
-    $scope.complaint.doc.date = getCurrentDatetime();
-    new ProjectCouch($scope.complaint.doc).update(function() {
-      $location.path('/Complaints');
+        $scope.updateComplaint = function() {
+            ComplaintsService.updateComplaint($scope.complaint.doc);
+        };
     });
-  };
-});
-
 }());

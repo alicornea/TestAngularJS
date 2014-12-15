@@ -1,25 +1,13 @@
-(function(){
-var app = angular.module("mrgApp");
-app.controller('ComplaintsCtrl', function($scope, $location, ProjectCouch) {
-  var promise = ProjectCouch.get({
-    q: '_design',
-    r: 'complaint',
-    s: '_view',
-    t: 'getAll',
-    include_docs: 'true',
-    limit: 20
-  });
-  promise.$promise.then(function(data) {
-    $scope.Complaints = data.rows;
-  }, function(reason) {
-    alert(reason);
-  });
+(function() {
+    angular.module("mrgApp").controller('ComplaintsCtrl', function($scope, ComplaintsService) {
+        ComplaintsService.getComplaints().then(function(data) {
+            $scope.Complaints = data.rows;
+        }, function(reason) {
+            alert(reason);
+        });
 
-  $scope.deleteComplaint = function deleteComplaint(complaint) {
-    new ProjectCouch(complaint).destroy(function() {
-      $location.path('/Complaints');
+        $scope.deleteComplaint = function(complaint) {
+            ComplaintsService.deleteComplaint(complaint)
+        };
     });
-  };
-});
-
 }());

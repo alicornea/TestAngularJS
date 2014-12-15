@@ -1,16 +1,10 @@
-(function(){
-var app = angular.module("mrgApp");
-app.controller('ComplaintAddCtrl', function($scope, ProjectCouch, $location) {
-  $scope.Types = getTypes();
-  $scope.Workgroups = getWorkgroups();
-  
-  $scope.saveComplaint = function() {
-    $scope.complaint.doc.date = getCurrentDatetime();
+(function() {
+    angular.module("mrgApp").controller('ComplaintAddCtrl', function($scope, ComplaintsService, DataService) {
+        $scope.Types = DataService.getComplaintTypes();
+        $scope.Workgroups = DataService.getWorkgroups();
 
-    ProjectCouch.save($scope.complaint.doc, function(reason) {
-      $location.path('/Complaints');
+        $scope.saveComplaint = function() {
+            ComplaintsService.saveComplaint($scope.complaint.doc);
+        };
     });
-  };
-});
-
 }());
