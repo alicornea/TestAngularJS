@@ -12,13 +12,26 @@ var app = angular.module('tutorialWebApp', [
   'constants'
 ]);
 
+
+  angular.module("tutorialWebApp").controller('DashboardCtrl', ['$scope', function ($scope) {
+
+   
+
+    $scope.$on('groundTimeChange', 
+      function (event,groundTime) { 
+        alert('event is clicked'+ groundTime.doc._id ) 
+      });  
+  }]);
+  
+ 
+
 /**
  * Configure the Routes
  */
 app.config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
     $routeProvider
       // Home
-      .when("/", { templateUrl: "partials/home.html", controller: "PageCtrl" })
+      .when("/", { templateUrl: "partials/home.html", controller: "DashboardCtrl" })
       // Pages
       .when("/about", { templateUrl: "partials/about.html", controller: "PageCtrl", authorizedRoles: [USER_ROLES.admin ] })
       .when("/jobs", { templateUrl: "partials/jobs.html", controller: "JobsCtrl" })
@@ -64,18 +77,14 @@ app.controller('BlogCtrl', function (/* $scope, $location, $http */) {
 /**
  * Controls all other Pages
  */
-app.controller('PageCtrl', function (/* $scope, $location, $http */) {
+app.controller('PageCtrl',['$scope', function ( $scope) {
     console.log("Page Controller reporting for duty.");
 
+     
     // Activates the Carousel
-    $('.carousel').carousel({
-        interval: 5000
-    });
+    
+}]);
 
-    // Activates Tooltips for Social Links
-    $('.tooltip-social').tooltip({
-        selector: "a[data-toggle=tooltip]"
-    })
-});
+
 
 

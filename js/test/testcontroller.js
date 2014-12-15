@@ -1,8 +1,8 @@
 angular.module('tutorialWebApp').controller('TestCtrl', ['$scope', 'ProjectCouch', function
 
 		($scope, ProjectCouch) {
-
-			console.log("test Controller reporting for duty.");
+$scope.$on('groundTimeChange', function () { alert('event is clicked') });  
+			console.log("test Controller reporting for duty2.");
 
 			var promise = ProjectCouch.get({
 					q : '_design',
