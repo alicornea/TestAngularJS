@@ -24,7 +24,7 @@
                                     username: credentials.username,
                                     role: user.value.role
                                 };
-                                SessionStore.set("userInfo", userInfo);
+                                SessionStore.userInfo(userInfo);
                             }
                         });
                     }
@@ -34,7 +34,7 @@
         };
 
         var isAuthenticated = function() {
-            return SessionStore.get("userInfo") !== null && !!SessionStore.get("userInfo").accessToken;
+            return SessionStore.userInfo() !== null && !!SessionStore.userInfo().accessToken;
         };
 
         var isAuthorized = function(authorizedRoles) {
@@ -46,11 +46,11 @@
         };
 
         var getUserRole = function() {
-            return SessionStore.get("userInfo") !== null ? SessionStore.get("userInfo").role : null;
+            return SessionStore.userInfo() !== null ? SessionStore.userInfo().role : null;
         };
 
         var logout = function() {
-            SessionStore.remove("userInfo");
+            SessionStore.clear();
         };
 
         return {
@@ -61,7 +61,7 @@
         };
     };
 
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
     app.factory("AuthService", ['ProjectCouch', 'SessionStore', AuthService]);
 
 }());

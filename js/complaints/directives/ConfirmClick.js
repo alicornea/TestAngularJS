@@ -1,4 +1,4 @@
-angular.module("tutorialWebApp").directive('confirmClick', [
+angular.module("mrgApp").directive('confirmClick', [
         function(){
             return {
                 link: function (scope, element, attr) {

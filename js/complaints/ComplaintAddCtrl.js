@@ -1,5 +1,5 @@
 (function(){
-
+var app = angular.module("mrgApp");
 app.controller('ComplaintAddCtrl', function($scope, ProjectCouch, $location) {
   $scope.Types = getTypes();
   $scope.Workgroups = getWorkgroups();

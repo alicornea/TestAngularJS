@@ -1,6 +1,6 @@
 (function () {
 
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
 
     var ActionDeleteCtrl = function ($scope, ProjectCouch, $location , $routeParams ) {
          var self = this;

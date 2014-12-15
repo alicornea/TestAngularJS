@@ -1,4 +1,4 @@
-angular.module('tutorialWebApp').controller('GroundTimeNewCtrl', ['$scope', 'ProjectCouch','$location', function($scope,ProjectCouch,$location){
+angular.module('mrgApp').controller('GroundTimeNewCtrl', ['$scope', 'ProjectCouch','$location', function($scope,ProjectCouch,$location){
 
 		var self = this;
 		$scope.locations = ['Area 1', 'Area 2', 'Area 3'];

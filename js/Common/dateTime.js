@@ -38,7 +38,7 @@
     }
 
 
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
     app.factory("DateTime", [DateTime]);
 
     }());

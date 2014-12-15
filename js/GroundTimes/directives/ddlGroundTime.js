@@ -1,5 +1,5 @@
 (function(){
-    var app= angular.module("tutorialWebApp");
+    var app= angular.module("mrgApp");
     app.directive("accGround", ["ProjectCouch", function(ProjectCouch) {
     return {
         restrict: 'E',

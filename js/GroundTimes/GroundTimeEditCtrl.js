@@ -1,4 +1,4 @@
-angular.module("tutorialWebApp").controller('GroundTimeEditCtrl', ['$scope', 'ProjectCouch', '$routeParams', function ($scope, ProjectCouch, $routeParams) {
+angular.module("mrgApp").controller('GroundTimeEditCtrl', ['$scope', 'ProjectCouch', '$routeParams', function ($scope, ProjectCouch, $routeParams) {
 	console.log("edit ground");
 	var self = this;
 	$scope.locations = ['Area 1', 'Area 2', 'Area 3'];
