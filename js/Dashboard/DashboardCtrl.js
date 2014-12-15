@@ -1,5 +1,5 @@
 (function() {
-    angular.module("tutorialWebApp").controller('DashboardCtrl', ['$scope', function($scope) {
+    angular.module("mrgApp").controller('DashboardCtrl', ['$scope', function($scope) {
 
         console.log("dashboard ready");
 

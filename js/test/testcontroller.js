@@ -1,4 +1,4 @@
-angular.module('tutorialWebApp').controller('TestCtrl', ['$scope', 'ProjectCouch', function
+angular.module('mrgApp').controller('TestCtrl', ['$scope', 'ProjectCouch', function
 
 		($scope, ProjectCouch) {
 $scope.$on('groundTimeChange', function () { alert('event is clicked') });  

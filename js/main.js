@@ -1,6 +1,6 @@
 (function() {
 
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
 
     /**
      * Configure the Routes

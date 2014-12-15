@@ -1,5 +1,5 @@
 (function(){
-
+var app = angular.module("mrgApp");
 app.controller('ComplaintsCtrl', function($scope, $location, ProjectCouch) {
   var promise = ProjectCouch.get({
     q: '_design',

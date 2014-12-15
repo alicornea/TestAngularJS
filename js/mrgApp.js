@@ -1,5 +1,5 @@
 console.log("register app");
-angular.module('tutorialWebApp', [
+angular.module('mrgApp', [
     'ngRoute', 'ngResource',
 
     'constants'

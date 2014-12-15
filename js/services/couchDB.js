@@ -1,6 +1,6 @@
 
 
-angular.module('tutorialWebApp').
+angular.module('mrgApp').
     factory('ProjectCouch', ['$resource', function ($resource) {
         console.log("service couch ready");
         var ProjectCouch = $resource(':protocol//:server/:db/:q/:r/:s/:t',

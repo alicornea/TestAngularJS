@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
 
     var JobCtrl = function ($scope, ProjectCouch, $location, $routeParams) {
         console.log("test Job Edit reporting for duty.");

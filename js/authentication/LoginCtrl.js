@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module("tutorialWebApp");
+    var app = angular.module("mrgApp");
 
     var LoginController = function($scope, $window, AuthService) {
 
