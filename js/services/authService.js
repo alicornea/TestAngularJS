@@ -1,6 +1,6 @@
 (function() {
 
-    var AuthService = function(ProjectCouch, $window) {
+    var AuthService = function(ProjectCouch, SessionStore) {
 
         var login = function(credentials) {
             var promise = ProjectCouch.get({
@@ -24,7 +24,7 @@
                                     username: credentials.username,
                                     role: user.value.role
                                 };
-                                $window.sessionStorage.userInfo = JSON.stringify(userInfo);
+                                SessionStore.set("userInfo", userInfo);
                             }
                         });
                     }
@@ -34,7 +34,7 @@
         };
 
         var isAuthenticated = function() {
-            return $window.sessionStorage.getItem("userInfo") !== null && !!JSON.parse($window.sessionStorage.getItem("userInfo")).accessToken;
+            return SessionStore.get("userInfo") !== null && !!SessionStore.get("userInfo").accessToken;
         };
 
         var isAuthorized = function(authorizedRoles) {
@@ -46,11 +46,11 @@
         };
 
         var getUserRole = function() {
-            return $window.sessionStorage.getItem("userInfo") !== null ? JSON.parse($window.sessionStorage.getItem("userInfo")).role : null;
+            return SessionStore.get("userInfo") !== null ? SessionStore.get("userInfo").role : null;
         };
 
         var logout = function() {
-            $window.sessionStorage.removeItem("userInfo");
+            SessionStore.remove("userInfo");
         };
 
         return {
@@ -62,6 +62,6 @@
     };
 
     var app = angular.module("tutorialWebApp");
-    app.factory("AuthService", ['ProjectCouch', '$window', AuthService]);
+    app.factory("AuthService", ['ProjectCouch', 'SessionStore', AuthService]);
 
 }());
