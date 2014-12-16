@@ -7,21 +7,32 @@
             restrict: 'E',
 
             scope: {
-                groundTime: '='
+                groundtime: '='
             },
             replace: true,
             templateUrl: 'partials/Jobs/directives/jobs.html',
 
             link: function (scope, element, attributes) {
                 console.log('muy shit right here');
-                var promise = ProjectCouch.get({
+                
+                var promise = scope.groundtime == undefined ? ProjectCouch.get({
+                                                                    q: '_design',
+                                                                    r: 'jobs',
+                                                                    s: '_view',
+                                                                    t: 'getAll',
+                                                                    include_docs: 'true',
+                                                                    limit: 1000
+                                                                }) 
+                   : ProjectCouch.get({
                     q: '_design',
                     r: 'jobs',
                     s: '_view',
-                    t: 'getAll',
-                    include_docs: 'true',
+                    t: 'getJobsByGroundTime',
+                    key: scope.groundtime,
+                    include_docs: 'true',                    
                     limit: 1000
                 });
+                
 
                 var ProcessData = function (data) {
                     scope.jobs = data;
