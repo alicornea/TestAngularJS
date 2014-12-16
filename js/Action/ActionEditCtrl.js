@@ -19,8 +19,13 @@
             });
           };
 
+           $scope.isClean = function () {
+              return angular.equals(self.original, $scope.action);
+          }
 
     };
+
+
 
     app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', '$location', '$routeParams', 'Activities', 'DateTime', ActionEditCtrl]);
 

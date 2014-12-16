@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <form role="form" method="POST" action="#" class="ng-pristine ng-valid" name="ActionForm">
+    <form name="ActionForm" ng-submit="save()">
         <div class="row">
         <input type="hidden" name="item" ng-model="action.complaintId" ng-init="action.complaintId=complaintId">
             <div class="form-group col-lg-4">
@@ -48,7 +48,8 @@
                 </span>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" ng-click="save()">Submit</button>
+         <input type="submit" id="submit" value="Submit" ng-disabled="isClean() || ActionForm.$invalid" class="btn btn-primary" />
+       
     </form>
     
 </div>

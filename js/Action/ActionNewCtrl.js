@@ -18,6 +18,10 @@
             });
         }
 
+        $scope.isClean = function () {
+            return angular.equals(self.original, $scope.action);
+        }
+
     };
 
 
