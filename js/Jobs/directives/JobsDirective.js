@@ -1,6 +1,7 @@
 ﻿(function () {
     var app = angular.module("mrgApp");
-    app.directive('jobs', ['ProjectCouch', function (ProjectCouch) {
+    
+    var Jobs = function (ProjectCouch, JobService) {
 
         return {
 
@@ -15,23 +16,7 @@
             link: function (scope, element, attributes) {
                 console.log('muy shit right here');
                 
-                var promise = scope.groundtime == undefined ? ProjectCouch.get({
-                                                                    q: '_design',
-                                                                    r: 'jobs',
-                                                                    s: '_view',
-                                                                    t: 'getAll',
-                                                                    include_docs: 'true',
-                                                                    limit: 1000
-                                                                }) 
-                   : ProjectCouch.get({
-                    q: '_design',
-                    r: 'jobs',
-                    s: '_view',
-                    t: 'getJobsByGroundTime',
-                    key: scope.groundtime,
-                    include_docs: 'true',                    
-                    limit: 1000
-                });
+                var promise = new JobService.GetDesiredJob(scope.groundtime);
                 
 
                 var ProcessData = function (data) {
@@ -53,5 +38,7 @@
 
             //controller: JobsController(ProjectCouch, $scope)
         }
-    }]);
+    }    
+    
+    app.directive('jobs', ['ProjectCouch', 'JobService', Jobs]);
 }());
