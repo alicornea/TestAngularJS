@@ -18,18 +18,20 @@
                 controller: "PageCtrl",
                 authorizedRoles: [USER_ROLES.admin]
             })
+            //Jobs
             .when("/jobs", {
-                templateUrl: "partials/jobs.html",
+                templateUrl: "partials/Jobs/jobs.html",
                 controller: "JobsCtrl"
             })
             .when("/job/edit/:jobid", {
-                templateUrl: "partials/job.html",
+                templateUrl: "partials/Jobs/job.html",
                 controller: "JobCtrl"
             })
             .when("/job/new", {
-                templateUrl: "partials/job.html",
+                templateUrl: "partials/Jobs/job.html",
                 controller: "NewJobCtrl"
             })
+
             .when("/faq", {
                 templateUrl: "partials/faq.html",
                 controller: "PageCtrl"

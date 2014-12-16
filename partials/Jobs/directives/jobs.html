@@ -1,0 +1,34 @@
+﻿<div>
+    <table style="border:4px double;">
+        <thead>
+            <tr>
+                <th>Job No.</th>
+                <th>Job Title</th>
+                <th>Date Created</th>
+                <th>Ground Time</th>
+                <th>Created by</th>
+                <th>Job Description</th>                
+                <th>Profession</th>
+                <th>Delete</th>
+                <th><a href="#/job/new">add new</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="job in jobs.rows | filter:search | orderBy:'doc.no'">
+                <td><a href="{{job.doc.no}}">{{job.doc.no}}</a></td>
+                <td>{{job.doc.title}}</td>
+                <td>{{job.doc.date}}</td>
+                <td>{{job.doc.groundTime}}</td>
+                <td>{{job.doc.created}}</td>
+                <td>{{job.doc.desc}}</td>
+                <td>{{job.doc.profession}}</td>
+                <td>
+                    <a ng-click="deleteJob(job.doc)">delete</a>
+                </td>
+                <td>
+                    <a href="#/job/edit/{{job.doc._id}}">edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
