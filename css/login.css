@@ -1,0 +1,33 @@
+.login-failed {
+  font-family: Verdana,Arial,Helvetica,sans-serif;  
+}
+
+.login-failed ul {
+  list-style: none;
+  display: block;
+  margin: 9px 0;
+  padding: 0;
+  position: absolute;
+  top: 15px;
+  right: 43%;
+  color: white;
+  background: #1b1b1b;
+  width: 185px;
+  z-index: 10000;
+  border: 1px solid;
+  border-color: white;
+}
+
+.login-failed li {
+  margin: 0;
+  padding: 15px 10px 15px 10px;
+}
+
+.login-failed #close {
+  float: right;
+  cursor: pointer;
+  font-size: 68.75%;
+  color: #fc0;
+  margin-bottom: 0;
+  padding: 15px 0 5px 5px;
+}

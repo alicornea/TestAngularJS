@@ -4,10 +4,7 @@
     var LoginController = function($scope, $window, AuthService) {
 
         $scope.login = function(credentials) {
-            AuthService.login(credentials).then(function(userInfo) {
-                $scope.username = userInfo.username;
-                console.log("login success");
-            });
+            AuthService.login(credentials);
         };
 
         $scope.isAuthenticated = function() {

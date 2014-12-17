@@ -2,7 +2,7 @@
   <div class="container">
     <div style="text-align:right">
       <acc-ground></acc-ground>
-      <div ng-include='"partials/login.html"' style="display:inline-block"></div>
+      <div ng-include='"partials/login/login.html"' style="display:inline-block"></div>
     </div>
 
     <div class="navbar-header">
@@ -24,7 +24,7 @@
         </li>
         <li><a href="#/pricing">Pricing Table</a>
         </li>
-        <li><a href="#/about">About</a>
+        <li ng-show="isAuthorized([userRoles.admin])"><a href="#/about">About</a>
         </li>
         <li><a href="#/faq">FAQ</a>
         </li>
