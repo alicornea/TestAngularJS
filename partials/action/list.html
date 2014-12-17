@@ -1,7 +1,7 @@
 ﻿<div class="container">
     <h1>Actions List</h1>
 
-   <!-- <table style="margin-top: 6px;">
+   <table style="margin-top: 6px;">
         <thead>
             <tr>
                 <th>Compliant No.</th>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'doc.title'">
+            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'doc.complaintId'">
                 <td>{{action.doc.complaintId}}</td>
                 <td>{{action.doc.title}}</td>
                 <td>{{action.doc.description}}</td>
@@ -27,8 +27,8 @@
                 <a href="#/action/delete/{{action.doc._id}}">Delete</a> </td>
             </tr>
         </tbody>
-    </table>-->
-    <activities-Complaint complaintid="'2017dc0d7dd8ccccd5c8bebd6b00c741'">
-    </activities-Complaint>
+    </table>
+   <!-- <activities-Complaint complaintid="'2017dc0d7dd8ccccd5c8bebd6b00c741'">
+    </activities-Complaint>-->
 
 </div>
