@@ -10,7 +10,7 @@
         promise.$promise.then(function (data) {
             var statusesAction = [];
             for (i = 0; i < data.rows.length; i++)
-                statusesAction.push(data.rows[i].doc.name);
+                statusesAction.push(data.rows[i].value.name);
             $scope.statuses = statusesAction;
             if (data.rows.length > 0)
                 $scope.action.status = statusesAction[0];

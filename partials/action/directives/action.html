@@ -12,16 +12,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'doc.title'">
-                <td>{{action.doc.complaintId}}</td>
-                <td>{{action.doc.title}}</td>
-                <td>{{action.doc.description}}</td>
-                <td>{{action.doc.status}}</td>
-                <td>{{action.doc.createDate}}</td>
-                <td>{{action.doc.changeDate}}</td>
-                <td>{{action.doc.issuebyUser}}</td>
-                <td><a href="#/action/edit/{{action.doc._id}}">Edit</a>&nbsp;
-                <a href="#/action/delete/{{action.doc._id}}">Delete</a> </td>
+            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'value.title'">
+                <td>{{action.value.complaintId}}</td>
+                <td>{{action.value.title}}</td>
+                <td>{{action.value.description}}</td>
+                <td>{{action.value.status}}</td>
+                <td>{{action.value.createDate}}</td>
+                <td>{{action.value.changeDate}}</td>
+                <td>{{action.value.issuebyUser}}</td>
+                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
+                <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
             </tr>
         </tbody>
     </table>
