@@ -4,19 +4,19 @@
     </div>
     <div class="complaint">
         <label for="" class="complaintLabel">Refference Number :</label>
-        <input ng-model="complaint.doc.refNo" class="complaintInput" disabled>
+        <input ng-model="complaint.value.refNo" class="complaintInput" disabled>
     </div>
     <div class="complaint">
         <label for="" class="complaintLabel">Text :</label>
-        <input ng-model="complaint.doc.text" class="complaintInput" disabled>
+        <input ng-model="complaint.value.text" class="complaintInput" disabled>
     </div>
     <div class="complaint">
         <label for="" class="complaintLabel">Type :</label>
-        <input ng-model="complaint.doc.type" class="complaintInput" disabled>
+        <input ng-model="complaint.value.type" class="complaintInput" disabled>
     </div>
     <div class="complaint">
         <label for="" class="complaintLabel">Workgroup :</label>
-        <input ng-model="complaint.doc.workgroup" class="complaintInput" disabled>
+        <input ng-model="complaint.value.workgroup" class="complaintInput" disabled>
     </div>
     <br />
     <div style="text-align:center">
@@ -25,6 +25,6 @@
 
 </div>
 <h3> Activities for this complaint </h3>
-{{complaint.doc._id}}
+{{complaint.value._id}}
 <activities-Complaint complaintid="'2017dc0d7dd8ccccd5c8bebd6b00c741'">
 </activities-Complaint>

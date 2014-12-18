@@ -1,43 +1,43 @@
 <form name="complaintForm">
     <div class="complaintContainer">
         <div class="complaintTitle">
-            <span ng-hide="complaint.doc._id">New complaint</span>
-            <span ng-hide="!complaint.doc._id">Edit complaint</span>
+            <span ng-hide="complaint.value._id">New complaint</span>
+            <span ng-hide="!complaint.value._id">Edit complaint</span>
         </div>
         <div class="complaint">
             <label for="txtRefNo" class="complaintLabel">Refference Number :</label>
-            <input name="txtRefNo" ng-model="complaint.doc.refNo" required placeholder="912452" class="complaintInput">
+            <input name="txtRefNo" ng-model="complaint.value.refNo" required placeholder="912452" class="complaintInput">
             <span ng-show="complaintForm.txtRefNo.$error.required" class="help-inline">Required</span>
         </div>
         <div class="complaint">
             <label for="txtText" class="complaintLabel">Text :</label>
-            <input name="txtText" ng-model="complaint.doc.text" required placeholder="Input text here" class="complaintInput">
+            <input name="txtText" ng-model="complaint.value.text" required placeholder="Input text here" class="complaintInput">
             <span ng-show="complaintForm.txtText.$error.required" class="help-inline">Required</span>
         </div>
         <div class="complaint">
             <label for="ddlType" class="complaintLabel">Type :</label>
-            {{Types[0].doc.name}}
-            <select name="ddlType" ng-init="complaint.doc.type = complaint.doc.type || Types[0].doc.name" ng-model="complaint.doc.type" class="complaintInput">
-                <option ng-repeat="t in Types" value="{{t.doc.name}}">
-                    {{t.doc.name}}
+            {{Types[0].value.name}}
+            <select name="ddlType" ng-init="complaint.value.type = complaint.value.type || Types[0].value.name" ng-model="complaint.value.type" class="complaintInput">
+                <option ng-repeat="t in Types" value="{{t.value.name}}">
+                    {{t.value.name}}
                 </option>
-            </select>
+            </select
         </div>
         <div class="complaint">
             <label for="ddlWorkgroup" class="complaintLabel">Workgroup :</label>
-            {{Workgroups[0].doc.name}}
-            <select name="ddlWorkgroup" ng-init="complaint.doc.workgroup = complaint.doc.workgroup || Workgroups[0].doc.name" ng-model="complaint.doc.workgroup" class="complaintInput">
-                <option ng-repeat="wg in Workgroups" value="{{wg.doc.name}}" class="complaintInput">
-                    {{wg.doc.name}}
+            {{Workgroups[0].value.name}}
+            <select name="ddlWorkgroup" ng-init="complaint.value.workgroup = complaint.value.workgroup || Workgroups[0].value.name" ng-model="complaint.value.workgroup" class="complaintInput">
+                <option ng-repeat="wg in Workgroups" value="{{wg.value.name}}" class="complaintInput">
+                    {{wg.value.name}}
                 </option>
             </select>
         </div>
 
         <br />
-        <input type="hidden" ng-model="complaint.doc.item" ng-init="complaint.doc.item=complaint.doc.item || 'complaint'">
+        <input type="hidden" ng-model="complaint.value.item" ng-init="complaint.value.item=complaint.value.item || 'complaint'">
         <div style="text-align:center">
-            <a ng-hide="complaint.doc._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnComplaint icon-save"><span>Save</span></a>
-            <a ng-hide="!complaint.doc._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnComplaint icon-save"><span>Update</span></a>
+            <a ng-hide="complaint.value._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnComplaint icon-save"><span>Save</span></a>
+            <a ng-hide="!complaint.value._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnComplaint icon-save"><span>Update</span></a>
             <a class="btn btnComplaint icon-arrow-left" href="#/Complaints"><span>Cancel</span></a>
         </div>
     </div>

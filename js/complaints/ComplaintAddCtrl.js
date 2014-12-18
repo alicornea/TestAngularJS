@@ -16,7 +16,7 @@
             });
 
         $scope.saveComplaint = function() {
-            ComplaintsService.saveComplaint($scope.complaint.doc);
+            ComplaintsService.saveComplaint($scope.complaint.value);
         };
     });
 }());

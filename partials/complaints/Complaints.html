@@ -21,16 +21,16 @@
         </tfoot>
         <tbody>
             <tr ng-repeat="complaint in Complaints">
-                <td>{{complaint.doc.refNo}}</td>
-                <td>{{complaint.doc.text}}</td>
-                <td>{{complaint.doc.type}}</td>
-                <td>{{complaint.doc.workgroup}}</td>
-                <td>{{complaint.doc.date}}</td>
+                <td>{{complaint.value.refNo}}</td>
+                <td>{{complaint.value.text}}</td>
+                <td>{{complaint.value.type}}</td>
+                <td>{{complaint.value.workgroup}}</td>
+                <td>{{complaint.value.date}}</td>
                 <td>
-                    <a class="btn btnComplaint icon-arrow-right" href="#/Complaint/{{complaint.doc._id}}"><span>Details</span></a>
-                    <a class="btn btnComplaint icon-cog" href="#/Complaint/Edit/{{complaint.doc._id}}"><span>Edit</span></a>
+                    <a class="btn btnComplaint icon-arrow-right" href="#/Complaint/{{complaint.value._id}}"><span>Details</span></a>
+                    <a class="btn btnComplaint icon-cog" href="#/Complaint/Edit/{{complaint.value._id}}"><span>Edit</span></a>
                     <a class="btn btnComplaint icon-remove" href="#" confirmed-click="deleteComplaint(complaint.doc)" confirm-click="Are you sure you want to delete this Complaint?"><span>Delete</span></a>
-                    <a class="btn btnComplaint  icon-plus" href="#/action/new/{{complaint.doc._id}}"><span>Create Action</span></a>
+                    <a class="btn btnComplaint  icon-plus" href="#/action/new/{{complaint.value._id}}"><span>Create Action</span></a>
                 </td>
             </tr>
         </tbody>
