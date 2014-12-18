@@ -20,12 +20,10 @@
         <div class="row">
             <div class="form-group col-lg-4">
                 <label for="status">Status</label>
-          
-            <select ng-init="action.status=action.status || statuses[0].name" ng-model="action.status" class="form-control">
-                <option ng-repeat="status in statuses" value="{{status.name}}">
-                  {{status.name}}
-                 </option>
-            </select>
+                <select ng-init="action.status=action.status || statuses[0]" ng-model="action.status" class="form-control">
+                    <option ng-repeat="status in statuses" value="{{status}}">{{status}}
+                    </option>
+                </select>
         </div>
 
         </div>

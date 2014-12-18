@@ -2,15 +2,27 @@
 
     var app = angular.module("mrgApp");
 
-    var ActionEditCtrl = function ($scope, ProjectCouch, $location , $routeParams, Activities, DateTime ) {
+    var ActionEditCtrl = function ($scope, ProjectCouch, $location, $routeParams, ActionService, DateTime) {
          var self = this;
-         
+ 
+         var promise = ActionService.GetStatuses();
+
+         promise.$promise.then(function (data) {
+             var statuses = [];
+             for (i = 0; i < data.rows.length; i++)
+                 statuses.push(data.rows[i].doc.name);
+
+             $scope.statuses = statuses;
+         }, function (reason) {
+             alert(JSON.stringify(reason));
+         });
+
          ProjectCouch.get({q: $routeParams.actionid}, function(action) {
             self.original = action;
             $scope.action = new ProjectCouch(self.original);
          });
    
-          $scope.statuses = Activities.statuses;
+
 
           $scope.save = function() {
             $scope.action.changeDate = DateTime.currentDateTime();
@@ -27,6 +39,6 @@
 
 
 
-    app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', '$location', '$routeParams', 'Activities', 'DateTime', ActionEditCtrl]);
+    app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', '$location', '$routeParams', 'ActionService', 'DateTime', ActionEditCtrl]);
 
 }());

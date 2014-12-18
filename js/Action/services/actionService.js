@@ -30,7 +30,22 @@
             return promise;
         }
 
-        return { GetAllActions: GetActions , GetActionsByComplaintId: GetActionsBasedOnComplaintId };
+        function GetAllStatuses()
+        {
+            console.log("getallStatuses");
+            var promise = ProjectCouch.get({
+                q: '_design',
+                r: 'statusAction',
+                s: '_view',
+                t: 'getAll',
+                include_docs: 'true',
+                limit: 10
+            });
+            return promise;
+
+        }
+
+        return { GetAllActions: GetActions, GetActionsByComplaintId: GetActionsBasedOnComplaintId, GetStatuses: GetAllStatuses };
     };
 
     var app = angular.module("mrgApp");
