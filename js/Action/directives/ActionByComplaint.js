@@ -1,14 +1,15 @@
 ﻿(function () {
     var app = angular.module("mrgApp");
-    app.directive("activitiesComplaint", ['ActionService', activitiesComplaint]);
+    app.directive("activitiesComplaint", ['ActionService','$routeParams', activitiesComplaint]);
 
-    function activitiesComplaint(ActionService) {
+    function activitiesComplaint(ActionService, $routeParams) {
 
         function myLink(scope, elements, attributes) {
-            console.log("complaint id = " + scope.complaintid);
+           var complaintid = $routeParams.id;
+            console.log("complaint id2 = " + complaintid );
 
-            var promise = (typeof scope.complaintid != "undefined")
-                ? ActionService.GetActionsByComplaintId(scope.complaintid)
+            var promise = (typeof complaintid != "undefined")
+                ? ActionService.GetActionsByComplaintId(complaintid)
                 : ActionService.GetAllActions();
 
             var ProcessData = function (data) {
@@ -23,9 +24,7 @@
 
         return {
             restrict: 'E',
-            scope: {
-                complaintid: "="
-            },
+
             templateUrl: 'partials/Action/directives/action.html',
             link: myLink
         }
