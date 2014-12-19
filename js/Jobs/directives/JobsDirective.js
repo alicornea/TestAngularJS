@@ -8,12 +8,13 @@
             restrict: 'E',
 
             scope: {
-                groundtime: '='
+                groundtime: '@'
             },
             replace: true,
             templateUrl: 'partials/Jobs/directives/jobs.html',
 
             link: function (scope, element, attributes) {
+                scope.$on('groundTimeChange', function(){
                 console.log('muy shit right here');
                 
                 var promise = new JobService.GetDesiredJob(scope.groundtime);
@@ -34,6 +35,7 @@
                         $location.path("/jobs/")
                     });
                 };
+            });
             }
 
             //controller: JobsController(ProjectCouch, $scope)
