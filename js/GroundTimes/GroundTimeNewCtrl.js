@@ -8,9 +8,11 @@ angular.module('mrgApp').controller('GroundTimeNewCtrl', ['$scope', 'ProjectCouc
 		{
 			//var groundTime = new ProjectCouch($scope.groundTime);
 			//groundTime.
-			ProjectCouch.save($scope.groundTime, function(groundAction) {
+			/*ProjectCouch.save($scope.groundTime, function(groundAction) {
       			$location.path('/groundtime/new');
-    		});
+    		});*/
+			pouchDbHandler.putObject($scope.groundTime);
+
 			
 		}
 	}

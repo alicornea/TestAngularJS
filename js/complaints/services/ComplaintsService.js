@@ -8,7 +8,7 @@
                     s: '_view',
                     t: 'getAll',
                     include_docs: 'true',
-                    limit: 20
+                    
                 });
 
                 return promise.$promise;

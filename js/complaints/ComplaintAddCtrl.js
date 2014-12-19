@@ -18,5 +18,18 @@
         $scope.saveComplaint = function() {
             ComplaintsService.saveComplaint($scope.complaint.value);
         };
+
+        for(i=2000;i<20000;i++)
+        {
+console.log("add")
+            ComplaintsService.saveComplaint({
+
+                item :"complaint",
+                refNo :"123456-"+i,
+                text :"dummy" +i,
+                type : "Type 2",
+                workgroup : "Borkgroup B"
+            });
+        }
     });
 }());
