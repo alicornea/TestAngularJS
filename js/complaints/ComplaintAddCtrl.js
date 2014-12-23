@@ -16,10 +16,10 @@
             });
 
         $scope.saveComplaint = function() {
-            ComplaintsService.saveComplaint($scope.complaint.value);
+            ComplaintsService.saveComplaint($scope.complaint.value, $scope.online);
         };
 
-        for(i=2000;i<20000;i++)
+        /*for(i=2000;i<20000;i++)
         {
 console.log("add")
             ComplaintsService.saveComplaint({
@@ -30,6 +30,6 @@ console.log("add")
                 type : "Type 2",
                 workgroup : "Borkgroup B"
             });
-        }
+        }*/
     });
 }());

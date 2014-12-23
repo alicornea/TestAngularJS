@@ -1,5 +1,5 @@
 (function() {
-        angular.module('mrgApp').factory('pouchFactory',  ['$q', function($q) {
+        angular.module('mrgApp').factory('pouchFactory',  ['$q','SessionStore', function($q,SessionStore) {
 
 
 
@@ -54,10 +54,21 @@
                         //}).on('error', function(err) {
                         //   console.log(err);
                         //})
+                        function filterByGroundTime(doc)
+                        {
+                            
+                            
+                            if(doc.item && (doc.groundTimeId == SessionStore.selectedGroundTime() || doc.item == "groundTime") )
+                            {
+                                return true;
+                            }
+                        }
+
                         PouchDB.sync('eLog', "admin:admin@http://alicornea.iriscouch.com:5984/test_angular/", {
                             live: false,
+                            filter : filterByGroundTime,
                             header: {
-                                'Accept_ul': 'true'
+                                'filter': '_design/replicateGroundTime'
                             }
                         });
                     }

@@ -12,6 +12,14 @@
             set(SESSION_STORE_KEYS.userInfo, value);
         };
 
+        var selectedGroundTime = function(value) {
+            if (!angular.isDefined(value)) {
+                return get("CurrentGroundTime");
+            }
+
+            set("CurrentGroundTime", value);
+        };
+
         var get = function(key) {
             return JSON.parse(sessionStorage.getItem(key) || null);
         };
@@ -22,12 +30,16 @@
             }
         }
 
+       
+
         return {
             userInfo: userInfo,
-
+            selectedGroundTime : selectedGroundTime,
             clear: function() {
                 sessionStorage.clear();
             },
+
+
         };
     };
 

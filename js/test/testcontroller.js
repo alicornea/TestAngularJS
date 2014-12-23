@@ -1,7 +1,7 @@
 angular.module('mrgApp').controller('TestCtrl', ['$scope', 'ProjectCouch', function
 
 		($scope, ProjectCouch) {
-$scope.$on('groundTimeChange', function () { alert('event is clicked') });  
+$scope.$on('groundTimeChange', function (ev,rec) { alert('event is clicked'); });  
 			console.log("test Controller reporting for duty2.");
 
 			var promise = ProjectCouch.get({

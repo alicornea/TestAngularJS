@@ -54,6 +54,7 @@
       return SessionStore.userInfo() !== null ? SessionStore.userInfo().role : null;
     };
 
+
     var logout = function() {
       SessionStore.clear();
     };

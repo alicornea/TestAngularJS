@@ -1,4 +1,4 @@
-angular.module('mrgApp').controller('GroundTimeNewCtrl', ['$scope', 'ProjectCouch','$location', function($scope,ProjectCouch,$location){
+angular.module('mrgApp').controller('GroundTimeNewCtrl', ['$scope','$location','storageSrv', 'pouchFactory', function($scope,$location,storageSrv,pouchFactory){
 
 		var self = this;
 		$scope.locations = ['Area 1', 'Area 2', 'Area 3'];
@@ -6,14 +6,8 @@ angular.module('mrgApp').controller('GroundTimeNewCtrl', ['$scope', 'ProjectCouc
 		$scope.availableAircrafts = ['Plain1', 'Plain2', 'Plain3']
 		$scope.saveGroundTime = function()
 		{
-			//var groundTime = new ProjectCouch($scope.groundTime);
-			//groundTime.
-			/*ProjectCouch.save($scope.groundTime, function(groundAction) {
-      			$location.path('/groundtime/new');
-    		});*/
-			pouchDbHandler.putObject($scope.groundTime);
-
-			
+			storageSrv.insert($scope.groundTime,$scope.online);		
 		}
+		
 	}
 	]);

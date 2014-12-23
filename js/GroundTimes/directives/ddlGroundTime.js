@@ -1,6 +1,6 @@
 (function() {
     var app = angular.module("mrgApp");
-    app.directive("accGround", ["ProjectCouch", "pouchFactory", function(ProjectCouch, pouchFactory) {
+    app.directive("accGround", ["ProjectCouch", "pouchFactory", "AuthService", function(ProjectCouch, pouchFactory, AuthService) {
         return {
             restrict: 'E',
 
@@ -30,6 +30,8 @@
                 pouchFactory.queryObject(mapFunction).then(function onSuccess(doc) {
                     $scope.groundTimes = doc.rows
                 })
+
+
 
 
                 $scope.updateGroundTime = function(groundTime) {

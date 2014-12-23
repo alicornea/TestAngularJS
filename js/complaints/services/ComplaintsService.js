@@ -1,6 +1,6 @@
 (function() {
     angular.module('mrgApp')
-        .service('ComplaintsService', function($location, ProjectCouch, DateTime) {
+        .service('ComplaintsService', ['$location','ProjectCouch','DateTime','storageSrv','SessionStore',function($location, ProjectCouch, DateTime,storageSrv,SessionStore) {
             this.getComplaints = function() {
                 var promise = ProjectCouch.get({
                     q: '_design',
@@ -29,12 +29,14 @@
                 return promise.$promise;
             };
 
-            this.saveComplaint = function(complaint) {
+            this.saveComplaint = function(complaint, online) {
                 complaint.date = DateTime.currentDateTime();
-
-                ProjectCouch.save(complaint, function(reason) {
+                complaint.groundTimeId = SessionStore.selectedGroundTime();
+                storageSrv.insert(complaint,online); 
+                /*ProjectCouch.save(complaint, function(reason) {
                     $location.path('/Complaints');
-                });
+                });*/
+                $location.path('/Complaints');
             };
 
             this.updateComplaint = function(complaint) {
@@ -49,5 +51,5 @@
                     $location.path('/Complaints');
                 })
             };
-        });
+        }]);
 }());
