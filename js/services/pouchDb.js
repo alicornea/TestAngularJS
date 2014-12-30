@@ -20,12 +20,32 @@
                 return {
                     putObject: function(objectToInsert) {
                         var db = new PouchDB('eLog');
-                        objectToInsert._id = newGuid();
-                        db.put(objectToInsert, function cb(err, result) {
+                        //objectToInsert._id = newGuid();
+                        db.post(objectToInsert, function cb(err, result) {
                             if (!err) {
                                 console.log("success inserting " + objectToInsert);
                             } else
                                 console.log("error inserting " + objectToIsert + err);
+                        })
+                    },
+                    updateObject: function(objectToUpdate) {
+                        var db = new PouchDB('eLog');
+                        
+                        db.put(objectToUpdate, function cb(err, result) {
+                            if (!err) {
+                                console.log("success updating " + objectToUpdate);
+                            } else
+                                console.log("error updating " + objectToUpdate + err);
+                        })
+                    },
+                    destroyObject: function(objectToDestroy) {
+                        var db = new PouchDB('eLog');
+                        
+                        db.remove(objectToDestroy, function cb(err, result) {
+                            if (!err) {
+                                console.log("success deleting " + objectToDestroy);
+                            } else
+                                console.log("error deleting " + objectToDestroy + err);
                         })
                     },
                     getOjectById: function(id) {

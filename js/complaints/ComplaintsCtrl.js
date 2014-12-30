@@ -7,7 +7,7 @@
         });
 
         $scope.deleteComplaint = function(complaint) {
-            ComplaintsService.deleteComplaint(complaint)
+            ComplaintsService.deleteComplaint(complaint,$scope.online)
         };
     });
 }());

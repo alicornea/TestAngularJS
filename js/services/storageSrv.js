@@ -40,10 +40,18 @@ angular.module("mrgApp").factory('storageSrv', ['pouchFactory', 'ProjectCouch', 
             }
         },
         update: function(objectToUpdate, online) {
-
+            if (online) {
+                new ProjectCouch(objectToUpdate).update();
+            }
+            else
+                 pouchFactory.updateObject(objectToUpdate);
         },
-        remove: function(objectToRemove, online) {
-
+        destroy: function(objectToRemove, online) {
+            if (online) {
+                new ProjectCouch(objectToRemove).destroy();
+            } else {
+                pouchFactory.destroyObject(objectToRemove);
+            }
         },
         select: function(query, online) {
 

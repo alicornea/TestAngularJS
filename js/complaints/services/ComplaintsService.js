@@ -33,9 +33,6 @@
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
                 storageSrv.insert(complaint,online); 
-                /*ProjectCouch.save(complaint, function(reason) {
-                    $location.path('/Complaints');
-                });*/
                 $location.path('/Complaints');
             };
 
@@ -46,10 +43,12 @@
                 });
             };
             
-            this.deleteComplaint = function(complaint) {
-                new ProjectCouch(complaint).destroy(function() {
+            this.deleteComplaint = function(complaint,online) {
+                storageSrv.destroy(complaint,online); 
+                /*new ProjectCouch(complaint).destroy(function() {
                     $location.path('/Complaints');
-                })
+                })*/
+                $location.path('/Complaints')
             };
         }]);
 }());
