@@ -25,7 +25,7 @@
         return {
             restrict: 'E',
 
-            templateUrl: 'partials/Action/directives/action.html',
+            templateUrl: 'partials/action/directives/action.html',
             link: myLink
         }
     };
