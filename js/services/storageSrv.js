@@ -55,10 +55,10 @@
             select: function(query, viewPath, online) {
                 if (online) {
                     var viewPathArray = viewPath.split('/');
-                    var queryParamsArray = {
+                  /*  var queryParamsArray = {
                         'q', 'r', 's', 't'
                     }
-                  /*  var promise = ProjectCouch.get({
+                    var promise = ProjectCouch.get({
                         q: viewPathArray[0],
                         r: viewPathArray[1],
                         s: viewPathArray[2],
