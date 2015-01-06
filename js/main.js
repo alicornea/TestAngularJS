@@ -31,7 +31,7 @@
                 templateUrl: "partials/Jobs/job.html",
                 controller: "NewJobCtrl"
             })
-
+            //faq
             .when("/faq", {
                 templateUrl: "partials/faq.html",
                 controller: "PageCtrl"
