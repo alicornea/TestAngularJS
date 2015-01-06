@@ -58,7 +58,7 @@
                     var queryParamsArray = {
                         'q', 'r', 's', 't'
                     }
-                    var promise = ProjectCouch.get({
+                  /*  var promise = ProjectCouch.get({
                         q: viewPathArray[0],
                         r: viewPathArray[1],
                         s: viewPathArray[2],
@@ -66,7 +66,7 @@
                         include_docs: 'true',
                         limit: 1,
                         
-                    });
+                    });*/
 
                     return promise.$promise;
                 }
