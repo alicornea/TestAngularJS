@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     var GetJobs = function (ProjectCouch) {
 
         var GetDesiredJob = function (groundTime) {

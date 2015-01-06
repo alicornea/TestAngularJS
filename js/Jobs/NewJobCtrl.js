@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     var app = angular.module("mrgApp");
 
     var NewJobCtrl = function ($scope, ProjectCouch, $location, $routeParams) {
