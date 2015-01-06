@@ -31,7 +31,7 @@
                 templateUrl: "partials/Jobs/job.html",
                 controller: "NewJobCtrl"
             })
-
+            //faq
             .when("/faq", {
                 templateUrl: "partials/faq.html",
                 controller: "PageCtrl"
@@ -60,6 +60,11 @@
                 templateUrl: "partials/testedit.html",
                 controller: "TestNewCtrl"
             })
+            
+        .when("/register", {
+            templateUrl: "partials/registration/registration.html",
+            controller: "RegistrationCtrl"
+        })
 
         //groundTime
         .when("/groundtime/new", {

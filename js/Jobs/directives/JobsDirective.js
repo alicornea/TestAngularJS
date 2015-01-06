@@ -1,7 +1,7 @@
-﻿(function () {
+(function() {
     var app = angular.module("mrgApp");
-    
-    var Jobs = function (ProjectCouch, JobService) {
+
+    var Jobs = function(ProjectCouch, JobService) {
 
         return {
 
@@ -13,34 +13,34 @@
             replace: true,
             templateUrl: 'partials/Jobs/directives/jobs.html',
 
-            link: function (scope, element, attributes) {
-                scope.$on('groundTimeChange', function(){
-                console.log('muy shit right here');
-                
-                var promise = new JobService.GetDesiredJob(scope.groundtime);
-                
+            link: function(scope, element, attributes) {
 
-                var ProcessData = function (data) {
+                console.log('muy shit right here');
+
+                var promise = new JobService.GetDesiredJob(scope.groundtime);
+
+
+                var ProcessData = function(data) {
                     scope.jobs = data;
                 };
 
-                var ProcessError = function (reason) {
+                var ProcessError = function(reason) {
                     alert(reason);
                 };
 
                 promise.$promise.then(ProcessData, ProcessError);
 
-                scope.deleteJob = function (job) {
-                    new ProjectCouch(job).destroy(function () {
+                scope.deleteJob = function(job) {
+                    new ProjectCouch(job).destroy(function() {
                         $location.path("/jobs/")
                     });
                 };
-            });
+
             }
 
             //controller: JobsController(ProjectCouch, $scope)
         }
-    }    
-    
+    }
+
     app.directive('jobs', ['ProjectCouch', 'JobService', Jobs]);
 }());
