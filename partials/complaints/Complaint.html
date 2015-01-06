@@ -24,6 +24,10 @@
     </div>
 
 </div>
+
 <h3> Activities for this complaint </h3>
-<activities-Complaint>
-</activities-Complaint>
+
+<div  ng-show="currentComplaintId">
+    <activities-Complaint   complaintid="currentComplaintId">
+    </activities-Complaint>
+</div>

@@ -5,11 +5,9 @@
     function activitiesComplaint(ActionService, $routeParams) {
 
         function myLink(scope, elements, attributes) {
-           var complaintid = $routeParams.id;
-            console.log("complaint id2 = " + complaintid );
-
-            var promise = (typeof complaintid != "undefined")
-                ? ActionService.GetActionsByComplaintId(complaintid)
+          
+            var promise = (typeof scope.complaintid != "undefined")
+                ? ActionService.GetActionsByComplaintId(scope.complaintid)
                 : ActionService.GetAllActions();
 
             var ProcessData = function (data) {
@@ -24,7 +22,9 @@
 
         return {
             restrict: 'E',
-
+            scope: {
+                complaintid: '='
+            },
             templateUrl: 'partials/action/directives/action.html',
             link: myLink
         }
