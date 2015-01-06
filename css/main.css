@@ -141,12 +141,7 @@ footer {
     margin-top: 10px;
     text-align: right;
 }
-.leftNavigation{
-float: left;
-width: 200px; 
-background: #e1e1e1;
-height: 100%;
-}
+
 .contentElement
 {
   margin-left: 200px; 
@@ -172,8 +167,21 @@ th a{
 td {
     padding: 15px;
 }
+.leftNavigation{
+float: left;
+width: 200px; 
+background: #101010;
+height: 100%;
 
+}
+.leftNavigationList
+{
+list-style-type: none;
 
-.leftNavigation{  width:200px;  background: #fff}
-.acDataLeftNavigation{height:400px;box-shadow: 1px 1px 1px #000; }
+}
+.leftNavigationList li a
+{
+color: #777;
+}
+.acDataLeftNavigation{height:400px;box-shadow: 1px 1px 1px #101010; }
 .groundTimeBox{box-shadow: 1px 1px 1px #000; }
