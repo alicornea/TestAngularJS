@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     var app = angular.module("mrgApp");
     
     var Jobs = function (ProjectCouch, JobService) {
