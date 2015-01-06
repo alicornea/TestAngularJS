@@ -1,15 +1,15 @@
 (function() {
     angular.module('mrgApp')
-        .service('ComplaintsService', ['$location','ProjectCouch','DateTime','storageSrv','SessionStore',function($location, ProjectCouch, DateTime,storageSrv,SessionStore) {
-            this.getComplaints = function() {
+        .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', function($location, ProjectCouch, DateTime, storageSrv, SessionStore) {
+            this.getComplaints = function(startKey, numberOfResults) {
                 var promise = ProjectCouch.get({
                     q: '_design',
                     r: 'complaint',
                     s: '_view',
                     t: 'getAll',
                     include_docs: 'true',
-                    limit:20
-
+                    limit: numberOfResults > 0 ? numberOfResults + 1 : 20,
+                    startkey: startKey === undefined ? '""' : '"' + startKey + '"'
                 });
 
                 return promise.$promise;
@@ -32,7 +32,7 @@
             this.saveComplaint = function(complaint, online) {
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
-                storageSrv.insert(complaint,online); 
+                storageSrv.insert(complaint, online);
                 $location.path('/Complaints');
             };
 
@@ -42,9 +42,9 @@
                     $location.path('/Complaints');
                 });
             };
-            
-            this.deleteComplaint = function(complaint,online) {
-                storageSrv.destroy(complaint,online); 
+
+            this.deleteComplaint = function(complaint, online) {
+                storageSrv.destroy(complaint, online);
                 /*new ProjectCouch(complaint).destroy(function() {
                     $location.path('/Complaints');
                 })*/

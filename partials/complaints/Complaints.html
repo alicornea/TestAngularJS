@@ -20,7 +20,7 @@
             </tr>
         </tfoot>
         <tbody>
-            <tr ng-repeat="complaint in Complaints">
+            <tr ng-repeat="complaint in complaints">
                 <td>{{complaint.value.refNo}}</td>
                 <td>{{complaint.value.text}}</td>
                 <td>{{complaint.value.type}}</td>
@@ -35,4 +35,11 @@
             </tr>
         </tbody>
     </table>
+    <div>
+
+        <a href="javascript:return false" ng-hide="offset == 0" ng-click="getComplaints(prevPageStartKey)">Prev page</a>
+        <a href="javascript:return false" ng-click="getComplaints(nextPageStartKey)">Next page</a> Total complaints : {{noOfComplaints}}
+        {{startKey}}
+        {{complaintsPerPage}}
+    </div>
 </div>
