@@ -7,15 +7,18 @@
                 <th>Date Created</th>
                 <th>Ground Time</th>
                 <th>Created by</th>
-                <th>Job Description</th>                
+                <th>Job Description</th>
                 <th>Profession</th>
                 <th>Delete</th>
-                <th><a href="#/job/new">add new</a></th>
+                <th><a href="#/job/new">add new</a>
+                </th>
+                <th>Attachements</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="job in jobs.rows | filter:search | orderBy:'doc.no'">
-                <td><a href="{{job.doc.no}}">{{job.doc.no}}</a></td>
+                <td><a href="{{job.doc.no}}">{{job.doc.no}}</a>
+                </td>
                 <td>{{job.doc.title}}</td>
                 <td>{{job.doc.date}}</td>
                 <td>{{job.doc.groundTime}}</td>
@@ -27,6 +30,9 @@
                 </td>
                 <td>
                     <a href="#/job/edit/{{job.doc._id}}">edit</a>
+                </td>
+                <td>
+                    <a href="#/job/attachement/{{job.doc._id}}">Add Attachements</a>
                 </td>
             </tr>
         </tbody>
