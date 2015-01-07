@@ -1,7 +1,7 @@
 (function() {
     var app = angular.module("mrgApp");
 
-    var LoginController = function($scope, $window, AuthService) {
+    var LoginController = function($scope, LocalStore, AuthService) {
 
         $scope.login = function(credentials) {
             AuthService.login(credentials);
@@ -9,7 +9,7 @@
 
         $scope.isAuthenticated = function() {
             if (AuthService.isAuthenticated()) {
-                $scope.username = JSON.parse($window.sessionStorage.getItem("userInfo")).username;
+                $scope.username = LocalStore.userInfo().username;
                 return true;
             }
 
@@ -21,6 +21,6 @@
         };
     };
 
-    app.controller("LoginController", ['$scope', '$window', 'AuthService', LoginController]);
+    app.controller("LoginController", ['$scope', 'LocalStore', 'AuthService', LoginController]);
 
 }());
