@@ -1,0 +1,25 @@
+<form method="POST" name="email_form_with_php" action="" enctype="multipart/form-data">
+
+    <label for='name'>Name: </label>
+    <input type="text" name="name">
+
+    <label for='email'>Email: </label>
+    <input type="text" name="email">
+
+    <label for='message'>Message:</label>
+    <textarea name="message"></textarea>
+
+    <label for='uploaded_file'>Select A File To Upload:</label>
+    <input type="file" name="uploaded_file">
+
+    <input type="submit" value="Submit" name='submit'>
+</form>
+
+
+<form class="documentForm" method="post" action="" enctype="multipart/form-data">
+    <input type="text" name="_db" id="_db" placeholder="Database ID" />
+    <input type="text" name="_id" id="_id" placeholder="Document ID" />
+    <input type="text" name="_rev" id="_rev" placeholder="Revision ID (always overridden in code)" />
+    <input type="file" name="_attachments" id="_attachments" multiple="multiple" />
+    <input type="submit" class="Submit" value="Submit" />
+</form>
