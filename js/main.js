@@ -31,8 +31,8 @@
                 templateUrl: "partials/Jobs/job.html",
                 controller: "NewJobCtrl"
             })
-            .when("/jobs/attachement/:jobid", {
-                templateUrl: "partials/Jobs/attachements.html",
+            .when("/job/attachment/:jobid", {
+                templateUrl: "partials/Jobs/attachments.html",
                 controller: "AttachmentsCtrl"
             })            
             //faq
