@@ -6,7 +6,6 @@
         $window.addEventListener("offline", function() {
             $rootScope.$apply(function() {
                 $rootScope.online = false;
-
             });
         }, false);
         $window.addEventListener("online", function() {
@@ -20,30 +19,26 @@
 
         return {
 
-
-
         };
     }]);
 
-
-
     angular.module("mrgApp").factory('storageSrv', ['pouchFactory', 'ProjectCouch', function(pouchFactory, ProjectCouch) {
-
 
         return {
 
             insert: function(objectToInsert, online) {
                 if (online) {
-                    ProjectCouch.save(objectToInsert);
+                    return ProjectCouch.save(objectToInsert);
                 } else {
-                    pouchFactory.putObject(objectToInsert);
+                    return pouchFactory.putObject(objectToInsert);
                 }
             },
             update: function(objectToUpdate, online) {
                 if (online) {
-                    new ProjectCouch(objectToUpdate).update();
+                    var promise = new ProjectCouch(objectToUpdate).update();
+                    return promise.$promise;
                 } else
-                    pouchFactory.updateObject(objectToUpdate);
+                    return pouchFactory.updateObject(objectToUpdate);
             },
             destroy: function(objectToRemove, online) {
                 if (online) {
@@ -52,23 +47,41 @@
                     pouchFactory.destroyObject(objectToRemove);
                 }
             },
-            select: function(query, viewPath, online) {
+            alldocs: function() {
+                var r = pouchFactory.alldocs();
+                return r;
+            },
+            select: function(viewPath, online, limit, allDocs, key) {
+                if (typeof allDocs === 'undefined') allDocs = false;
+
+
                 if (online) {
                     var viewPathArray = viewPath.split('/');
-                  /*  var queryParamsArray = {
-                        'q', 'r', 's', 't'
-                    }
-                    var promise = ProjectCouch.get({
-                        q: viewPathArray[0],
-                        r: viewPathArray[1],
-                        s: viewPathArray[2],
-                        t: viewPathArray[3],
-                        include_docs: 'true',
-                        limit: 1,
-                        
-                    });*/
+                    var requestObjects = {
+                        include_docs: allDocs ? 'true' : 'false',
+                    };
+                    if (typeof limit !== 'undefined')
+                        requestObjects.limit = limit;
+
+                    if (key)
+                        requestObjects.key = '"' + key + '"';
+
+                    if (viewPathArray.length > 0)
+                        requestObjects.q = viewPathArray[0];
+                    if (viewPathArray.length > 1)
+                        requestObjects.r = viewPathArray[1];
+                    if (viewPathArray.length > 2)
+                        requestObjects.s = viewPathArray[2];
+                    if (viewPathArray.length > 3)
+                        requestObjects.t = viewPathArray[3];
+                    var promise = ProjectCouch.get(requestObjects);
 
                     return promise.$promise;
+                } else {
+                    viewPath = viewPath.replace("_design/", "");
+                    viewPath = viewPath.replace("_view/", "");
+                    var response = pouchFactory.queryObject(viewPath, limit, key);
+                    return response;
                 }
             }
 

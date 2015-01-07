@@ -16,6 +16,7 @@
             });
 
         $scope.saveComplaint = function() {
+            $scope.online = false;
             ComplaintsService.saveComplaint($scope.complaint.value, $scope.online);
         };
 

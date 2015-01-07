@@ -36,8 +36,8 @@
         <br />
         <input type="hidden" ng-model="complaint.value.item" ng-init="complaint.value.item=complaint.value.item || 'complaint'">
         <div style="text-align:center">
-            <a ng-hide="complaint.value._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnComplaint icon-save"><span>Save</span></a>
-            <a ng-hide="!complaint.value._id" href="#" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnComplaint icon-save"><span>Update</span></a>
+            <a ng-hide="complaint.value._id" href="javascript:" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnComplaint icon-save"><span>Save</span></a>
+            <a ng-hide="!complaint.value._id" href="javascript:" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnComplaint icon-save"><span>Update</span></a>
             <a class="btn btnComplaint icon-arrow-left" href="#/Complaints"><span>Cancel</span></a>
         </div>
     </div>

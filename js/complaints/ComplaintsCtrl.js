@@ -1,6 +1,6 @@
 (function() {
     angular.module("mrgApp").controller('ComplaintsCtrl', function($scope, ComplaintsService) {
-        ComplaintsService.getComplaints().then(function(data) {
+        ComplaintsService.getComplaints($scope.online).then(function(data) {
             $scope.Complaints = data.rows;
         }, function(reason) {
             alert(reason);

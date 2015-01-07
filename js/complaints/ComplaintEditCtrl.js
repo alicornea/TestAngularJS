@@ -1,5 +1,6 @@
 (function() {
     angular.module("mrgApp").controller('ComplaintEditCtrl', function($scope, $routeParams, ComplaintsService, DataService) {
+      
         DataService.getComplaintTypes()
             .then(function(data) {
                 $scope.Types = data.rows;
@@ -14,7 +15,7 @@
                 alert(reason);
             });
 
-        ComplaintsService.getComplaint($routeParams.id)
+        ComplaintsService.getComplaint($routeParams.id, $scope.online)
             .then(function(data) {
                 $scope.complaint = data.rows[0];
             }, function(reason) {
@@ -22,7 +23,8 @@
             });
 
         $scope.updateComplaint = function() {
-            ComplaintsService.updateComplaint($scope.complaint.value);
+           
+            ComplaintsService.updateComplaint($scope.complaint.value, $scope.online);
         };
     });
 }());
