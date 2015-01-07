@@ -31,6 +31,10 @@
                 templateUrl: "partials/Jobs/job.html",
                 controller: "NewJobCtrl"
             })
+            .when("/jobs/attachement/:jobid", {
+                templateUrl: "partials/Jobs/attachements.html",
+                controller: "AttachmentsCtrl"
+            })            
             //faq
             .when("/faq", {
                 templateUrl: "partials/faq.html",

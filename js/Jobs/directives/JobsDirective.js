@@ -15,7 +15,7 @@
 
             link: function(scope, element, attributes) {
 
-                console.log('muy shit right here');
+                console.log('directive link loaded');
 
                 var promise = new JobService.GetDesiredJob(scope.groundtime);
 
