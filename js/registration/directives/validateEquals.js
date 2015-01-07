@@ -9,10 +9,11 @@
                     if(!valid)
                         return undefined;
                 }
+                
                 ngModelCtrl.$parsers.push(validateEquals);
-                ngModelCtrl.$formatters.push(validateEquals);
+                //ngModelCtrl.$formatters.push(validateEquals);
 
-                scope.$watch(attrs.validateEquals, function() {
+                scope.$watch(attrs.validateEquals, function(value) {
                     ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);
                 });
             }

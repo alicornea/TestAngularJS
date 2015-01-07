@@ -3,5 +3,6 @@
 
 	$scope.userRoles = USER_ROLES;
 	$scope.isAuthorized = AuthService.isAuthorized;
+	$scope.isAuthenticated = AuthService.isAuthenticated;
     }]);
 }());

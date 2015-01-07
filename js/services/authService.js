@@ -1,17 +1,9 @@
 (function() {
 
-  var AuthService = function($rootScope, ProjectCouch, SessionStore, AUTH_EVENTS) {
+  var AuthService = function($rootScope, UsersService, SessionStore, AUTH_EVENTS) {
 
     var login = function(credentials) {
-      var promise = ProjectCouch.get({
-        q: '_design',
-        r: 'users',
-        s: '_view',
-        t: 'getAll',
-        include_docs: 'true',
-        limit: 10,
-        key: '"' + credentials.username + '"'
-      });
+      var promise = UsersService.getUsers(credentials.username);
 
       return promise.$promise
         .then(function(result) {
@@ -25,12 +17,14 @@
                   role: user.value.role
                 };
                 SessionStore.userInfo(userInfo);
-              } else {
+              }
+              else {
                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
               }
             });
-          } else {
-	    console.log("auth failed event triggered");
+          }
+          else {
+            console.log("auth failed event triggered");
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
           }
 
@@ -39,7 +33,7 @@
     };
 
     var isAuthenticated = function() {
-      return SessionStore.userInfo() !== null && !! SessionStore.userInfo().accessToken;
+      return SessionStore.userInfo() !== null && !!SessionStore.userInfo().accessToken;
     };
 
     var isAuthorized = function(authorizedRoles) {
@@ -54,7 +48,6 @@
       return SessionStore.userInfo() !== null ? SessionStore.userInfo().role : null;
     };
 
-
     var logout = function() {
       SessionStore.clear();
     };
@@ -68,6 +61,6 @@
   };
 
   var app = angular.module("mrgApp");
-  app.factory("AuthService", ['$rootScope', 'ProjectCouch', 'SessionStore', 'AUTH_EVENTS', AuthService]);
+  app.factory("AuthService", ['$rootScope', 'UsersService', 'SessionStore', 'AUTH_EVENTS', AuthService]);
 
 }());
