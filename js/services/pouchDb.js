@@ -42,14 +42,17 @@
                     return doc;
                 });
             },
-            queryObject: function(mapFunction, limit, key) {
+            queryObject: function(mapFunction, options, key) {
                 var db = new PouchDB('eLog');
                 var deferred = $q.defer();
                 var queryOptions = {
                     reduce: false,
                 }
-                if (limit)
-                    queryOptions.limit = limit;
+                if (options) {
+                    for (i = 0; i < options.length; i++) {
+                        queryOptions[options[i][0]] = options[i][1];
+                    }
+                }
                 if (key)
                     queryOptions.key = key;
 
@@ -65,7 +68,7 @@
                 var localDb = new PouchDB('eLog');
 
                 function filterByGroundTime(doc) {
-                   
+
 
                     //  if (doc.item && (doc.groundTimeId == SessionStore.selectedGroundTime() || doc.item == "groundTime")) {
                     return true;

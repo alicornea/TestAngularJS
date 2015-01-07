@@ -63,10 +63,10 @@
                     /*if (typeof limit !== 'undefined')
                         requestObjects.limit = limit;
                     */
-                    for(i=0;i<options.length;i++)
-                    {
-                        requestObjects[options[i][0]]=options[i][1];
-                    }
+                    if (options)
+                        for (i = 0; i < options.length; i++) {
+                            requestObjects[options[i][0]] = options[i][1];
+                        }
                     if (key)
                         requestObjects.key = '"' + key + '"';
 
@@ -84,7 +84,7 @@
                 } else {
                     viewPath = viewPath.replace("_design/", "");
                     viewPath = viewPath.replace("_view/", "");
-                    var response = pouchFactory.queryObject(viewPath, limit, key);
+                    var response = pouchFactory.queryObject(viewPath, options, key);
                     return response;
                 }
             }
