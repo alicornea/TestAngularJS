@@ -51,7 +51,7 @@
                 var r = pouchFactory.alldocs();
                 return r;
             },
-            select: function(viewPath, online, limit, allDocs, key) {
+            select: function(viewPath, online, options, allDocs, key) {
                 if (typeof allDocs === 'undefined') allDocs = false;
 
 
@@ -60,9 +60,13 @@
                     var requestObjects = {
                         include_docs: allDocs ? 'true' : 'false',
                     };
-                    if (typeof limit !== 'undefined')
+                    /*if (typeof limit !== 'undefined')
                         requestObjects.limit = limit;
-
+                    */
+                    for(i=0;i<options.length;i++)
+                    {
+                        requestObjects[options[i][0]]=options[i][1];
+                    }
                     if (key)
                         requestObjects.key = '"' + key + '"';
 

@@ -13,7 +13,7 @@
                 if ($scope.offset !== undefined) //we are on the first page
                     $scope.prevPageStartKeys.push($scope.complaints[0].value._id);
 
-            ComplaintsService.getComplaints(key, $scope.complaintsPerPage).then(function(data) {
+            ComplaintsService.getComplaints(key, $scope.complaintsPerPage, $scope.online).then(function(data) {
 
                 if (nextPage) { //we will get the results for the next page
                     if (data.rows.length > $scope.complaintsPerPage) { //we still have pages to show
@@ -41,7 +41,7 @@
             if ($scope.numberOfPages > 0)
                 if (pageIndex > $scope.numberOfPages - 1)
                     pageIndex = $scope.numberOfPages - 1;
-            ComplaintsService.getComplaintsByIndex(pageIndex * $scope.complaintsPerPage).then(function(data) {
+            ComplaintsService.getComplaintsByIndex(pageIndex * $scope.complaintsPerPage,$scope.complaintsPerPage, $scope.online).then(function(data) {
                 parseResponse(data);
             }, function(reason) {
                 alert(reason);
