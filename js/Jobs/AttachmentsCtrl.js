@@ -1,5 +1,6 @@
 (function() {
     var app = angular.module("mrgApp");
+    alert("ce faci mha");
     
     var AttachmentsCtrl = function ($scope, $location, ProjectCouch) {
         console.log("Attachements reporting for duty.");
