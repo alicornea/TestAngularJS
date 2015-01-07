@@ -1,49 +1,45 @@
 /* ------------------
  Complaints styling
    ------------------   */
+
 @font-face {
 	font-family: 'icomoon';
-	src:url('Fonts/icomoon/icomoon.eot');
-	src:url('Fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('Fonts/icomoon/icomoon.woff') format('woff'),
-		url('Fonts/icomoon/icomoon.ttf') format('truetype'),
-		url('Fonts/icomoon/icomoon.svg#icomoon') format('svg');
+	src: url('Fonts/icomoon/icomoon.eot');
+	src: url('Fonts/icomoon/icomoon.eot?#iefix') format('embedded-opentype'), url('Fonts/icomoon/icomoon.woff') format('woff'), url('Fonts/icomoon/icomoon.ttf') format('truetype'), url('Fonts/icomoon/icomoon.svg#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
-
 /* ---------
   	Tables
 
    -------- */
 
-.complaints{
-    margin:50px auto 0;
-	padding:50px;
-	width:1000px;
+.complaints {
+	margin: 50px auto 0;
+	padding: 50px;
+	width: 1000px;
 }
-.complaints table, th, td{
-    border: none;
+.complaints table {
+	width: 100%;
 }
-
-#rounded-corner
-{
+.complaints table,
+th,
+td {
+	border: none;
+}
+#rounded-corner {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	text-align: left;
 	border-collapse: collapse;
 }
-
-#rounded-corner thead th.rounded-header-left
-{
+#rounded-corner thead th.rounded-header-left {
 	background: #b9c9fe url('Images/left.png') left -1px no-repeat;
 }
-#rounded-corner thead th.rounded-header-right
-{
+#rounded-corner thead th.rounded-header-right {
 	background: #b9c9fe url('Images/right.png') right -1px no-repeat;
 }
-#rounded-corner th
-{
+#rounded-corner th {
 	padding: 8px;
 	font-weight: normal;
 	font-size: 13px;
@@ -51,27 +47,22 @@
 	background: #b9c9fe;
 	text-align: center;
 }
-#rounded-corner td
-{
+#rounded-corner td {
 	padding: 8px;
 	background: #e8edff;
 	border-top: 1px solid #fff;
 	color: #669;
 	text-align: center;
 }
-#rounded-corner tfoot td.rounded-foot-left
-{
+#rounded-corner tfoot td.rounded-foot-left {
 	background: #e8edff url('Images/botleft.png') left bottom no-repeat;
 }
-#rounded-corner tfoot td.rounded-foot-right
-{
+#rounded-corner tfoot td.rounded-foot-right {
 	background: #e8edff url('Images/botright.png') right bottom no-repeat;
 }
-#rounded-corner tbody tr:hover td
-{
+#rounded-corner tbody tr:hover td {
 	background: #d0dafd;
 }
-
 /*----------
    Buttons
 -----------*/
@@ -98,7 +89,6 @@
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-
 .btnComplaint:after {
 	content: '';
 	position: absolute;
@@ -107,20 +97,16 @@
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
-
 .btnComplaint:active {
 	background: #b9c9fe;
 	top: 2px;
 }
-
 .btnComplaint:active:before {
 	color: #703b87;
 }
-
 .btnComplaint:hover:before {
 	left: 0;
 }
-
 .btnComplaint span {
 	display: inline-block;
 	width: 100%;
@@ -133,16 +119,15 @@
 	transition: all 0.3s;
 	backface-visibility: hidden;
 }
-
 .btnComplaint:hover span {
 	-webkit-transform: translateX(200%);
 	-moz-transform: translateX(200%);
 	-ms-transform: translateX(200%);
 	transform: translateX(200%);
 }
-
 /* Pseudo elements for icons */
-.btnComplaint:before{
+
+.btnComplaint:before {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -151,7 +136,7 @@
 	text-transform: none;
 	position: absolute;
 	height: 100%;
-	width: 100%;	
+	width: 100%;
 	line-height: 1.5;
 	font-size: 180%;
 	left: -100%;
@@ -161,15 +146,12 @@
 	transition: all 0.3s;
 	-webkit-font-smoothing: antialiased;
 }
-
 .icon-arrow-right:before {
 	content: "\e00d";
 }
-
 .icon-arrow-left:before {
 	content: "\e003";
 }
-
 .icon-remove:before {
 	content: "\e00f";
 }
@@ -177,54 +159,49 @@
 .icon-plus:after {
 	content: "\e011";
 }
-
 .icon-cog:before {
 	content: "\e010";
 }
-
 .icon-save:before {
 	content: "\e004";
 }
-
 /* ----------
   Input Form
    ----------*/
-.complaintTitle{
+
+.complaintTitle {
 	text-align: center;
 	color: #039;
 	font-weight: bold;
 	font-size: 20px;
-	padding-bottom:20px;
+	padding-bottom: 20px;
 }
-
-.complaintContainer{
-	width:400px;
-	height:auto;
-	margin:50px auto 0;
-	padding:50px;
-	background-color:#e8edff;
-	color:#039;
-	border:2px solid #b9c9fe;
-	border-radius:40px 0 40px 0
+.complaintContainer {
+	width: 400px;
+	height: auto;
+	margin: 50px auto 0;
+	padding: 50px;
+	background-color: #e8edff;
+	color: #039;
+	border: 2px solid #b9c9fe;
+	border-radius: 40px 0 40px 0
 }
-
-.complaintLabel{
-	font-size:15px;
-	font-weight:700
+.complaintLabel {
+	font-size: 15px;
+	font-weight: 700
 }
-
-.complaintInput{
-	border:1px solid #b9c9fe;
-	margin-top:10px;
-	margin-bottom:10px;
-	padding-left:10px;
-	width:310px;
-	height:30px;
-	font-size:14px;
-	box-shadow:0 0 10px;
-	-webkit-box-shadow:0 0 10px;
-	-moz-box-shadow:0 0 10px;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px
+.complaintInput {
+	border: 1px solid #b9c9fe;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	width: 310px;
+	height: 30px;
+	font-size: 14px;
+	box-shadow: 0 0 10px;
+	-webkit-box-shadow: 0 0 10px;
+	-moz-box-shadow: 0 0 10px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px
 }

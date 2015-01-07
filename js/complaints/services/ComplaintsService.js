@@ -8,8 +8,22 @@
                     s: '_view',
                     t: 'getAll',
                     include_docs: 'true',
-                    limit: numberOfResults > 0 ? numberOfResults + 1 : 20,
+                    limit: numberOfResults > 0 ? numberOfResults + 1 : 10,
                     startkey: startKey === undefined ? '""' : '"' + startKey + '"'
+                });
+
+                return promise.$promise;
+            };
+            
+            this.getComplaintsByIndex = function(index, numberOfResults) {
+                var promise = ProjectCouch.get({
+                    q: '_design',
+                    r: 'complaint',
+                    s: '_view',
+                    t: 'getAll',
+                    include_docs: 'true',
+                    limit: numberOfResults > 0 ? numberOfResults : 10,
+                    skip: index
                 });
 
                 return promise.$promise;
@@ -48,7 +62,7 @@
                 /*new ProjectCouch(complaint).destroy(function() {
                     $location.path('/Complaints');
                 })*/
-                $location.path('/Complaints')
+                $location.path('/Complaints');
             };
-        }]);
+        }])
 }());
