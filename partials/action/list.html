@@ -11,7 +11,7 @@
                 <th>Create Date</th>
                 <th>Change Date</th>
                 <th>Issue by User</th>
-                <th>Options</th>
+                <th ng-show="isAuthorized([userRoles.admin, userRoles.guest] )">Options</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
                 <td>{{action.value.createDate}}</td>
                 <td>{{action.value.changeDate}}</td>
                 <td>{{action.value.issueByUser}}</td>
-                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
+                <td ng-show="isAuthorized([userRoles.admin, userRoles.guest] )"><a  href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
                 <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
             </tr>
         </tbody>
