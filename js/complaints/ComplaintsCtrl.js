@@ -55,7 +55,7 @@
 
 
         $scope.isPrevPage = function() {
-            return $scope.offset == 0;
+            return $scope.offset == 0 && $scope.online;
         }
 
         $scope.isNextPage = function() {

@@ -4,40 +4,23 @@
 
 
             this.getComplaints = function(startKey, numberOfResults, online) {
-                /*var promise = ProjectCouch.get({
-                    q: '_design',
-                    r: 'complaint',
-                    s: '_view',
-                    t: 'getAll',
-                    include_docs: 'true',
-
-                    limit: numberOfResults > 0 ? numberOfResults + 1 : 10,
-                    startkey: startKey === undefined ? '""' : '"' + startKey + '"'
-                });*/
+                
+                var requestStartKey = startKey;
+                if(online)
+                    requestStartKey = '"' + requestStartKey + '"';
 
                 var options = [
-                    ["startkey", startKey === undefined ? '""' : '"' + startKey + '"'],
+                    ["startkey", startKey === undefined ? '""' : requestStartKey],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
                 ];
 
                 return storageSrv.select('_design/complaint/_view/getAll', online, options, true );
 
-                //return promise.$promise;
+                
             };
 
             this.getComplaintsByIndex = function(index, numberOfResults, online) {
-               /* var promise = ProjectCouch.get({
-                    q: '_design',
-                    r: 'complaint',
-                    s: '_view',
-                    t: 'getAll',
-                    include_docs: 'true',
-                    limit: numberOfResults > 0 ? numberOfResults : 10,
-                    skip: index
-
-                });
-
-                return promise.$promise;*/
+               
                  var options = [
                     ["skip", index],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
@@ -108,9 +91,7 @@
                 storageSrv.update(complaint, online).then(function() {
                     $location.path('/Complaints');
                 });
-                /*new ProjectCouch(complaint).update(function() {
-                    $location.path('/Complaints');
-                });*/
+                
             };
 
            var ProcessData = function (data) {
@@ -134,18 +115,14 @@
   
 
             this.deleteComplaint = function(complaint, online) {
-                // storageSrv.destroy(complaint, online);
-                /*new ProjectCouch(complaint).destroy(function() {
-                    $location.path('/Complaints');
-                })*/
-               // $location.path('/Complaints');
 
                 var promise = getComplaintAndActions(complaint._id);
-
                 promise.then(ProcessData, ProcessError);
 
 
+            /*    storageSrv.destroy(complaint, online);
                 $location.path('/Complaints');
+              */ 
             };
         }])
 }());
