@@ -53,6 +53,47 @@
 
             };
 
+            this.getComplaintAndItsActions = function(complaintId) {
+
+                var promise = getComplaintAndActions(complaintId);
+
+                return promise;
+
+            };
+
+
+ 
+           function getComplaintAndActions(complaintId) {
+
+                var promise = ProjectCouch.get({
+
+                    q: '_design',
+
+                    r: 'complaint',
+
+                    s: '_view',
+
+                    t: 'complaintandactions',
+
+                    include_docs: 'false',
+
+                    limit: 10,
+
+                    startkey: "[\"" + complaintId + "\"]",
+
+                    endkey: "[\"" + complaintId + "\",{}]"
+
+                });
+
+
+                return promise.$promise;
+
+            };
+
+
+
+  
+
             this.saveComplaint = function(complaint, online) {
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
@@ -72,12 +113,40 @@
                 });*/
             };
 
+           var ProcessData = function (data) {
+
+                //  console.log(JSON.stringify(data));
+
+                  ProjectCouch.bulkRemove(data.rows);
+
+                  $location.path('/Complaints');
+
+            };
+
+            
+           var ProcessError = function (reason) {
+
+                alert(reason);
+
+            };
+
+
+  
+
             this.deleteComplaint = function(complaint, online) {
-                storageSrv.destroy(complaint, online);
+                // storageSrv.destroy(complaint, online);
                 /*new ProjectCouch(complaint).destroy(function() {
                     $location.path('/Complaints');
                 })*/
+               // $location.path('/Complaints');
+
+                var promise = getComplaintAndActions(complaint._id);
+
+                promise.then(ProcessData, ProcessError);
+
+
                 $location.path('/Complaints');
             };
         }])
 }());
+
