@@ -64,3 +64,10 @@
     border-color: transparent;
     width: 100%;
 }
+.error-panel {
+    width: 400px;
+    margin: 0 auto;
+}
+.alert-hide {
+    visibility: hidden;
+}

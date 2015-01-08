@@ -6,6 +6,7 @@
         })
 	.constant("SESSION_STORE_KEYS", {
 	    userInfo: 'userInfo',
+	    successfulRegistration: 'successfulRegistration',
 	})
 	.constant("LOCAL_STORE_KEYS", {
 	    userInfo: 'userInfo',
