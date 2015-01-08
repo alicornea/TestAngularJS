@@ -4,29 +4,24 @@
 
 
             this.getComplaints = function(startKey, numberOfResults, online) {
-                
-                var requestStartKey = startKey;
-                if(online)
-                    requestStartKey = '"' + requestStartKey + '"';
+                if (online)
+                    startKey = '"' + startKey + '"';
 
                 var options = [
-                    ["startkey", startKey === undefined ? '""' : requestStartKey],
+                    ["startkey", startKey === undefined ? '""' : startKey],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
                 ];
-
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true );
-
-                
+                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
             };
 
             this.getComplaintsByIndex = function(index, numberOfResults, online) {
-               
-                 var options = [
+
+                var options = [
                     ["skip", index],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
                 ];
 
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true );
+                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
 
             };
 
@@ -40,8 +35,10 @@
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
 
-                storageSrv.insert(complaint, online);
-                $location.path('/Complaints');
+                storageSrv.insert(complaint, online).then(function() {
+                    $location.path('/Complaints');
+                })
+
 
             };
 
@@ -50,13 +47,15 @@
                 storageSrv.update(complaint, online).then(function() {
                     $location.path('/Complaints');
                 });
-                
+
             };
 
             this.deleteComplaint = function(complaint, online) {
-                storageSrv.destroy(complaint, online);
-                
-                $location.path('/Complaints');
+                storageSrv.destroy(complaint, online).then(function() {
+                    $location.path('/Complaints');
+                });
+
+
             };
         }])
 }());
