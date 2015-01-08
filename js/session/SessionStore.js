@@ -19,6 +19,14 @@
 
             set("CurrentGroundTime", value);
         };
+        
+        var successfulRegistration = function(value){
+            if(!angular.isDefined(value)){
+                return get(SESSION_STORE_KEYS.successfulRegistration);
+            }
+            
+            set(SESSION_STORE_KEYS.successfulRegistration, value);
+        }
 
         var get = function(key) {
             return JSON.parse(sessionStorage.getItem(key) || null);
@@ -30,11 +38,10 @@
             }
         }
 
-       
-
         return {
             userInfo: userInfo,
             selectedGroundTime : selectedGroundTime,
+            successfulRegistration: successfulRegistration,
             clear: function() {
                 sessionStorage.clear();
             },

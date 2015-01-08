@@ -16,7 +16,7 @@
             .when("/about", {
                 templateUrl: "partials/about.html",
                 controller: "PageCtrl",
-                authorizedRoles: [USER_ROLES.admin]
+                authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
             })
             //Jobs
             .when("/jobs", {
@@ -87,15 +87,18 @@
             })
             .when("/action/edit/:actionid", {
                 templateUrl: "partials/action/edit.html",
-                controller: "ActionEditCtrl"
+                controller: "ActionEditCtrl",
+                authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
             })
             .when("/action/new/:complaintid", {
                 templateUrl: "partials/action/edit.html",
-                controller: "ActionNewCtrl"
+                controller: "ActionNewCtrl",
+                authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
             })
             .when("/action/delete/:actionid", {
                 templateUrl: "partials/action/delete.html",
-                controller: "ActionDeleteCtrl"
+                controller: "ActionDeleteCtrl",
+                authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
             })
 
         // Blog

@@ -8,6 +8,13 @@
 
             </div>
         </div>
+       <div class="row">
+              <input type="hidden" name="issueByUser" ng-model="action.issueByUser" ng-init="action.issueByUser=username">
+            <div class="form-group col-lg-4"> 
+                <label for="issueByUser">Issue by user :</label>
+                <span> {{ action.issueByUser }} </span>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group col-lg-4">
                 <label for="title">Title</label>
@@ -27,15 +34,7 @@
         </div>
 
         </div>
-        <div class="row">
-            <div class="form-group col-lg-4">
-                <label for="issueByUser">Issue by user</label>                                                        
-                <input type="text" name="issueByUser" class="form-control" id="issueByUser" required ng-model="action.issuebyUser">
-                <span ng-show="ActionForm.issueByUser.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
-        </div>
+
         <input type="hidden" name="item" ng-model="action.item" ng-init="action.item=action.item || 'actions'">
         <div class="row">
             <div class="form-group col-lg-12">

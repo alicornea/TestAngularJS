@@ -1,8 +1,17 @@
 (function() {
     var app = angular.module("mrgApp");
 
-    var RegistrationCtrl = function($scope, UsersService, ProjectCouch, $location, SessionStore) {
+    var RegistrationCtrl = function($scope, $rootScope, UsersService, ProjectCouch, $location, LocalStore, SessionStore) {
+
+        $scope.hasError = false;
+        $scope.alert = {
+            show: false
+        };
+
         $scope.register = function(user) {
+
+            $scope.alert.show = false;
+
             var promise = UsersService.getUsers(user.username);
 
             promise.$promise.then(function(result) {
@@ -15,16 +24,20 @@
                             username: user.username,
                             role: user.role
                         };
-                        SessionStore.userInfo(userInfo);
-                        
+                        LocalStore.userInfo(userInfo);
+
+                        SessionStore.successfulRegistration(true);
+
                         $location.path('/');
                     });
                 }
-                
-                alert("User already exists!");
+                else {
+                    $scope.hasError = true;
+                    $scope.alert.show = true;
+                }
             });
         };
     };
 
-    app.controller("RegistrationCtrl", ['$scope', 'UsersService', 'ProjectCouch', '$location', 'SessionStore', RegistrationCtrl]);
+    app.controller("RegistrationCtrl", ['$scope', '$rootScope', 'UsersService', 'ProjectCouch', '$location', 'LocalStore', 'SessionStore', RegistrationCtrl]);
 }());

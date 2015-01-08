@@ -4,46 +4,24 @@
 
 
             this.getComplaints = function(startKey, numberOfResults, online) {
-                /*var promise = ProjectCouch.get({
-                    q: '_design',
-                    r: 'complaint',
-                    s: '_view',
-                    t: 'getAll',
-                    include_docs: 'true',
-
-                    limit: numberOfResults > 0 ? numberOfResults + 1 : 10,
-                    startkey: startKey === undefined ? '""' : '"' + startKey + '"'
-                });*/
+                if (online)
+                    startKey = '"' + startKey + '"';
 
                 var options = [
-                    ["startkey", startKey === undefined ? '""' : '"' + startKey + '"'],
+                    ["startkey", startKey === undefined ? '""' : startKey],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
                 ];
-
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true );
-
-                //return promise.$promise;
+                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
             };
 
             this.getComplaintsByIndex = function(index, numberOfResults, online) {
-               /* var promise = ProjectCouch.get({
-                    q: '_design',
-                    r: 'complaint',
-                    s: '_view',
-                    t: 'getAll',
-                    include_docs: 'true',
-                    limit: numberOfResults > 0 ? numberOfResults : 10,
-                    skip: index
 
-                });
-
-                return promise.$promise;*/
-                 var options = [
+                var options = [
                     ["skip", index],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
                 ];
 
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true );
+                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
 
             };
 
@@ -53,13 +31,34 @@
 
             };
 
+            this.getComplaintAndItsActions = function(complaintId) {
+
+                var promise = getComplaintAndActions(complaintId);
+
+                return promise;
+
+            };
+
+
+
+            function getComplaintAndActions(complaintId, online) {
+
+                var options = [
+                    ["startkey", "[\"" + complaintId + "\"]"],
+                    ["endkey", "[\"" + complaintId + "\",{}]"]
+                ];
+
+                return storageSrv.select('_design/complaint/_view/complaintandactions', online, options)
+
+            };
+
             this.saveComplaint = function(complaint, online) {
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
 
-                storageSrv.insert(complaint, online);
-                $location.path('/Complaints');
-
+                storageSrv.insert(complaint, online).then(function() {
+                    $location.path('/Complaints');
+                })
             };
 
             this.updateComplaint = function(complaint, online) {
@@ -67,17 +66,28 @@
                 storageSrv.update(complaint, online).then(function() {
                     $location.path('/Complaints');
                 });
-                /*new ProjectCouch(complaint).update(function() {
-                    $location.path('/Complaints');
-                });*/
+            };
+
+            var ProcessData = function(data) {
+
+                ProjectCouch.bulkRemove(data.rows);
+
+                $location.path('/Complaints/');
+
+            };
+
+
+            var ProcessError = function(reason) {
+
+                alert(reason);
+
             };
 
             this.deleteComplaint = function(complaint, online) {
-                storageSrv.destroy(complaint, online);
-                /*new ProjectCouch(complaint).destroy(function() {
-                    $location.path('/Complaints');
-                })*/
-                $location.path('/Complaints');
+
+                var promise = getComplaintAndActions(complaint._id, online);
+                promise.then(ProcessData, ProcessError);
+
             };
         }])
 }());
