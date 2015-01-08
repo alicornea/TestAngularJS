@@ -1,16 +1,40 @@
+<div>
+    <table style="border:4px double;">
+        <thead>
+            <tr>
+                <th>Attachment Name</th>
+                <th>Job ID</th>
+                <th>Attachment Description</th>
+                <th>Date Created</th>
+                <th>Profession</th>
+                <th>Delete</th>
+                <th><a href="#/job/new">add new</a>
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="attachment in attachments.rows | filter:search | orderBy:'doc.no'">
+                <td>{{attachment.doc._attachment.key[0]}}</td>
+                <td>{{attachment.doc.jobId}}</td>
+                <td>{{attachment.doc.text}}</td>
+                <td>{{attachment.doc.date}}</td>
+                <td>
+                    <a ng-click="deleteJob(attachment.doc)">delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 <form class="documentForm" method="post" action="" enctype="multipart/form-data">
-    <label for=''>Select A File To Upload:</label>
-    <br/>
-<!--    <input type="text" name="_db" id="_db" placeholder="Database ID" />
-    <input type="text" name="_id" id="_id" placeholder="Document ID" />
-    <input type="text" name="_rev" id="_rev" placeholder="Revision ID (always overridden in code)" />
-    <br/>-->
+    <label for=''>Attachment form:</label>
     <label for='message'>Message:</label>
-    <textarea name="message"></textarea>    
+    <textarea name="message" id='message'></textarea>    
     <br/>
     <label for='_attachments'>Select A File To Upload:</label>
     <br/>
     <input type="file" name="_attachments" id="_attachments" multiple="multiple" />
-    <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary"> Save </button>
+    <button ng-click="save()" class="btn btn-primary"> Save </button>
 </form>
