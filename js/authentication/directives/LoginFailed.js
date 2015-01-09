@@ -6,10 +6,10 @@
       link: function($scope) {
         var showLoginErrorDialog = function() {
           $scope.visible = true;
-        }; 
-	$scope.close = function(){
-	  $scope.visible = false;
-	};       
+        };
+        $scope.close = function() {
+          $scope.visible = false;
+        };
 
         $scope.visible = false;
         $rootScope.$on(AUTH_EVENTS.loginFailed, showLoginErrorDialog);

@@ -28,13 +28,16 @@
             },
             destroyObject: function(objectToDestroy) {
                 var db = new PouchDB('eLog');
-
+                var deferred = $q.defer();
                 db.remove(objectToDestroy, function cb(err, result) {
                     if (!err) {
                         console.log("success deleting " + objectToDestroy);
                     } else
                         console.log("error deleting " + objectToDestroy + err);
-                })
+                    deferred.resolve(result);
+                });
+
+                return deferred.promise;
             },
             getOjectById: function(id) {
                 var db = new PouchDB('eLog');
@@ -42,14 +45,17 @@
                     return doc;
                 });
             },
-            queryObject: function(mapFunction, limit, key) {
+            queryObject: function(mapFunction, options, key) {
                 var db = new PouchDB('eLog');
                 var deferred = $q.defer();
                 var queryOptions = {
                     reduce: false,
                 }
-                if (limit)
-                    queryOptions.limit = limit;
+                if (options) {
+                    for (i = 0; i < options.length; i++) {
+                        queryOptions[options[i][0]] = options[i][1];
+                    }
+                }
                 if (key)
                     queryOptions.key = key;
 
@@ -57,6 +63,7 @@
                     mapFunction,
                     queryOptions,
                     function(err, response) {
+                        if(err) console.log(err);
                         deferred.resolve(response);
                     })
                 return deferred.promise;
@@ -65,7 +72,7 @@
                 var localDb = new PouchDB('eLog');
 
                 function filterByGroundTime(doc) {
-                   
+
 
                     //  if (doc.item && (doc.groundTimeId == SessionStore.selectedGroundTime() || doc.item == "groundTime")) {
                     return true;
