@@ -101,5 +101,9 @@
 
         $scope.getComplaintsByPageIndex(0);
 
+        $scope.$on('groundTimeChange', function(ev, rec) {
+            $scope.getComplaintsByPageIndex(0);
+        });
+
     }]);
 }());

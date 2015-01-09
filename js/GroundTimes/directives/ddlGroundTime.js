@@ -21,15 +21,19 @@
                 }
 
                 $scope.$on('groundTimeChange', function(ev, rec) {
+                    SessionStore.selectedGroundTime(rec.id)
+                    $scope.selectedGroundtime = rec;
+                });
+
+                $scope.startSync = function() {
                     $rootScope.syncStarted = true;
                     var promise = storageSrv.sync().then(function(err, data) {
                         $rootScope.syncStarted = false;
                         console.log("sync if finish")
                     })
 
-                    SessionStore.selectedGroundTime(rec.id)
-                    $scope.selectedGroundtime = rec;
-                });
+
+                }
 
             },
 
