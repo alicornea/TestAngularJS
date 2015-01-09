@@ -15,7 +15,7 @@
             };
 
             var ProcessError = function (reason) {
-                alert(reason);
+                console.log(reason);
             };
             promise.$promise.then(ProcessData, ProcessError);
         }

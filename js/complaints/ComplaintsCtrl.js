@@ -1,5 +1,5 @@
 (function() {
-    angular.module("mrgApp").controller('ComplaintsCtrl', function($scope, ComplaintsService) {
+    angular.module("mrgApp").controller('ComplaintsCtrl',["$scope","ComplaintsService", "SessionStore", function($scope, ComplaintsService, SessionStore) {
 
         $scope.complaintsPerPage = 10;
         $scope.numberOfPages = 0;
@@ -13,7 +13,7 @@
                 if ($scope.offset !== undefined) //we are on the first page
                     $scope.prevPageStartKeys.push($scope.complaints[0].value._id);
 
-            ComplaintsService.getComplaints(key, $scope.complaintsPerPage, $scope.online).then(function(data) {
+            ComplaintsService.getComplaints(key, $scope.complaintsPerPage, SessionStore.selectedGroundTime(), $scope.online).then(function(data) {
 
                 if (nextPage) { //we will get the results for the next page
                     if (data.rows.length > $scope.complaintsPerPage) { //we still have pages to show
@@ -30,7 +30,7 @@
 
 
             }, function(reason) {
-                alert(reason);
+                console.log(reason);
             });
         };
 
@@ -41,10 +41,10 @@
             if ($scope.numberOfPages > 0)
                 if (pageIndex > $scope.numberOfPages - 1)
                     pageIndex = $scope.numberOfPages - 1;
-            ComplaintsService.getComplaintsByIndex(pageIndex * $scope.complaintsPerPage,$scope.complaintsPerPage, $scope.online).then(function(data) {
+            ComplaintsService.getComplaintsByIndex(pageIndex * $scope.complaintsPerPage,$scope.complaintsPerPage, SessionStore.selectedGroundTime(), $scope.online).then(function(data) {
                 parseResponse(data);
             }, function(reason) {
-                alert(reason);
+                console.log(reason);
             });
         }
 
@@ -99,7 +99,7 @@
             }
         }
 
-        $scope.getComplaintsByPageIndex(10);
+        $scope.getComplaintsByPageIndex(0);
 
-    });
+    }]);
 }());

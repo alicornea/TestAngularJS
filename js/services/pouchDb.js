@@ -63,7 +63,7 @@
                     mapFunction,
                     queryOptions,
                     function(err, response) {
-                        if(err) console.log(err);
+                        if (err) console.log(err);
                         deferred.resolve(response);
                     })
                 return deferred.promise;
@@ -78,18 +78,30 @@
                     return true;
                     //}
                 }
+
+                var deferred = $q.defer();
                 console.log("sync started");
                 PouchDB.sync('eLog', "admin:admin@http://alicornea.iriscouch.com:5984/test_angular/", {
-                    live: false,
-                    filter: filterByGroundTime,
-                    header: {
-                        'filter': '_design/replicateGroundTime'
-                    }
-                });
+                        live: false,
+                        filter: filterByGroundTime,
+                        header: {
+                            'filter': '_design/replicateGroundTime'
+                        }
+                    })
+                    .on('error', function(err) {
+                        console.log("error at sync");
+                        console.log(err);
+                        deferred.resolve(info)
+                    })
+                    .on('complete', function(info) {
+                        console.log("complete sync")
+                        console.log(info);
+                        deferred.resolve(info)
+                    });
+
+                return deferred.promise;
             }
-        };
-
-
+        }
     }])
 
 

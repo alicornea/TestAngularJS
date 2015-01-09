@@ -1,26 +1,27 @@
 (function() {
-    angular.module("mrgApp").controller('ComplaintAddCtrl', function($scope, ComplaintsService, DataService) {
-        DataService.getComplaintTypes()
-            .then(function(data) {
-                $scope.Types = data.rows;
+    angular.module("mrgApp").controller('ComplaintAddCtrl', ["$scope", "ComplaintsService", "DataService", "SessionStore", function($scope, ComplaintsService, DataService, SessionStore) {
+            DataService.getComplaintTypes()
+                .then(function(data) {
+                    $scope.Types = data.rows;
 
-            }, function(reason) {
-                alert(reason);
-            });
+                }, function(reason) {
+                    console.log(reason);
+                });
 
-        DataService.getWorkgroups()
-            .then(function(data) {
-                $scope.Workgroups = data.rows;
-            }, function(reason) {
-                alert(reason);
-            });
+            DataService.getWorkgroups()
+                .then(function(data) {
+                    $scope.Workgroups = data.rows;
+                }, function(reason) {
+                    console.log(reason);
+                });
 
-        $scope.saveComplaint = function() {
-            $scope.online = false;
-            ComplaintsService.saveComplaint($scope.complaint.value, $scope.online);
-        };
+            $scope.saveComplaint = function() {
+               
+                $scope.complaint.value.groundTimeId = SessionStore.selectedGroundTime();
+                ComplaintsService.saveComplaint($scope.complaint.value, $scope.online);
+            };
 
-        /*for(i=2000;i<20000;i++)
+            /*for(i=2000;i<20000;i++)
         {
 console.log("add")
             ComplaintsService.saveComplaint({
@@ -32,5 +33,6 @@ console.log("add")
                 workgroup : "Borkgroup B"
             });
         }*/
-    });
+        
+    }]);
 }());
