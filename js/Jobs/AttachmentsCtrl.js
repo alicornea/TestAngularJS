@@ -6,7 +6,9 @@
 
         var self = this;
 
-        ProjectCouch.get({q: $routeParams.jobid}, function(job) {
+        ProjectCouch.get({
+            q: $routeParams.jobid
+        }, function(job) {
             self.original = job;
             $scope.job = new ProjectCouch(self.original);
         });
@@ -18,7 +20,7 @@
         $scope.save = function() {
 
             var filename = $('input[type=file]').val().split('\\').pop();
-            
+
             var file = document.getElementById('_attachments').files[0];
 
             var reader = new FileReader();
@@ -28,17 +30,16 @@
 
                 var dataObject = {
                     'item': "attachment",
-                    'date': DateTime.getCurrentDate(),
-                    'text': $('message').val(),
+                    'date': DateTime.currentDateTime(),
+                    'text': $('#message').val(),
                     'jobId': $scope.job.jobNo,
-                    "_attachments": {
-                    }
+                    "_attachments": {}
                 };
                 //only way to add use variable for property name
-                dataObject.attachment[filename] = {
-                            "content_type": "application/text",
-                            "data": btoa(binaryString)
-                        };
+                dataObject._attachments[filename] = {
+                    "content_type": "application/text",
+                    "data": btoa(binaryString)
+                };
 
                 $.ajax({
                     url: 'https://alicornea.iriscouch.com/test_angular',
@@ -56,6 +57,14 @@
 
             reader.readAsDataURL(file);
         };
+
+        function utf8_to_b64(str) {
+            return window.btoa(unescape(encodeURIComponent(str)));
+        }
+
+        function b64_to_utf8(str) {
+            return decodeURIComponent(escape(window.atob(str)));
+        }
 
     };
 
