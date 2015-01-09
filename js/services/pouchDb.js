@@ -28,13 +28,16 @@
             },
             destroyObject: function(objectToDestroy) {
                 var db = new PouchDB('eLog');
-
+                var deferred = $q.defer();
                 db.remove(objectToDestroy, function cb(err, result) {
                     if (!err) {
                         console.log("success deleting " + objectToDestroy);
                     } else
                         console.log("error deleting " + objectToDestroy + err);
-                })
+                    deferred.resolve(result);
+                });
+
+                return deferred.promise;
             },
             getOjectById: function(id) {
                 var db = new PouchDB('eLog');
@@ -60,6 +63,7 @@
                     mapFunction,
                     queryOptions,
                     function(err, response) {
+                        if(err) console.log(err);
                         deferred.resolve(response);
                     })
                 return deferred.promise;

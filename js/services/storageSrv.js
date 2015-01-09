@@ -1,27 +1,5 @@
 (function() {
 
-    angular.module("mrgApp").run(['$rootScope', '$window', 'pouchFactory', function($rootScope, $window, pouchFactory) {
-
-        $rootScope.online = navigator.onLine;
-        $window.addEventListener("offline", function() {
-            $rootScope.$apply(function() {
-                $rootScope.online = false;
-            });
-        }, false);
-        $window.addEventListener("online", function() {
-            $rootScope.$apply(function() {
-                $rootScope.online = true;
-                pouchFactory.sync();
-            });
-
-
-        }, false);
-
-        return {
-
-        };
-    }]);
-
     angular.module("mrgApp").factory('storageSrv', ['pouchFactory', 'ProjectCouch', function(pouchFactory, ProjectCouch) {
 
         return {
@@ -42,9 +20,10 @@
             },
             destroy: function(objectToRemove, online) {
                 if (online) {
-                    new ProjectCouch(objectToRemove).destroy();
+                    var promise = new ProjectCouch(objectToRemove).destroy();
+                    return promise.$promise;
                 } else {
-                    pouchFactory.destroyObject(objectToRemove);
+                    return pouchFactory.destroyObject(objectToRemove);
                 }
             },
             alldocs: function() {
@@ -60,9 +39,6 @@
                     var requestObjects = {
                         include_docs: allDocs ? 'true' : 'false',
                     };
-                    /*if (typeof limit !== 'undefined')
-                        requestObjects.limit = limit;
-                    */
                     if (options)
                         for (i = 0; i < options.length; i++) {
                             requestObjects[options[i][0]] = options[i][1];

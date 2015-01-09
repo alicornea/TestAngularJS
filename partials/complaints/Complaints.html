@@ -36,7 +36,7 @@
                     <a class="btn btnComplaint icon-arrow-right" href="#/Complaint/{{complaint.value._id}}"><span>Details</span></a>
                     <a class="btn btnComplaint icon-cog" href="#/Complaint/Edit/{{complaint.value._id}}"><span>Edit</span></a>
                     <a class="btn btnComplaint icon-remove" href="#" confirmed-click="deleteComplaint(complaint.doc)" confirm-click="Are you sure you want to delete this Complaint?"><span>Delete</span></a>
-                    <a class="btn btnComplaint  icon-plus" href="#/action/new/{{complaint.value._id}}"><span>Create Action</span></a>
+                    <a class="btn btnComplaint  icon-plus" href="#/action/new/{{complaint.value._id}}"  ng-show="isAuthorized([userRoles.admin, userRoles.guest] )"><span>Create Action</span></a>
                 </td>
                 <td></td>
             </tr>
@@ -74,14 +74,5 @@
             </tr>
         </tbody>
     </table>
-
-
-    <div>
-
-        <a href="javascript:return false" ng-hide="offset == 0" ng-click="getComplaints(prevPageStartKey)">Prev page</a>
-        <a href="javascript:return false" ng-click="getComplaints(nextPageStartKey)">Next page</a> Total complaints : {{noOfComplaints}}
-        {{startKey}}
-        {{complaintsPerPage}}
-    </div>
 </div>
 

@@ -27,7 +27,7 @@
         </li>
         <li><a href="#/pricing">Pricing Table</a>
         </li>
-        <li ng-show="isAuthorized([userRoles.admin])"><a href="#/about">About</a>
+        <li ng-show="isAuthorized([userRoles.admin, userRoles.guest] )"><a href="#/about">About</a>
         </li>
         <li><a href="#/faq">FAQ</a>
         </li>
