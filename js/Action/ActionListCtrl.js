@@ -16,7 +16,7 @@
             $scope.actions = data;
          
         }, function (reason) {
-            alert(JSON.stringify(reason));
+            console.log(JSON.stringify(reason));
         });
 
     };

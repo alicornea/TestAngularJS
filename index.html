@@ -30,6 +30,34 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/registration.css">
 
+<style>
+div.background {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: red repeat;
+    border: 2px solid black;
+    text-align: center;
+}
+
+div.transbox {
+    width: 95%;
+    height: 90%;
+    margin: 30px 50px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+    margin: 30px 40px;
+    font-weight: bold;
+    color: #000000;
+}
+</style>
+
 </head>
 
 <body ng-app="mrgApp">
@@ -39,11 +67,21 @@
 <![endif]-->
 
     <!-- Our Website Content Goes Here -->
-    <div ng-controller="MrgAppCtrl">	
-	<div login-failed></div>
-	<div ng-include='"templates/header.html"'></div>
-    	<div ng-view></div>
-    	<div ng-include='"templates/footer.html"'></div>
+    <div ng-controller="MrgAppCtrl">
+
+       
+        <div ng-show='syncStarted' class="background">
+            <div class="transbox">
+                <p>
+                    <br/> Loading...
+                    <br/> Getting data for offline navigation</p>
+            </div>
+        </div>
+
+        <div login-failed></div>
+        <div ng-include='"templates/header.html"'></div>
+        <div ng-view></div>
+        <div ng-include='"templates/footer.html"'></div>
     </div>
 
     <!-- Vendor: Javascripts -->
@@ -55,8 +93,8 @@
     <script src="js/libraries/angular-route.min.js"></script>
 
     <script src="js/libraries/angular-resource.js"></script>
-    <script src="js/pouchdb-3.2.0.min.js"></script>
-    
+    <script src="js/libraries/pouchdb-3.2.1.js"></script>
+
 
     <!-- Our Website Javascripts -->
     <script src="js/constants/constants.js"></script>
@@ -72,7 +110,7 @@
     <script src="js/services/pouchDb.js"></script>
     <script src="js/services/usersService.js"></script>
     <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
-    
+
     <script src="js/services/storageSrv.js"></script>
     <!--<script src="js/Common/activities.js"></script>-->
     <script src="js/Common/dateTime.js"></script>
@@ -86,10 +124,10 @@
     <script src="js/GroundTimes/GroundTimeEditCtrl.js"></script>
 
     <!-- Authentication -->
-    <script src="js/authentication/directives/LoginFailed.js"></script>    
+    <script src="js/authentication/directives/LoginFailed.js"></script>
     <script src="js/authentication/LoginCtrl.js"></script>
     <script src="js/filters/authorize.js"></script>
-    
+
     <!-- Registration -->
     <script src="js/registration/RegistrationCtrl.js"></script>
     <script src="js/registration/directives/validateEquals.js"></script>

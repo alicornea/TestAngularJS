@@ -6,7 +6,8 @@
 
             insert: function(objectToInsert, online) {
                 if (online) {
-                    return ProjectCouch.save(objectToInsert);
+                    var promise = ProjectCouch.save(objectToInsert);
+                    return promise.$promise;
                 } else {
                     return pouchFactory.putObject(objectToInsert);
                 }
@@ -29,6 +30,10 @@
             alldocs: function() {
                 var r = pouchFactory.alldocs();
                 return r;
+            },
+            sync : function()
+            {
+                return pouchFactory.sync();
             },
             select: function(viewPath, online, options, allDocs, key) {
                 if (typeof allDocs === 'undefined') allDocs = false;

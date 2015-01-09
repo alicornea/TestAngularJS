@@ -3,25 +3,27 @@
         .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', function($location, ProjectCouch, DateTime, storageSrv, SessionStore) {
 
 
-            this.getComplaints = function(startKey, numberOfResults, online) {
+            this.getComplaints = function(startKey, numberOfResults, groundTime, online) {
                 if (online)
                     startKey = '"' + startKey + '"';
 
                 var options = [
                     ["startkey", startKey === undefined ? '""' : startKey],
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
+                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
+                    ["key", '"' + groundTime + '"']
                 ];
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
+                return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
             };
 
-            this.getComplaintsByIndex = function(index, numberOfResults, online) {
+            this.getComplaintsByIndex = function(index, numberOfResults, groundTime, online) {
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
+                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
+                    ["key", '"' + groundTime + '"']
                 ];
 
-                return storageSrv.select('_design/complaint/_view/getAll', online, options, true);
+                return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
 
             };
 
@@ -79,7 +81,7 @@
 
             var ProcessError = function(reason) {
 
-                alert(reason);
+                console.log(reason);
 
             };
 

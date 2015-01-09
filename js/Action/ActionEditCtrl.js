@@ -14,7 +14,7 @@
 
              $scope.statuses = statuses;
          }, function (reason) {
-             alert(JSON.stringify(reason));
+             console.log(JSON.stringify(reason));
          });
 
          ProjectCouch.get({q: $routeParams.actionid}, function(action) {
