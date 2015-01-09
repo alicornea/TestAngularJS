@@ -1,3 +1,5 @@
+<input type="button" value="Sync" ng-click="startSync()"/>
+
 <select style="width:160px" name="groundTime" ng-change="updateGroundTime(groundTime)" ng-model="groundTime.selectedGroundTime" ng-options="groundTime.value.selectedAircraft + '_' + groundTime .value.location + '_' + groundTime.value.station  +'_' + groundTime.value.startDate + '_' + groundTime.value.startTime + '_' + groundTime.value.endDate + '_'  + groundTime.value.endTime for groundTime in groundTimes" >
 	<option value='' class="hide">--Select Ground Time--</option>
 </select>
