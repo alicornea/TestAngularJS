@@ -18,7 +18,7 @@
                 $scope.action.status = statusesAction[0];
 
         }, function (reason) {
-            alert(JSON.stringify(reason));
+            console.log(JSON.stringify(reason));
         });
 
 

@@ -8,7 +8,7 @@
             $scope.complaint = data.rows[0];
            
         }, function(reason) {
-            alert(reason);
+            console.log(reason);
         });
     });
 }());

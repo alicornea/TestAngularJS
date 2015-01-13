@@ -5,21 +5,21 @@
             .then(function(data) {
                 $scope.Types = data.rows;
             }, function(reason) {
-                alert(reason);
+                console.log(reason);
             });
 
         DataService.getWorkgroups()
             .then(function(data) {
                 $scope.Workgroups = data.rows;
             }, function(reason) {
-                alert(reason);
+                console.log(reason);
             });
 
         ComplaintsService.getComplaint($routeParams.id, $scope.online)
             .then(function(data) {
                 $scope.complaint = data.rows[0];
             }, function(reason) {
-                alert(reason);
+                console.log(reason);
             });
 
         $scope.updateComplaint = function() {
