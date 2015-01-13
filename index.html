@@ -26,9 +26,10 @@
 
     <!-- Our Website CSS Styles -->
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/Complaints.css">
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="css/pagination.css">
 
 </head>
 
@@ -39,11 +40,11 @@
 <![endif]-->
 
     <!-- Our Website Content Goes Here -->
-    <div ng-controller="MrgAppCtrl">	
-	<div login-failed></div>
-	<div ng-include='"templates/header.html"'></div>
-    	<div ng-view></div>
-    	<div ng-include='"templates/footer.html"'></div>
+    <div ng-controller="MrgAppCtrl">
+        <div login-failed></div>
+        <div ng-include='"templates/header.html"'></div>
+        <div ng-view></div>
+        <div ng-include='"templates/footer.html"'></div>
     </div>
 
     <!-- Vendor: Javascripts -->
@@ -56,7 +57,7 @@
 
     <script src="js/libraries/angular-resource.js"></script>
     <script src="js/pouchdb-3.2.0.min.js"></script>
-    
+
 
     <!-- Our Website Javascripts -->
     <script src="js/constants/constants.js"></script>
@@ -72,9 +73,8 @@
     <script src="js/services/pouchDb.js"></script>
     <script src="js/services/usersService.js"></script>
     <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
-    
+
     <script src="js/services/storageSrv.js"></script>
-    <!--<script src="js/Common/activities.js"></script>-->
     <script src="js/Common/dateTime.js"></script>
     <script src="js/test/testcontroller.js"></script>
 
@@ -86,17 +86,16 @@
     <script src="js/GroundTimes/GroundTimeEditCtrl.js"></script>
 
     <!-- Authentication -->
-    <script src="js/authentication/directives/LoginFailed.js"></script>    
+    <script src="js/authentication/directives/LoginFailed.js"></script>
     <script src="js/authentication/LoginCtrl.js"></script>
     <script src="js/filters/authorize.js"></script>
-    
+
     <!-- Registration -->
     <script src="js/registration/RegistrationCtrl.js"></script>
     <script src="js/registration/directives/validateEquals.js"></script>
     <script src="js/registration/directives/registrationSuccess.js"></script>
 
     <!-- Jobs -->
-    <script src="js/Jobs/JobsCtrl.js"></script>
     <script src="js/Jobs/JobCtrl.js"></script>
     <script src="js/Jobs/NewJobCtrl.js"></script>
     <script src="js/Jobs/services/GetJobs.js"></script>
@@ -114,13 +113,16 @@
     <!--Complaints-->
     <script src="js/complaints/directives/ConfirmClick.js"></script>
     <script src="js/complaints/directives/PreventDefaultOnClick.js"></script>
+    <script src="js/complaints/directives/Complaints.js"></script>
+    
     <script src="js/complaints/services/ComplaintsService.js"></script>
     <script src="js/complaints/services/DataService.js"></script>
-    <script src="js/complaints/ComplaintsCtrl.js"></script>
+    
     <script src="js/complaints/ComplaintCtrl.js"></script>
     <script src="js/complaints/ComplaintAddCtrl.js"></script>
     <script src="js/complaints/ComplaintEditCtrl.js"></script>
 
+    <script src="js/directives/pagination.js"></script>
 </body>
 
 </html>

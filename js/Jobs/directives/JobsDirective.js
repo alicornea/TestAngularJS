@@ -15,7 +15,7 @@
 
             link: function(scope, element, attributes) {
 
-                console.log('directive link loaded');
+                console.log('jobs directive link loaded');
 
                 var promise = new JobService.GetDesiredJob(scope.groundtime);
 
@@ -37,8 +37,6 @@
                 };
 
             }
-
-            //controller: JobsController(ProjectCouch, $scope)
         }
     }
 

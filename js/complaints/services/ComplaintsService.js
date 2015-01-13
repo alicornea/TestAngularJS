@@ -18,7 +18,7 @@
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10]
                 ];
 
                 return storageSrv.select('_design/complaint/_view/getAll', online, options, true);

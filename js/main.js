@@ -9,19 +9,20 @@
         $routeProvider
         // Home
             .when("/", {
-                templateUrl: "partials/home.html",
-                controller: "DashboardCtrl"
-            })
-            // Pages
-            .when("/about", {
-                templateUrl: "partials/about.html",
-                controller: "PageCtrl",
-                authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
-            })
-            //Jobs
-            .when("/jobs", {
-                templateUrl: "partials/Jobs/jobs.html",
-                controller: "JobsCtrl"
+            templateUrl: "partials/home.html",
+            controller: "DashboardCtrl"
+        })
+
+        // Pages
+        .when("/about", {
+            templateUrl: "partials/about.html",
+            controller: "PageCtrl",
+            authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
+        })
+
+        //Jobs
+        .when("/jobs", {
+                templateUrl: "partials/Jobs/jobs.html"
             })
             .when("/job/edit/:jobid", {
                 templateUrl: "partials/Jobs/job.html",
@@ -34,9 +35,10 @@
             .when("/job/attachment/:jobid", {
                 templateUrl: "partials/Jobs/attachments.html",
                 controller: "AttachmentsCtrl"
-            })            
-            //faq
-            .when("/faq", {
+            })
+
+        //faq
+        .when("/faq", {
                 templateUrl: "partials/faq.html",
                 controller: "PageCtrl"
             })
@@ -64,7 +66,7 @@
                 templateUrl: "partials/testedit.html",
                 controller: "TestNewCtrl"
             })
-            
+
         .when("/register", {
             templateUrl: "partials/registration/registration.html",
             controller: "RegistrationCtrl"
@@ -110,10 +112,10 @@
                 templateUrl: "partials/blog_item.html",
                 controller: "BlogCtrl"
             })
-            //Complaints
-            .when("/Complaints", {
+
+        //Complaints
+        .when("/Complaints", {
                 templateUrl: "partials/complaints/Complaints.html",
-                controller: "ComplaintsCtrl"
             })
             .when("/Complaint/Edit/:id", {
                 templateUrl: "partials/complaints/ComplaintInput.html",

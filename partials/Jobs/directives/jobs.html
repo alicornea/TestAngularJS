@@ -1,18 +1,22 @@
-<div>
-    <table style="border:4px double;">
+<div class="customContent">
+    <a class="btn btnCustomContent icon-plus" href="#/job/new"><span>Add New</span></a>
+    <br/>
+    <br/>
+    <table id="rounded-corner" summary="Jobs">
         <thead>
             <tr>
-                <th>Job No.</th>
-                <th>Job Title</th>
-                <th>Date Created</th>
-                <th>Ground Time</th>
-                <th>Created by</th>
-                <th>Job Description</th>
-                <th>Profession</th>
-                <th>Delete</th>
-                <th><a href="#/job/new">add new</a>
-                </th>
-                <th>Attachements</th>
+                <th scope="col" class="rounded-header-left"></th>
+                <th scope="col" class="rounded">Job No.</th>
+                <th scope="col" class="rounded">Job Title</th>
+                <th scope="col" class="rounded">Date Created</th>
+                <th scope="col" class="rounded">Ground Time</th>
+                <th scope="col" class="rounded">Created by</th>
+                <th scope="col" class="rounded">Job Description</th>
+                <th scope="col" class="rounded">Profession</th>
+                <th scope="col" class="rounded">Delete</th>
+                <th scope="col" class="rounded"></th>
+                <th scope="col" class="rounded">Attachements</th>
+                <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
         <tbody>
@@ -37,4 +41,7 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <pagination num-pages="10" current-page="1" class="pagination-small"></pagination>
+    </div>
 </div>
