@@ -14,15 +14,15 @@
 
    -------- */
 
-.complaints {
+.customContent {
 	margin: 50px auto 0;
 	padding: 50px;
-	width: 1000px;
+	width: 1200px;
 }
-.complaints table {
+.customContent table {
 	width: 100%;
 }
-.complaints table,
+.customContent table,
 th,
 td {
 	border: none;
@@ -33,10 +33,10 @@ td {
 	text-align: left;
 	border-collapse: collapse;
 }
-#rounded-corner thead th.rounded-header-left {
+#rounded-corner thead .rounded-header-left {
 	background: #b9c9fe url('Images/left.png') left -1px no-repeat;
 }
-#rounded-corner thead th.rounded-header-right {
+#rounded-corner thead .rounded-header-right {
 	background: #b9c9fe url('Images/right.png') right -1px no-repeat;
 }
 #rounded-corner th {
@@ -54,10 +54,10 @@ td {
 	color: #669;
 	text-align: center;
 }
-#rounded-corner tfoot td.rounded-foot-left {
+#rounded-corner tfoot .rounded-foot-left {
 	background: #e8edff url('Images/botleft.png') left bottom no-repeat;
 }
-#rounded-corner tfoot td.rounded-foot-right {
+#rounded-corner tfoot .rounded-foot-right {
 	background: #e8edff url('Images/botright.png') right bottom no-repeat;
 }
 #rounded-corner tbody tr:hover td {
@@ -67,7 +67,7 @@ td {
    Buttons
 -----------*/
 
-.btnComplaint {
+.btnCustomContent {
 	border: none;
 	border-radius: 15px;
 	font-family: inherit;
@@ -89,7 +89,7 @@ td {
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-.btnComplaint:after {
+.btnCustomContent:after {
 	content: '';
 	position: absolute;
 	z-index: -1;
@@ -97,17 +97,17 @@ td {
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
-.btnComplaint:active {
+.btnCustomContent:active {
 	background: #b9c9fe;
 	top: 2px;
 }
-.btnComplaint:active:before {
+.btnCustomContent:active:before {
 	color: #703b87;
 }
-.btnComplaint:hover:before {
+.btnCustomContent:hover:before {
 	left: 0;
 }
-.btnComplaint span {
+.btnCustomContent span {
 	display: inline-block;
 	width: 100%;
 	height: 100%;
@@ -119,7 +119,7 @@ td {
 	transition: all 0.3s;
 	backface-visibility: hidden;
 }
-.btnComplaint:hover span {
+.btnCustomContent:hover span {
 	-webkit-transform: translateX(200%);
 	-moz-transform: translateX(200%);
 	-ms-transform: translateX(200%);
@@ -127,7 +127,7 @@ td {
 }
 /* Pseudo elements for icons */
 
-.btnComplaint:before {
+.btnCustomContent:before {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -169,14 +169,14 @@ td {
   Input Form
    ----------*/
 
-.complaintTitle {
+.customContentTitle {
 	text-align: center;
 	color: #039;
 	font-weight: bold;
 	font-size: 20px;
 	padding-bottom: 20px;
 }
-.complaintContainer {
+.customContentContainer {
 	width: 400px;
 	height: auto;
 	margin: 50px auto 0;
@@ -186,11 +186,11 @@ td {
 	border: 2px solid #b9c9fe;
 	border-radius: 40px 0 40px 0
 }
-.complaintLabel {
+.customContentLabel {
 	font-size: 15px;
 	font-weight: 700
 }
-.complaintInput {
+.customContentInput {
 	border: 1px solid #b9c9fe;
 	margin-top: 10px;
 	margin-bottom: 10px;

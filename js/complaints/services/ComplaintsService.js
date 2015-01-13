@@ -19,7 +19,7 @@
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10],
                     ["key", '"' + groundTime + '"']
                 ];
 
