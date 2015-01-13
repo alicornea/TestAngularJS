@@ -5,7 +5,7 @@
     /**
      * Configure the Routes
      */
-    app.config(['$routeProvider', 'USER_ROLES', function($routeProvider, USER_ROLES) {
+    app.config(['$routeProvider', 'USER_ROLES', '$httpProvider', function($routeProvider, USER_ROLES, $httpProvider) {
         $routeProvider
         // Home
             .when("/", {
@@ -132,6 +132,8 @@
                 templateUrl: "partials/404.html",
                 controller: "PageCtrl"
             });
+            
+        //$httpProvider.interceptors.push("AuthInterceptor");
     }]);
 
 
