@@ -3,12 +3,12 @@
 
     var jwt = function($base64) {
 
-        var encode = function(payload, secret) {
+        var encode = function(userInfo, secret) {
             var header = {
                 typ: 'JWT',
                 alg: 'HS256',
             };
-            var jwt = base64Encode(JSON.stringify(header)) + '.' + base64Encode(JSON.stringify(payload));
+            var jwt = base64Encode(JSON.stringify(header)) + '.' + base64Encode(JSON.stringify(generatePayload(userInfo)));
 
             return jwt + '.' + sign(jwt, secret);
         };
@@ -20,16 +20,23 @@
                 throw new Error("Token structure incorrect");
 
             var payload = JSON.parse(base64Decode(segments[1]));
-            
+
             var signature = segments[0] + '.' + segments[1];
-            
-            if(!verify(signature, secret, segments[2]))
-            throw new Error("Verification failed");
-            
+
+            if (!verify(signature, secret, segments[2]))
+                throw new Error("Verification failed");
+
             return payload;
         };
-        
-        function verify(raw, secret, signature){
+
+        function generatePayload(userInfo) {
+            return {
+                iss: userInfo.username,
+                sub: userInfo.id,
+            };
+        }
+
+        function verify(raw, secret, signature) {
             return signature === sign(raw, secret).toString();
         }
 

@@ -1,13 +1,13 @@
 (function() {
     var app = angular.module("mrgApp");
 
-    var RegistrationCtrl = function($scope, $rootScope, UsersService, ProjectCouch, $location, LocalStore, SessionStore) {
+    var RegistrationCtrl = function($scope, UsersService, ProjectCouch, $location, LocalStore, SessionStore, jwt) {
 
         $scope.hasError = false;
         $scope.alert = {
             show: false
         };
-        
+
         $scope.register = function(user) {
 
             $scope.alert.show = false;
@@ -17,17 +17,20 @@
             promise.$promise.then(function(result) {
                 if (result.rows.length === 0) {
                     var userToRegister = {
-                    role: "guest",
-                    item: "users",
-                    password: CryptoJS.SHA256(user.password).toString(CryptoJS.enc.Hex),
-                    username: user.username,
+                        role: "guest",
+                        item: "users",
+                        password: CryptoJS.SHA256(user.password).toString(CryptoJS.enc.Hex),
+                        username: user.username,
                     };
 
                     ProjectCouch.save(userToRegister, function(result) {
                         var userInfo = {
-                            accessToken: result.id,
-                            username: user.username,
-                            role: user.role
+                            token: jwt.encode({
+                                username: userToRegister.username,
+                                id: result.id
+                            }, "shhh..."),
+                            username: userToRegister.username,
+                            role: userToRegister.role
                         };
                         LocalStore.userInfo(userInfo);
 
@@ -44,5 +47,5 @@
         };
     };
 
-    app.controller("RegistrationCtrl", ['$scope', '$rootScope', 'UsersService', 'ProjectCouch', '$location', 'LocalStore', 'SessionStore', RegistrationCtrl]);
+    app.controller("RegistrationCtrl", ['$scope', 'UsersService', 'ProjectCouch', '$location', 'LocalStore', 'SessionStore', 'jwt', RegistrationCtrl]);
 }());

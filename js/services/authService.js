@@ -14,17 +14,9 @@
               var userPassword = CryptoJS.SHA256(credentials.password).toString(CryptoJS.enc.Hex);
               if (user.value.password == userPassword) {
 
-                var payload = {
-                  iss: credentials.username,
-                  sub: user.id,
-                };
-
-                var token = jwt.encode(payload, "shhh...");
-                console.log(token);
-
                 var userInfo = {
-                  token: token,
-                  username: credentials.username,
+                  token: jwt.encode(user, "shhh..."),
+                  username: user.value.username,
                   role: user.value.role
                 };
                 LocalStore.userInfo(userInfo);
