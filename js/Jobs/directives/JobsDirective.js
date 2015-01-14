@@ -1,34 +1,28 @@
 (function() {
-    var app = angular.module("mrgApp");
-
-    var Jobs = function(ProjectCouch, JobService) {
-
+    angular.module("mrgApp").directive('jobs', ['$rootScope', 'ProjectCouch', 'JobsService', function($rootScope, ProjectCouch, JobsService) {
         return {
-
             restrict: 'E',
-
             scope: {
                 groundtime: '@'
             },
             replace: true,
             templateUrl: 'partials/Jobs/directives/jobs.html',
 
-            link: function(scope, element, attributes) {
+            link: function(scope) {
 
                 console.log('jobs directive link loaded');
 
-                var promise = new JobService.GetDesiredJob(scope.groundtime);
+                scope.numPerPage = 10;
+                scope.jobsCurrentPage = 1;
 
-
-                var ProcessData = function(data) {
-                    scope.jobs = data;
-                };
-
-                var ProcessError = function(reason) {
-                    alert(reason);
-                };
-
-                promise.$promise.then(ProcessData, ProcessError);
+                scope.loadData = function() {
+                    JobsService.getJobsByIndex((scope.jobsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, '', $rootScope.online).then(function(data) {
+                        scope.jobs = data.rows;
+                        scope.jobsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
+                    }, function(reason) {
+                        alert(reason);
+                    });
+                }
 
                 scope.deleteJob = function(job) {
                     new ProjectCouch(job).destroy(function() {
@@ -36,9 +30,10 @@
                     });
                 };
 
+                scope.$watch('jobsCurrentPage', scope.loadData);
+
+                scope.loadData();
             }
         }
-    }
-
-    app.directive('jobs', ['ProjectCouch', 'JobService', Jobs]);
+    }]);
 }());

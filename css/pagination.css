@@ -1,6 +1,7 @@
 .pagination {
-    padding-top:20px;
-    text-align:center;
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
 }
 .pagination ul {
     display: inline-block;
@@ -14,6 +15,7 @@
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 0;
 }
 .pagination ul>li {
     display: inline;
@@ -27,7 +29,7 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     border-left-width: 0;
-    cursor:pointer;
+    cursor: pointer;
 }
 .pagination ul>li>a:hover,
 .pagination ul>.active>a,

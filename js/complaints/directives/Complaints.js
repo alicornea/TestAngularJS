@@ -15,9 +15,9 @@
 
                 scope.numPerPage = 10;
                 scope.complaintsCurrentPage = 1;
-                
+
                 scope.loadData = function() {
-                    ComplaintsService.getComplaintsByIndex((scope.complaintsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, $rootScope.online).then(function(data) {
+                    ComplaintsService.getComplaintsByIndex((scope.complaintsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, '', $rootScope.online).then(function(data) {
                         scope.complaints = data.rows;
                         scope.complaintsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
                     }, function(reason) {

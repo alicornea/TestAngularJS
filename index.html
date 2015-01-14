@@ -69,13 +69,13 @@ div.transbox p {
 
     <!-- Our Website Content Goes Here -->
     <div ng-controller="MrgAppCtrl">
-        <div ng-show='syncStarted' class="background">
+       <!-- <div ng-show='syncStarted' class="background">
             <div class="transbox">
                 <p>
                     <br/> Loading...
                     <br/> Getting data for offline navigation</p>
             </div>
-        </div>
+        </div>-->
         <div login-failed></div>
         <div ng-include='"templates/header.html"'></div>
         <div ng-view></div>
@@ -133,7 +133,7 @@ div.transbox p {
     <!-- Jobs -->
     <script src="js/Jobs/JobCtrl.js"></script>
     <script src="js/Jobs/NewJobCtrl.js"></script>
-    <script src="js/Jobs/services/GetJobs.js"></script>
+    <script src="js/Jobs/services/JobsService.js"></script>
     <script src="js/Jobs/directives/JobsDirective.js"></script>
     <script src="js/Jobs/AttachmentsCtrl.js"></script>
 

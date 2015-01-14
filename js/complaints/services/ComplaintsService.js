@@ -19,12 +19,8 @@
 
                 var options = [
                     ["skip", index],
-<<<<<<< HEAD
                     ["limit", numberOfResults > 0 ? numberOfResults : 10]
-=======
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
-                    ["key", '"' + groundTime + '"']
->>>>>>> 0884cc74d67780570e8145c55446b760808c48ff
+                   // ["key", '"' + groundTime + '"']
                 ];
 
                 return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
