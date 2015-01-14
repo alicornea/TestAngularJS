@@ -18,7 +18,7 @@
                     include_docs: 'true',
                     skip : index,
                     limit: numberOfResults > 0 ? numberOfResults : 10
-                })
+                }).$promise;
 
                 //return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
             };

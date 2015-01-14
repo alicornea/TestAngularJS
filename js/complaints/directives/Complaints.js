@@ -1,6 +1,5 @@
 (function() {
     angular.module("mrgApp").directive('complaints', ['$rootScope', 'ProjectCouch', 'ComplaintsService', function($rootScope, ProjectCouch, ComplaintsService) {
-
         return {
             restrict: 'E',
             scope: {

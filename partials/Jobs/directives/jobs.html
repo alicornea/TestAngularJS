@@ -26,7 +26,7 @@
             </tr>
         </tfoot>
         <tbody>
-            <tr ng-repeat="job in jobs.rows | filter:search | orderBy:'doc.no'">
+            <tr ng-repeat="job in jobs">
                 <td></td>
                 <td><a href="{{job.doc.no}}">{{job.doc.no}}</a>
                 </td>
