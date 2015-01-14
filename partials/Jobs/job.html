@@ -55,8 +55,8 @@
             <br />
             <input type="hidden" name="item" ng-model="job.item" ng-init="job.item=job.item || 'job'">
             <div style="text-align:center">
-                <button ng-hide="job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save">Save</button>
-                <button ng-hide="!job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save">Update</button>
+                <button ng-hide="job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Save</span></button>
+                <button ng-hide="!job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Update<span></button>
                 <a class="btn btnCustomContent icon-arrow-left" href="#/jobs"><span>Cancel</span></a>
             </div>
         </div>
