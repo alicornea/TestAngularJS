@@ -91,12 +91,18 @@ div.transbox p {
     <script src="js/libraries/angular-route.min.js"></script>
 
     <script src="js/libraries/angular-resource.js"></script>
+
+    <script src="js/libraries/sha256.js"></script>
+    <script src="js/libraries/hmac-sha256.js"></script>
+    <script src="js/libraries/angular-base64.js"></script>
+
     <script src="js/pouchdb-3.2.0.min.js"></script>
     <script src="js/libraries/pouchdb-3.2.1.js"></script>
 
     <!-- Our Website Javascripts -->
     <script src="js/constants/constants.js"></script>
     <script src="js/mrgApp.js"></script>
+    <script src="js/services/jwt.js"></script>
     <script src="js/services/authService.js"></script>
     <script src="js/MrgAppCtrl.js"></script>
     <script src="js/Dashboard/DashboardCtrl.js"></script>
@@ -107,8 +113,11 @@ div.transbox p {
     <script src="js/services/couchDB.js"></script>
     <script src="js/services/pouchDb.js"></script>
     <script src="js/services/usersService.js"></script>
+    <script src="js/services/authInterceptor.js"></script>
     <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
-
+    <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
+    
+    
     <script src="js/services/storageSrv.js"></script>
     <script src="js/Common/dateTime.js"></script>
     <script src="js/test/testcontroller.js"></script>
@@ -123,7 +132,7 @@ div.transbox p {
     <!-- Authentication -->
     <script src="js/authentication/directives/LoginFailed.js"></script>
     <script src="js/authentication/LoginCtrl.js"></script>
-    <script src="js/filters/authorize.js"></script>
+    <script src="js/services/authorize.js"></script>
 
     <!-- Registration -->
     <script src="js/registration/RegistrationCtrl.js"></script>

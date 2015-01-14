@@ -26,7 +26,7 @@
             }
             
             set(SESSION_STORE_KEYS.successfulRegistration, value);
-        }
+        };
 
         var get = function(key) {
             return JSON.parse(sessionStorage.getItem(key) || null);
@@ -36,7 +36,7 @@
             if (key !== null || value !== null) {
                 sessionStorage.setItem(key, JSON.stringify(value));
             }
-        }
+        };
 
         return {
             userInfo: userInfo,
