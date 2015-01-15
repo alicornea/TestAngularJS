@@ -2,32 +2,53 @@
     <div class="customContentTitle">
         <span>Complaint details</span>
     </div>
-    <div>
-        <label for="" class="customContentLabel">Refference Number :</label>
-        <input ng-model="complaint.value.refNo" class="customContentInput" disabled>
+    <div class="customContentDetails">
+        <table>
+            <tr>
+                <td>
+                    <label for="" class="customContentLabel">Refference Number</label>
+                </td>
+                <td>
+                    <input ng-model="complaint.value.refNo" class="customContentInput" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="" class="customContentLabel">Text</label>
+                </td>
+                <td>
+                    <input ng-model="complaint.value.text" class="customContentInput" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="" class="customContentLabel">Type</label>
+                </td>
+                <td>
+                    <input ng-model="complaint.value.type" class="customContentInput" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="" class="customContentLabel">Workgroup</label>
+                </td>
+                <td>
+                    <input ng-model="complaint.value.workgroup" class="customContentInput" disabled>
+                </td>
+            </tr>
+        </table>
     </div>
+    <br/>
     <div>
-        <label for="" class="customContentLabel">Text :</label>
-        <input ng-model="complaint.value.text" class="customContentInput" disabled>
-    </div>
-    <div>
-        <label for="" class="customContentLabel">Type :</label>
-        <input ng-model="complaint.value.type" class="customContentInput" disabled>
-    </div>
-    <div>
-        <label for="" class="customContentLabel">Workgroup :</label>
-        <input ng-model="complaint.value.workgroup" class="customContentInput" disabled>
-    </div>
-    <br />
-    <div style="text-align:center">
         <a class="btn btnCustomContent icon-arrow-left" href="#/Complaints"><span>Back</span></a>
     </div>
+    <br/>
+    <br/>
 
-</div>
-
-<h3> Activities for this complaint </h3>
-
-<div  ng-show="currentComplaintId">
-    <activities-Complaint   complaintid="currentComplaintId">
-    </activities-Complaint>
+    <div ng-show="currentComplaintId">
+        <div class="customContentTitle">
+            <span>Complaint actions</span>
+        </div>
+        <complaintActions></complaintActions>
+    </div>
 </div>

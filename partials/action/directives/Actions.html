@@ -1,0 +1,38 @@
+<div class="customContent">
+    <table id="rounded-corner" summary="Actions">
+        <thead>
+            <tr>
+                <th scope="col" class="rounded-header-left"></th>
+                <th scope="col" class="rounded">Compliant No.</th>
+                <th scope="col" class="rounded">Title</th>
+                <th scope="col" class="rounded">Description</th>
+                <th scope="col" class="rounded">Status</th>
+                <th scope="col" class="rounded">Create Date</th>
+                <th scope="col" class="rounded">Change Date</th>
+                <th scope="col" class="rounded">Issue by User</th>
+                <th scope="col" class="rounded">Options</th>
+                <th scope="col" class="rounded-header-right"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'value.title'">
+                <td>{{action.value.complaintId}}</td>
+                <td>{{action.value.title}}</td>
+                <td>{{action.value.description}}</td>
+                <td>{{action.value.status}}</td>
+                <td>{{action.value.createDate}}</td>
+                <td>{{action.value.changeDate}}</td>
+                <td>{{action.value.issueByUser}}</td>
+                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
+                    <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <!--<td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
+                <td class="rounded-foot-right">&nbsp;</td>-->
+            </tr>
+        </tfoot>
+    </table>
+</div>

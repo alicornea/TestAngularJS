@@ -15,13 +15,6 @@
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
-                <td class="rounded-foot-right">&nbsp;</td>
-            </tr>
-        </tfoot>
         <tbody>
             <tr ng-repeat="complaint in complaints">
                 <td></td>
@@ -39,6 +32,13 @@
                 <td></td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
+                <td class="rounded-foot-right">&nbsp;</td>
+            </tr>
+        </tfoot>
     </table>
     <div>
         <pagination num-pages="complaintsNoOfPages" current-page="complaintsCurrentPage" class="pagination-small"></pagination>
