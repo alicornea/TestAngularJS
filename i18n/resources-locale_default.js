@@ -7,16 +7,21 @@
     {
         "key":"_UsernamePlaceholder_",
         "value":"Username",
-        "description":"Registration form label"
+        "description":"Username placeholder"
     },
     {
         "key":"_PasswordPlaceholder_",
         "value":"Password",
-        "description":"Registration form label"
+        "description":"Password placeholder"
     },
     {
         "key":"_PasswordConfirmationPlaceholder_",
         "value":"Confirm password",
-        "description":"Registration form label"
+        "description":"Password confirmation placeholder"
+    },
+    {
+        "key":"_WelcomeMessage_",
+        "value":"Hello, {0}!",
+        "description":"Login welcome message"
     }
 ]
