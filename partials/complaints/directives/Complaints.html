@@ -1,4 +1,8 @@
 <div class="customContent">
+    <div class="customContentTitle">
+        Complaints
+    </div>
+    <br/>
     <a class="btn btnCustomContent icon-plus" href="#/Complaint/Add"><span>Add New</span></a>
     <br/>
     <br/>
@@ -15,13 +19,6 @@
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
-                <td class="rounded-foot-right">&nbsp;</td>
-            </tr>
-        </tfoot>
         <tbody>
             <tr ng-repeat="complaint in complaints">
                 <td></td>
@@ -39,6 +36,16 @@
                 <td></td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="6">
+                    <span ng-show="complaintsNoOfPages > 0">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</span>
+                    <span ng-hide="complaintsNoOfPages > 0">No Complaints available</span>
+                </td>
+                <td class="rounded-foot-right">&nbsp;</td>
+            </tr>
+        </tfoot>
     </table>
     <div>
         <pagination num-pages="complaintsNoOfPages" current-page="complaintsCurrentPage" class="pagination-small"></pagination>

@@ -1,4 +1,8 @@
 <div class="customContent">
+    <div class="customContentTitle">
+        Jobs
+    </div>
+    <br/>
     <a class="btn btnCustomContent icon-plus" href="#/job/new"><span>Add New</span></a>
     <br/>
     <br/>
@@ -18,13 +22,6 @@
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="9">Page {{jobsCurrentPage}} of {{jobsNoOfPages}}</td>
-                <td class="rounded-foot-right">&nbsp;</td>
-            </tr>
-        </tfoot>
         <tbody>
             <tr ng-repeat="job in jobs">
                 <td></td>
@@ -46,6 +43,16 @@
                 <td></td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="9">
+                    <span ng-show="jobsNoOfPages > 0">Page {{jobsCurrentPage}} of {{jobsNoOfPages}}</span>
+                    <span ng-hide="jobsNoOfPages > 0">No Jobs available</span>
+                </td>
+                <td class="rounded-foot-right">&nbsp;</td>
+            </tr>
+        </tfoot>
     </table>
     <div>
         <pagination num-pages="jobsNoOfPages" current-page="jobsCurrentPage" class="pagination-small"></pagination>

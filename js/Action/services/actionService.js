@@ -1,37 +1,34 @@
-﻿(function () {
+(function() {
+    angular.module("mrgApp").factory("ActionService", ["ProjectCouch", function(ProjectCouch) {
 
-    var ActionService = function (ProjectCouch) {
-      
-        function GetActions()
-        {
-            console.log("getallActions");
-            var promise = ProjectCouch.get({
+        function getActionsByIndex(index, numberOfResults, online) {
+
+            return ProjectCouch.get({
                 q: '_design',
                 r: '_actions',
                 s: '_view',
                 t: 'getAll',
                 include_docs: 'true',
-                limit: 10
-            });
-            return promise;
+                skip: index,
+                limit: numberOfResults > 0 ? numberOfResults : 10
+            }).$promise;
         }
 
-        function GetActionsBasedOnComplaintId(complaintId) {
-            console.log("getactionsbased on compliant");
-            var promise = ProjectCouch.get({
+        function getActionsBasedOnComplaintIdByIndex(complaintId, index, numberOfResults, online) {
+
+            return ProjectCouch.get({
                 q: '_design',
                 r: '_actions',
                 s: '_view',
                 t: 'byCompliantId',
-                key: "\"" + complaintId + "\"",
                 include_docs: 'true',
-                limit: 10
-            });
-            return promise;
+                key: "\"" + complaintId + "\"",
+                skip: index,
+                limit: numberOfResults > 0 ? numberOfResults : 10
+            }).$promise;
         }
 
-        function GetAllStatuses()
-        {
+        function getAllStatuses() {
             console.log("getallStatuses");
             var promise = ProjectCouch.get({
                 q: '_design',
@@ -45,11 +42,10 @@
 
         }
 
-        return { GetAllActions: GetActions, GetActionsByComplaintId: GetActionsBasedOnComplaintId, GetStatuses: GetAllStatuses };
-    };
-
-    var app = angular.module("mrgApp");
-    app.factory("ActionService", ["ProjectCouch", ActionService]);
-
-
+        return {
+            getActionsByIndex: getActionsByIndex,
+            getActionsByComplaintIdByIndex: getActionsBasedOnComplaintIdByIndex,
+            GetStatuses: getAllStatuses
+        };
+    }]);
 }());

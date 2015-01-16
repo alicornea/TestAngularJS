@@ -1,9 +1,7 @@
 <div class="customContent">
     <div class="customContentTitle">
-        Actions
+        <span>Complaint actions</span>
     </div>
-    <br/>
-
     <table id="rounded-corner" summary="Actions">
         <thead>
             <tr>
@@ -15,12 +13,12 @@
                 <th scope="col" class="rounded">Create Date</th>
                 <th scope="col" class="rounded">Change Date</th>
                 <th scope="col" class="rounded">Issue by User</th>
-                <th scope="col" class="rounded" ng-show="isAuthorized([userRoles.admin, userRoles.guest])">Options</th>
+                <th scope="col" class="rounded">Options</th>
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="action in actions | filter:search | orderBy:'value.complaintId'">
+            <tr ng-repeat="action in actions | filter:search | orderBy:'value.title'">
                 <td>{{action.value.complaintId}}</td>
                 <td>{{action.value.title}}</td>
                 <td>{{action.value.description}}</td>
@@ -36,14 +34,14 @@
             <tr>
                 <td class="rounded-foot-left">&nbsp;</td>
                 <td colspan="8">
-                    <span ng-show="actionsNoOfPages > 0">Page {{actionsCurrentPage}} of {{actionsNoOfPages}}</span>
-                    <span ng-hide="actionsNoOfPages > 0">No Actions available</span>
+                    <span ng-show="complaintActionsNoOfPages > 0">Page {{complaintActionsCurrentPage}} of {{complaintActionsNoOfPages}}</span>
+                    <span ng-hide="complaintActionsNoOfPages > 0">No Actions available</span>
                 </td>
                 <td class="rounded-foot-right">&nbsp;</td>
             </tr>
         </tfoot>
     </table>
     <div>
-        <pagination num-pages="actionsNoOfPages" current-page="actionsCurrentPage" class="pagination-small"></pagination>
+        <pagination num-pages="complaintActionsNoOfPages" current-page="complaintActionsCurrentPage" class="pagination-small"></pagination>
     </div>
 </div>

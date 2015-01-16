@@ -11,11 +11,13 @@ angular.module("mrgApp").directive('pagination', function() {
         link: function(scope) {
             scope.$watch('numPages', function(value) {
                 scope.pages = [];
-                for (var i = 1; i <= value; i++) {
-                    scope.pages.push(i);
-                }
-                if (scope.currentPage > value) {
-                    scope.selectPage(value);
+                if (scope.numPages > 0) {
+                    for (var i = 1; i <= value; i++) {
+                        scope.pages.push(i);
+                    }
+                    if (scope.currentPage > value) {
+                        scope.selectPage(value);
+                    }
                 }
             });
             scope.noPrevious = function() {

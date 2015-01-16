@@ -31,8 +31,6 @@
                 };
 
                 scope.$watch('jobsCurrentPage', scope.loadData);
-
-                scope.loadData();
             }
         }
     }]);

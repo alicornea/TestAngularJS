@@ -4,40 +4,59 @@
             <span ng-hide="complaint.value._id">New complaint</span>
             <span ng-hide="!complaint.value._id">Edit complaint</span>
         </div>
-        <div>
-            <label for="txtRefNo" class="customContentLabel">Refference Number :</label>
-            <input name="txtRefNo" ng-model="complaint.value.refNo" required placeholder="912452" class="customContentInput">
-            <span ng-show="complaintForm.txtRefNo.$error.required" class="help-inline">Required</span>
+        <div class="customContentDetails">
+            <table>
+                <tr>
+                    <td>
+                        <label for="txtRefNo" class="customContentLabel">Refference Number</label>
+                    </td>
+                    <td>
+                        <input name="txtRefNo" ng-model="complaint.value.refNo" required placeholder="912452" class="customContentInput">
+                        <span ng-show="complaintForm.txtRefNo.$error.required" class="help-inline">Required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtText" class="customContentLabel">Text</label>
+                    </td>
+                    <td>
+                        <input name="txtText" ng-model="complaint.value.text" required placeholder="Input text here" class="customContentInput">
+                        <span ng-show="complaintForm.txtText.$error.required" class="help-inline">Required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ddlType" class="customContentLabel">Type</label>
+                    </td>
+                    <td>
+                        <select name="ddlType" ng-init="complaint.value.type = complaint.value.type || Types[0].value.name" ng-model="complaint.value.type" class="customContentInput">
+                            <option ng-repeat="t in Types" value="{{t.value.name}}">
+                                {{t.value.name}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ddlWorkgroup" class="customContentLabel">Workgroup</label>
+                    </td>
+                    <td>
+                        <select name="ddlWorkgroup" ng-init="complaint.value.workgroup = complaint.value.workgroup || Workgroups[0].value.name" ng-model="complaint.value.workgroup" class="customContentInput">
+                            <option ng-repeat="wg in Workgroups" value="{{wg.value.name}}" class="customContentInput">
+                                {{wg.value.name}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div>
-            <label for="txtText" class="customContentLabel">Text :</label>
-            <input name="txtText" ng-model="complaint.value.text" required placeholder="Input text here" class="customContentInput">
-            <span ng-show="complaintForm.txtText.$error.required" class="help-inline">Required</span>
-        </div>
-        <div>
-            <label for="ddlType" class="customContentLabel">Type :</label>
-            {{Types[0].value.name}}
-            <select name="ddlType" ng-init="complaint.value.type = complaint.value.type || Types[0].value.name" ng-model="complaint.value.type" class="customContentInput">
-                <option ng-repeat="t in Types" value="{{t.value.name}}">
-                    {{t.value.name}}
-                </option>
-            </select>
-        </div>
-        <div>
-            <label for="ddlWorkgroup" class="customContentLabel">Workgroup :</label>
-            {{Workgroups[0].value.name}}
-            <select name="ddlWorkgroup" ng-init="complaint.value.workgroup = complaint.value.workgroup || Workgroups[0].value.name" ng-model="complaint.value.workgroup" class="customContentInput">
-                <option ng-repeat="wg in Workgroups" value="{{wg.value.name}}" class="customContentInput">
-                    {{wg.value.name}}
-                </option>
-            </select>
-        </div>
-
         <br />
         <input type="hidden" ng-model="complaint.value.item" ng-init="complaint.value.item=complaint.value.item || 'complaint'">
         <div style="text-align:center">
-            <button ng-hide="complaint.value._id" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnCustomContent icon-save"><span>Save</span></button>
-            <button ng-hide="!complaint.value._id" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnCustomContent icon-save"><span>Update</span></button>
+            <button ng-hide="complaint.value._id" ng-disabled="isClean() || complaintForm.$invalid" ng-click="saveComplaint()" class="btn btnCustomContent icon-save"><span>Save</span>
+            </button>
+            <button ng-hide="!complaint.value._id" ng-disabled="isClean() || complaintForm.$invalid" ng-click="updateComplaint()" class="btn btnCustomContent icon-save"><span>Update</span>
+            </button>
             <a class="btn btnCustomContent icon-arrow-left" href="#/Complaints"><span>Cancel</span></a>
         </div>
     </div>
