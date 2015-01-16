@@ -1,6 +1,6 @@
 console.log("register app");
 angular.module('mrgApp', [
-    'ngRoute', 'ngResource', 'base64',
+    'ngRoute', 'ngResource', 'base64', 'localization',
 
     'constants'
 ]);

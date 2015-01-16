@@ -1,10 +1,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <div style="text-align:right">
+    <div style="float:right">
+      <select ng-model="currentLanguage" ng-change="changeLanguage(currentLanguage)" ng-options="lang as lang for lang in allowedLanguages"></select>
       <acc-ground></acc-ground>
       <div ng-include='"partials/login/login.html"' style="display:inline-block"></div>
       <a ng-show="!isAuthenticated()" href="#/register">Sign in</a>
     </div>
+
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -35,10 +37,10 @@
         </li>
         <li><a href="#/test">test</a>
         </li>
-	<li><a href="#/jobs">Jobs</a>
+        <li><a href="#/jobs">Jobs</a>
         </li>
-	<li><a href="#/Complaints">Complaints</a>
-	</li>
+        <li><a href="#/Complaints">Complaints</a>
+        </li>
         <li><a href="#/actions">Actions</a>
         </li>
         <li class="dropdown">
@@ -50,8 +52,8 @@
             </li>
           </ul>
         </li>
-      </ul>       
-        <!-- /.navbar-collapse -->
+      </ul>
+      <!-- /.navbar-collapse -->
     </div>
     <!-- /.navbar-collapse -->
   </div>

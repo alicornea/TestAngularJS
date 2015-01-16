@@ -31,33 +31,32 @@
     <link rel="stylesheet" href="css/registration.css">
     <link rel="stylesheet" href="css/pagination.css">
 
-<style>
-div.background {
-    position: absolute;
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    background: red repeat;
-    border: 2px solid black;
-    text-align: center;
-}
-
-div.transbox {
-    width: 95%;
-    height: 90%;
-    margin: 30px 50px;
-    background-color: #ffffff;
-    border: 1px solid black;
-    opacity: 0.6;
-    filter: alpha(opacity=60); /* For IE8 and earlier */
-}
-
-div.transbox p {
-    margin: 30px 40px;
-    font-weight: bold;
-    color: #000000;
-}
-</style>
+    <style>
+        div.background {
+            position: absolute;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: red repeat;
+            border: 2px solid black;
+            text-align: center;
+        }
+        div.transbox {
+            width: 95%;
+            height: 90%;
+            margin: 30px 50px;
+            background-color: #ffffff;
+            border: 1px solid black;
+            opacity: 0.6;
+            filter: alpha(opacity=60);
+            /* For IE8 and earlier */
+        }
+        div.transbox p {
+            margin: 30px 40px;
+            font-weight: bold;
+            color: #000000;
+        }
+    </style>
 
 </head>
 
@@ -69,13 +68,13 @@ div.transbox p {
 
     <!-- Our Website Content Goes Here -->
     <div ng-controller="MrgAppCtrl">
-       <!-- <div ng-show='syncStarted' class="background">
+        <div ng-show='syncStarted' class="background">
             <div class="transbox">
                 <p>
                     <br/> Loading...
                     <br/> Getting data for offline navigation</p>
             </div>
-        </div>-->
+        </div>
         <div login-failed></div>
         <div ng-include='"templates/header.html"'></div>
         <div ng-view></div>
@@ -92,9 +91,13 @@ div.transbox p {
 
     <script src="js/libraries/angular-resource.js"></script>
 
+    <script src="js/libraries/pouchdb-3.2.1.js"></script>
+
     <script src="js/libraries/sha256.js"></script>
     <script src="js/libraries/hmac-sha256.js"></script>
     <script src="js/libraries/angular-base64.js"></script>
+    
+    <script src="js/libraries/localize.js"></script>
 
     <script src="js/pouchdb-3.2.0.min.js"></script>
     <script src="js/libraries/pouchdb-3.2.1.js"></script>
@@ -112,12 +115,11 @@ div.transbox p {
     <script src="js/filters/utils.js"></script>
     <script src="js/services/couchDB.js"></script>
     <script src="js/services/pouchDb.js"></script>
-    <script src="js/services/usersService.js"></script>
     <script src="js/services/authInterceptor.js"></script>
     <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
     <script type="text/javascript" src="js/services/onlineWatcher.js"></script>
-    
-    
+
+
     <script src="js/services/storageSrv.js"></script>
     <script src="js/Common/dateTime.js"></script>
     <script src="js/test/testcontroller.js"></script>
@@ -142,7 +144,7 @@ div.transbox p {
     <!-- Jobs -->
     <script src="js/Jobs/JobCtrl.js"></script>
     <script src="js/Jobs/NewJobCtrl.js"></script>
-    <script src="js/Jobs/services/JobsService.js"></script>
+    <script src="js/Jobs/services/GetJobs.js"></script>
     <script src="js/Jobs/directives/JobsDirective.js"></script>
     <script src="js/Jobs/AttachmentsCtrl.js"></script>
 
@@ -158,10 +160,10 @@ div.transbox p {
     <script src="js/complaints/directives/ConfirmClick.js"></script>
     <script src="js/complaints/directives/PreventDefaultOnClick.js"></script>
     <script src="js/complaints/directives/Complaints.js"></script>
-    
+
     <script src="js/complaints/services/ComplaintsService.js"></script>
     <script src="js/complaints/services/DataService.js"></script>
-    
+
     <script src="js/complaints/ComplaintCtrl.js"></script>
     <script src="js/complaints/ComplaintAddCtrl.js"></script>
     <script src="js/complaints/ComplaintEditCtrl.js"></script>

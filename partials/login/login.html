@@ -5,8 +5,8 @@
     </div>
     <div ng-if="isAuthenticated() != 1">
         <form ng-submit="login(credentials)" name="loginform">
-            <input type="text" name="username" required placeholder="Username" ng-model="credentials.username" ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
-            <input type="password" name="password" required placeholder="Password" ng-model="credentials.password" ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <input type="text" name="username" ng-model="credentials.username" required placeholder="{{'_UsernamePlaceholder_' | i18n}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <input type="password" name="password" ng-model="credentials.password" required placeholder="{{'_PasswordPlaceholder_' | i18n}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
             <button type="submit">Log in</button>
             <div style="color:red" ng-show="loginform.username.$dirty && loginform.username.$invalid">
                 <span ng-show="loginform.username.$error.required">Username Required!</span>

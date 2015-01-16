@@ -8,23 +8,23 @@
 
       return promise.then(function(result) {
 
-          if (result.rows.length === 0) {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-            return;
-          }
+        if (result.rows.length === 0) {
+          $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+          return;
+        }
 
-          var user = result.rows[0];
-          var userPassword = encryptPassword(credentials.password);
+        var user = result.rows[0];
+        var userPassword = encryptPassword(credentials.password);
 
-          if (userPassword !== user.value.password)
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        if (userPassword !== user.value.password)
+          $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 
-          LocalStore.userInfo(createUserInfo({
-            id: user.id,
-            username: user.value.username,
-            role: user.value.role
-          }));
-        });
+        LocalStore.userInfo(createUserInfo({
+          id: user.id,
+          username: user.value.username,
+          role: user.value.role
+        }));
+      });
     };
 
     var register = function(user) {
@@ -34,25 +34,27 @@
       var promise = getUsers(user.username);
 
       promise.then(function(result) {
-        if (result.rows.length !== 0)
+        if (result.rows.length !== 0) {
           deferred.resolve(false);
+        }
+        else {
+          var userToRegister = createUserAccoutData(user);
 
-        var userToRegister = createUserAccoutData(user);
+          storageSrv.insert(userToRegister, true).then(function(res) {
+              LocalStore.userInfo(createUserInfo({
+                id: res.id,
+                username: userToRegister.username,
+                role: userToRegister.role
+              }));
 
-        storageSrv.insert(userToRegister, true).then(function(res) {
-            LocalStore.userInfo(createUserInfo({
-              id: res.id,
-              username: userToRegister.username,
-              role: userToRegister.role
-            }));
-
-            SessionStore.successfulRegistration(true);
-            deferred.resolve(true);
-          }),
-          function() {
-            console.log("Registration failed");
-            deferred.resolve(false);
-          };
+              SessionStore.successfulRegistration(true);
+              deferred.resolve(true);
+            }),
+            function() {
+              console.log("Registration failed");
+              deferred.resolve(false);
+            };
+        }
       });
 
       return deferred.promise;
@@ -90,8 +92,8 @@
 
 
     /* Private methods */
-    
-    var getUsers = function(username){
+
+    var getUsers = function(username) {
       var options = [
         ["limit", 10],
         ["key", '"' + username + '"']
@@ -99,7 +101,7 @@
 
       return storageSrv.select('_design/users/_view/getAll', $rootScope.online, options, true);
     };
-    
+
     var encryptPassword = function(password) {
       return CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     };

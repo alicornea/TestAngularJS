@@ -1,5 +1,5 @@
 (function() {
-  angular.module("mrgApp").directive('registrationSuccess', function($rootScope, SessionStore) {
+  angular.module("mrgApp").directive('registrationSuccess', ['$rootScope', 'SessionStore', function($rootScope, SessionStore) {
     return {
       restrict: 'E',
       templateUrl: 'partials/registration/registrationSuccess.html',
@@ -10,5 +10,5 @@
         }
       }
     };
-  });
+  }]);
 }());
