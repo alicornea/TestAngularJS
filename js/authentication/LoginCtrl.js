@@ -1,8 +1,6 @@
 (function() {
     var app = angular.module("mrgApp");
     
-    //var requirejs = require('require');
-
     var LoginController = function($scope, LocalStore, AuthService) {
 
         $scope.login = function(credentials) {
