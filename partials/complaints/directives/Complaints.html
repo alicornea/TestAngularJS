@@ -1,4 +1,8 @@
 <div class="customContent">
+    <div class="customContentTitle">
+        Complaints
+    </div>
+    <br/>
     <a class="btn btnCustomContent icon-plus" href="#/Complaint/Add"><span>Add New</span></a>
     <br/>
     <br/>
@@ -35,7 +39,10 @@
         <tfoot>
             <tr>
                 <td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
+                <td colspan="6">
+                    <span ng-show="complaintsNoOfPages > 0">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</span>
+                    <span ng-hide="complaintsNoOfPages > 0">No Complaints available</span>
+                </td>
                 <td class="rounded-foot-right">&nbsp;</td>
             </tr>
         </tfoot>

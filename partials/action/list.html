@@ -1,21 +1,26 @@
-﻿<div class="container">
-    <h1>Actions List</h1>
+<div class="customContent">
+    <div class="customContentTitle">
+        Actions
+    </div>
+    <br/>
 
-   <table style="margin-top: 6px;">
+    <table id="rounded-corner" summary="Actions">
         <thead>
             <tr>
-                <th>Compliant No.</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Create Date</th>
-                <th>Change Date</th>
-                <th>Issue by User</th>
-                <th ng-show="isAuthorized([userRoles.admin, userRoles.guest] )">Options</th>
+                <th scope="col" class="rounded-header-left"></th>
+                <th scope="col" class="rounded">Compliant No.</th>
+                <th scope="col" class="rounded">Title</th>
+                <th scope="col" class="rounded">Description</th>
+                <th scope="col" class="rounded">Status</th>
+                <th scope="col" class="rounded">Create Date</th>
+                <th scope="col" class="rounded">Change Date</th>
+                <th scope="col" class="rounded">Issue by User</th>
+                <th scope="col" class="rounded" ng-show="isAuthorized([userRoles.admin, userRoles.guest])">Options</th>
+                <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'doc.complaintId'">
+            <tr ng-repeat="action in actions | filter:search | orderBy:'value.complaintId'">
                 <td>{{action.value.complaintId}}</td>
                 <td>{{action.value.title}}</td>
                 <td>{{action.value.description}}</td>
@@ -23,9 +28,22 @@
                 <td>{{action.value.createDate}}</td>
                 <td>{{action.value.changeDate}}</td>
                 <td>{{action.value.issueByUser}}</td>
-                <td ng-show="isAuthorized([userRoles.admin, userRoles.guest] )"><a  href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
-                <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
+                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
+                    <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="8">
+                    <span ng-show="actionsNoOfPages > 0">Page {{actionsCurrentPage}} of {{actionsNoOfPages}}</span>
+                    <span ng-hide="actionsNoOfPages > 0">No Actions available</span>
+                </td>
+                <td class="rounded-foot-right">&nbsp;</td>
+            </tr>
+        </tfoot>
     </table>
+    <div>
+        <pagination num-pages="actionsNoOfPages" current-page="actionsCurrentPage" class="pagination-small"></pagination>
+    </div>
 </div>

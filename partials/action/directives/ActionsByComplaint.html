@@ -1,4 +1,7 @@
 <div class="customContent">
+    <div class="customContentTitle">
+        <span>Complaint actions</span>
+    </div>
     <table id="rounded-corner" summary="Actions">
         <thead>
             <tr>
@@ -15,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="action in actions.rows | filter:search | orderBy:'value.title'">
+            <tr ng-repeat="action in actions | filter:search | orderBy:'value.title'">
                 <td>{{action.value.complaintId}}</td>
                 <td>{{action.value.title}}</td>
                 <td>{{action.value.description}}</td>
@@ -29,10 +32,16 @@
         </tbody>
         <tfoot>
             <tr>
-                <!--<td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="6">Page {{complaintsCurrentPage}} of {{complaintsNoOfPages}}</td>
-                <td class="rounded-foot-right">&nbsp;</td>-->
+                <td class="rounded-foot-left">&nbsp;</td>
+                <td colspan="8">
+                    <span ng-show="complaintActionsNoOfPages > 0">Page {{complaintActionsCurrentPage}} of {{complaintActionsNoOfPages}}</span>
+                    <span ng-hide="complaintActionsNoOfPages > 0">No Actions available</span>
+                </td>
+                <td class="rounded-foot-right">&nbsp;</td>
             </tr>
         </tfoot>
     </table>
+    <div>
+        <pagination num-pages="complaintActionsNoOfPages" current-page="complaintActionsCurrentPage" class="pagination-small"></pagination>
+    </div>
 </div>

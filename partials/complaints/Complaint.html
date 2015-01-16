@@ -42,13 +42,7 @@
     <div>
         <a class="btn btnCustomContent icon-arrow-left" href="#/Complaints"><span>Back</span></a>
     </div>
-    <br/>
-    <br/>
-
     <div ng-show="currentComplaintId">
-        <div class="customContentTitle">
-            <span>Complaint actions</span>
-        </div>
-        <complaintActions></complaintActions>
+        <complaint-actions complaint-id="currentComplaintId"></complaint-actions>
     </div>
 </div>

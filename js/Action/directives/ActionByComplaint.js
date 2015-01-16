@@ -1,23 +1,31 @@
 (function() {
-    angular.module("mrgApp").directive("complaintActions", ['ActionService', '$routeParams', function(ActionService, $routeParams) {
+    angular.module("mrgApp").directive('complaintActions', ['$rootScope', 'ActionService', function($rootScope, ActionService) {
 
         return {
             restrict: 'E',
             scope: {
-                complaintid: '='
+                complaintId: '='
             },
-            templateUrl: 'partials/action/directives/Actions.html',
-            link: function myLink(scope, elements, attributes) {
-                var promise = (typeof scope.complaintid != "undefined") ? ActionService.GetActionsByComplaintId(scope.complaintid) : ActionService.GetAllActions();
+            replace: true,
+            templateUrl: 'partials/action/directives/ActionsByComplaint.html',
 
-                var ProcessData = function(data) {
-                    scope.actions = data;
-                };
+            link: function(scope) {
 
-                var ProcessError = function(reason) {
-                    console.log(reason);
-                };
-                promise.$promise.then(ProcessData, ProcessError);
+                console.log('complaint actions directive loaded');
+
+                scope.numPerPage = 10;
+                scope.complaintActionsCurrentPage = 1;
+                
+                scope.loadData = function() {
+                    ActionService.getActionsByComplaintIdByIndex(scope.complaintId, (scope.complaintActionsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, $rootScope.online).then(function(data) {
+                        scope.actions = data.rows;
+                        scope.complaintActionsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
+                    }, function(reason) {
+                        console.log(reason);
+                    });
+                }
+
+                scope.$watch('complaintActionsCurrentPage', scope.loadData);
             }
         }
     }]);

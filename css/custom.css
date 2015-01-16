@@ -177,12 +177,10 @@ td {
 	padding-bottom: 20px;
 }
 .customContentContainer {
-	/*min-width: 400px;*/
-	
 	height: auto;
 	margin: 50px auto 0;
 	padding: 50px;
-	background-color: #e8edff;
+	/*background-color: #e8edff;*/
 	color: #039;
 	border: 2px solid #b9c9fe;
 	border-radius: 40px 0 40px 0;
@@ -218,7 +216,8 @@ td {
 	margin:0 auto 0 auto;
 }
 
-.customContentDetails td:first-child
+.customContentDetails td
 {
 	padding-right:10px;
+	padding-left:10px;
 }
