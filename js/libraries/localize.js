@@ -14,7 +14,7 @@ angular.module('localization', [])
   .provider('localize', function localizeProvider() {
     
     this.languages = ['en-US', 'ro-ro'];
-    this.defaultLanguage = 'ro-ro';
+    this.defaultLanguage = 'en-US';
     this.ext = 'js';
 
     var provider = this;
