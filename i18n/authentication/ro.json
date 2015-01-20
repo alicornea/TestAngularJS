@@ -1,5 +1,5 @@
 {
     "_UsernamePlaceholder_" : "User ID",
     "_PasswordPlaceholder_" : "Parolă",
-    "_WelcomeMessage_": "Salut, {0}!"
+    "_WelcomeMessage_": "Salut, {{username}}!"
 }
