@@ -138,7 +138,7 @@
         //$translatePartialLoaderProvider.addPart('registration');
         $translateProvider
             .useLoader('$translatePartialLoader', {
-                urlTemplate: '/i18n/{part}/{lang}.json'
+                urlTemplate: './i18n/{part}/{lang}.json'
             })
             .registerAvailableLanguageKeys(LOCALIZATION.availableLanguages, {
                 'en_US': 'en',
