@@ -5,7 +5,7 @@
     /**
      * Configure the Routes
      */
-    app.config(['$routeProvider', 'USER_ROLES', '$httpProvider', function($routeProvider, USER_ROLES, $httpProvider) {
+    app.config(['$routeProvider', 'USER_ROLES', 'LOCALIZATION', '$httpProvider', '$translateProvider', '$translatePartialLoaderProvider', function($routeProvider, USER_ROLES, LOCALIZATION, $httpProvider, $translateProvider, $translatePartialLoaderProvider) {
         $routeProvider
         // Home
             .when("/", {
@@ -134,13 +134,22 @@
                 templateUrl: "partials/404.html",
                 controller: "PageCtrl"
             });
-            
+
+        //$translatePartialLoaderProvider.addPart('registration');
+        $translateProvider
+            .useLoader('$translatePartialLoader', {
+                urlTemplate: '/i18n/{part}/{lang}.json'
+            })
+            .registerAvailableLanguageKeys(LOCALIZATION.availableLanguages, {
+                'en_US': 'en',
+                'en_UK': 'en',
+                'ro_RO': 'ro',
+                'de_DE': 'de',
+                'de_CH': 'de'
+            })
+            .preferredLanguage(LOCALIZATION.preferredLanguage)
+            .fallbackLanguage(LOCALIZATION.fallbackLanguage);
+
         //$httpProvider.interceptors.push("AuthInterceptor");
     }]);
-
-
-
-
-
-
 }());

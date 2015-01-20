@@ -1,8 +1,10 @@
 (function() {
     var app = angular.module("mrgApp");
 
-    var RegistrationCtrl = function($scope, AuthService, $location) {
+    var RegistrationCtrl = function($scope, AuthService, $location, $translatePartialLoader) {
 
+        $translatePartialLoader.addPart('registration');
+        
         $scope.hasError = false;
         $scope.alert = {
             show: false
@@ -23,5 +25,5 @@
         };
     };
 
-    app.controller("RegistrationCtrl", ['$scope', 'AuthService', '$location', RegistrationCtrl]);
+    app.controller("RegistrationCtrl", ['$scope', 'AuthService', '$location', '$translatePartialLoader', RegistrationCtrl]);
 }());

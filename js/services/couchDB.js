@@ -6,7 +6,7 @@ angular.module('mrgApp').
 
         console.log("service couch ready");
         var ProjectCouch = $resource(':protocol//:server/:db/:q/:r/:s/:t',
-                                     { protocol: 'https:', server: 'alicornea.iriscouch.com', db: 'test_angular' }, {
+                                     { protocol: 'https:', server: 'alicornea.iriscouch.com:5984', db: 'test_angular' }, {
                                          update: { method: 'PUT' }, bulkUpdate: { method: 'POST', isArray: true}
                                      }
        );

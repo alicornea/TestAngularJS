@@ -1,0 +1,5 @@
+{
+    "_UsernamePlaceholder_" : "Username",
+    "_PasswordPlaceholder_" : "Password",
+    "_WelcomeMessage_": "Welcome, {0}!"
+}

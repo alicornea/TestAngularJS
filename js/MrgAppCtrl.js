@@ -1,15 +1,15 @@
 (function() {
-    angular.module("mrgApp").controller('MrgAppCtrl', ['$scope', 'AuthService', 'USER_ROLES', 'localize', function($scope, AuthService, USER_ROLES, localize) {
+    angular.module("mrgApp").controller('MrgAppCtrl', ['$scope', 'AuthService', 'USER_ROLES', 'LOCALIZATION', '$translate', function($scope, AuthService, USER_ROLES, LOCALIZATION, $translate) {
 
 	$scope.userRoles = USER_ROLES;
 	$scope.isAuthorized = AuthService.isAuthorized;
 	$scope.isAuthenticated = AuthService.isAuthenticated;
-	$scope.allowedLanguages = localize.languages;
-	$scope.currentLanguage = localize.defaultLanguage;
+	$scope.allowedLanguages = LOCALIZATION.availableLanguages;
+	$scope.currentLanguage = LOCALIZATION.preferredLanguage;
 	
 	$scope.changeLanguage = function(currentLanguage){
-	  localize.setLanguage(currentLanguage);
-	  console.log(localize.language);
+	  $translate.use(currentLanguage);
+	  console.log("language chanded to " + currentLanguage);
 	};
     }]);
 }());
