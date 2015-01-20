@@ -1,9 +1,10 @@
 (function() {
     var app = angular.module("mrgApp");
     
-    var LoginController = function($scope, LocalStore, AuthService, $translatePartialLoader) {
+    var LoginController = function($scope, LocalStore, AuthService, $translatePartialLoader, $translate) {
 
         $translatePartialLoader.addPart('authentication');
+        $translate.refresh();
         
         $scope.login = function(credentials) {
             AuthService.login(credentials);
@@ -23,6 +24,6 @@
         };
     };
 
-    app.controller("LoginController", ['$scope', 'LocalStore', 'AuthService', '$translatePartialLoader', LoginController]);
+    app.controller("LoginController", ['$scope', 'LocalStore', 'AuthService', '$translatePartialLoader', '$translate', LoginController]);
 
 }());

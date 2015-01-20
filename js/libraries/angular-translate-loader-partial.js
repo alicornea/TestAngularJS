@@ -57,7 +57,8 @@ angular.module('pascalprecht.translate')
       }, $httpOptions)).success(function(data){
         self.tables[lang] = data;
         deferred.resolve(data);
-      }).error(function() {
+      }).error(function(error) {
+        console.log(error);
         if (errorHandler) {
           errorHandler(self.name, lang).then(function(data) {
             self.tables[lang] = data;
