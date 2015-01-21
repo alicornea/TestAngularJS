@@ -10,9 +10,15 @@
 	})
 	.constant("LOCAL_STORE_KEYS", {
 	    userInfo: 'userInfo',
+	    currentLanguage: 'currentLanguage'
 	})
 	.constant("AUTH_EVENTS", {
 	    loginSuccess: 'auth-login-success',
 	    loginFailed: 'auth-login-failed'
-	});
+	})
+	.constant("LOCALIZATION", {
+		availableLanguages: ['en', 'ro', 'de'],
+		preferredLanguage: 'ro',
+		fallbackLanguage: 'en'
+	});;
 }());

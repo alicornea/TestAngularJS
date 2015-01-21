@@ -1,9 +1,9 @@
 <div class="container" ng-cloak>
     <form ng-submit="register(user)" class="form-signin" name="registrationForm" novalidate>
-        <h1 ng-bind="'_RegistrationLabel_' | i18n"></h1>
-        <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="{{'_UsernamePlaceholder_' | i18n}}" required autofocus/>
-        <input name="password" ng-model="user.password" type="password" class="form-control password" placeholder="{{'_PasswordPlaceholder_' | i18n}}" required/>
-        <input name="password_confirm" ng-model="password_confirm" type="password" class="form-control confirm-password" placeholder="{{'_PasswordConfirmationPlaceholder_' | i18n}}" validate-equals="user.password" />
+        <h2 translate="{{'_RegistrationLabel_'}}"></h2>
+        <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="{{ '_UsernamePlaceholder_' | translate }}" required autofocus/>
+        <input name="password" ng-model="user.password" type="password" class="form-control password" placeholder="{{'_PasswordPlaceholder_' | translate}}" required/>
+        <input name="password_confirm" ng-model="password_confirm" type="password" class="form-control confirm-password" placeholder="{{'_PasswordConfirmationPlaceholder_' | translate}}" validate-equals="user.password" />
         <p class="help-block" ng-show="registrationForm.username.$dirty  && registrationForm.username.$invalid">Please enter a valid username</p>
         <p class="help-block" ng-show="registrationForm.password_confirm.$dirty && registrationForm.password_confirm.$error.equal">Please match the passwords</p>
         <button type="submit" class="btn">Submit</button>

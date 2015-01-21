@@ -1,12 +1,12 @@
 <div class="login-form" ng-controller="LoginController">
     <div ng-if="isAuthenticated() == 1">
-        <span style="color:white" data-i18n="_WelcomeMessage_|{{username}}"></span>
+        <span style="color:white" translate="{{'_WelcomeMessage_'}}" translate-values="{username: '{{username}}'}"></span>
         <button ng-click="logout()" style="color:black">Logout</button>
     </div>
     <div ng-if="isAuthenticated() != 1">
         <form ng-submit="login(credentials)" name="loginform" novalidate>
-            <input type="text" name="username" ng-model="credentials.username" required placeholder="{{'_UsernamePlaceholder_' | i18n}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
-            <input type="password" name="password" ng-model="credentials.password" required placeholder="{{'_PasswordPlaceholder_' | i18n}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <input type="text" name="username" ng-model="credentials.username" required placeholder="{{'_UsernamePlaceholder_' | translate}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
+            <input type="password" name="password" ng-model="credentials.password" required placeholder="{{'_PasswordPlaceholder_' | translate}}"  ng-pattern="/^[a-zA-Z0-9\.\-']*$/" />
             <button type="submit">Log in</button>
             <div style="color:red" ng-show="loginform.username.$dirty && loginform.username.$invalid">
                 <span ng-show="loginform.username.$error.required">Username Required!</span>
