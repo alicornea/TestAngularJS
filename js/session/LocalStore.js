@@ -12,6 +12,14 @@
             set(LOCAL_STORE_KEYS.userInfo, value);
         };
 
+        var currentLanguage = function(value) {
+            if (!angular.isDefined(value)) {
+                return get(LOCAL_STORE_KEYS.currentLanguage);
+            }
+
+            set(LOCAL_STORE_KEYS.currentLanguage, value);
+        };
+
         var get = function(key) {
             return JSON.parse(localStorage.getItem(key) || null);
         };
@@ -24,6 +32,7 @@
 
         return {
             userInfo: userInfo,
+            currentLanguage: currentLanguage,
             clear: function() {
                 localStorage.clear();
             },

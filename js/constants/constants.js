@@ -10,6 +10,7 @@
 	})
 	.constant("LOCAL_STORE_KEYS", {
 	    userInfo: 'userInfo',
+	    currentLanguage: 'currentLanguage'
 	})
 	.constant("AUTH_EVENTS", {
 	    loginSuccess: 'auth-login-success',
@@ -19,5 +20,5 @@
 		availableLanguages: ['en', 'ro', 'de'],
 		preferredLanguage: 'ro',
 		fallbackLanguage: 'en'
-	});
+	});;
 }());
