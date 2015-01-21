@@ -12,7 +12,7 @@
                             <label for="jobNo" class="customContentLabel">Job No.</label>
                         </td>
                         <td>
-                            <input type="number" ng-model="job.no" name="jobNo" class="customContentInput" id="jobNo" required />
+                            <input type="number" ng-model="job.value.no" name="jobNo" class="customContentInput" id="jobNo" required />
                         </td>
                         <td><span ng-show="myForm.jobNo.$error.required" class="help-inline">Required</span>
                         </td>
@@ -22,7 +22,7 @@
                             <label for="jobTitle" class="customContentLabel">Job Title</label>
                         </td>
                         <td>
-                            <input type="text" name="jobTitle" class="customContentInput" id="jobTitle" ng-model="job.title" required />
+                            <input type="text" name="jobTitle" class="customContentInput" id="jobTitle" ng-model="job.value.title" required />
                         </td>
                         <td><span ng-show="myForm.jobTitle.$error.required" class="help-inline">Required</span>
                         </td>
@@ -32,7 +32,7 @@
                             <label for="groundTime" class="customContentLabel">Ground Time</label>
                         </td>
                         <td>
-                            <input type="datetime" name="groundTime" class="customContentInput" id="groundTime" ng-model="job.groundTime" required />
+                            <input type="datetime" name="groundTime" class="customContentInput" id="groundTime" ng-model="job.value.groundTime" required />
                         </td>
                         <td><span ng-show="myForm.job.groundTime.$error.required" class="help-inline">Required</span>
                         </td>
@@ -42,7 +42,7 @@
                             <label for="createdBy" class="customContentLabel">Created by</label>
                         </td>
                         <td>
-                            <input type="text" name="createdBy" class="customContentInput" id="createdBy" ng-model="job.created" required />
+                            <input type="text" name="createdBy" class="customContentInput" id="createdBy" ng-model="job.value.created" required />
                         </td>
                         <td><span ng-show="myForm.createdBy.$error.required" class="help-inline">Required</span>
                         </td>
@@ -52,7 +52,7 @@
                             <label for="jobDesc" class="customContentLabel">Job Description</label>
                         </td>
                         <td>
-                            <textarea name="description" class="customContentInput" ng-model="job.desc" id="description" required></textarea>
+                            <textarea name="description" class="customContentInput" ng-model="job.value.desc" id="description" required></textarea>
                         </td>
                         <td><span ng-show="myForm.description.$error.required" class="help-inline">Required</span>
                         </td>
@@ -62,7 +62,7 @@
                             <label for="profession" class="customContentLabel">Profession</label>
                         </td>
                         <td>
-                            <select ng-model="job.profession" ng-init="job.profession='Accountant'" name="profession" required class="customContentInput">
+                            <select ng-model="job.value.profession" ng-init="job.value.profession='Accountant'" name="profession" required class="customContentInput">
                                 <option value="Accountant">Accountant</option>
                                 <option value="Developer">Developer</option>
                                 <option value="CEO">CEO</option>
@@ -72,11 +72,11 @@
                 </table>
             </div>
             <br />
-            <input type="hidden" name="item" ng-model="job.item" ng-init="job.item=job.item || 'job'">
+            <input type="hidden" name="item" ng-model="job.value.item" ng-init="job.value.item=job.value.item || 'job'">
             <div style="text-align:center">
-                <button ng-hide="job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Save</span>
+                <button ng-hide="job.value._id" ng-click="saveJob()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Save</span>
                 </button>
-                <button ng-hide="!job._id" ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Update<span></button>
+                <button ng-hide="!job.value._id" ng-click="updateJob(job)" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Update</span></button>
                 <a class="btn btnCustomContent icon-arrow-left" href="#/jobs"><span>Cancel</span>
                     </a>
             </div>

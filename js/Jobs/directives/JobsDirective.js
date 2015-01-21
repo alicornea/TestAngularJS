@@ -1,5 +1,5 @@
 (function() {
-    angular.module("mrgApp").directive('jobs', ['$rootScope', 'ProjectCouch', 'JobsService', function($rootScope, ProjectCouch, JobsService) {
+    angular.module("mrgApp").directive('jobs', ['$rootScope', 'JobsService', function($rootScope, JobsService) {
         return {
             restrict: 'E',
             scope: {
@@ -25,9 +25,7 @@
                 }
 
                 scope.deleteJob = function(job) {
-                    new ProjectCouch(job).destroy(function() {
-                        $location.path("/jobs/")
-                    });
+                    JobsService.deleteJob(job, $rootScope.online);
                 };
 
                 scope.$watch('jobsCurrentPage', scope.loadData);

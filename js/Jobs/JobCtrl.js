@@ -1,33 +1,23 @@
-(function () {
-    var app = angular.module("mrgApp");
-
-    var JobCtrl = function ($scope, ProjectCouch, $location, $routeParams, DateTime) {
+(function() {
+    angular.module("mrgApp").controller("JobCtrl", ["$scope", "$rootScope", "JobsService", "$routeParams", function($scope, $rootScope, JobsService, $routeParams) {
         console.log("test Job Edit reporting for duty.");
 
         var self = this;
 
-        ProjectCouch.get({ q: $routeParams.jobid }, function (job) {
-            self.original = job;
-            $scope.job = new ProjectCouch(self.original);
+        JobsService.getJob($routeParams.jobid, $rootScope.online).then(function(data) {
+            self.original = data.rows[0];
+            $scope.job = angular.copy(self.original);
+
+        }, function(reason) {
+            console.log(reason);
         });
 
-        $scope.isClean = function () {
+        $scope.isClean = function() {
             return angular.equals(self.original, $scope.job);
         }
 
-        $scope.destroy = function () {
-            self.original.destroy(function () {
-                $location.path('/jobs');
-            });
+        $scope.updateJob = function(job) {
+            JobsService.updateJob(job.value, $rootScope.online);
         };
-
-        $scope.save = function () {
-            $scope.job.date = DateTime.currentDateTime();
-            $scope.job.update(function () {
-                $location.path('/jobs');
-            });
-        };
-    };
-
-    app.controller("JobCtrl", ['$scope', 'ProjectCouch', "$location", "$routeParams", "DateTime", JobCtrl]);
+    }]);
 }());

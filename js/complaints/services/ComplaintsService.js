@@ -2,7 +2,6 @@
     angular.module('mrgApp')
         .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', function($location, ProjectCouch, DateTime, storageSrv, SessionStore) {
 
-
             this.getComplaints = function(startKey, numberOfResults, groundTime, online) {
                 if (online)
                     startKey = '"' + startKey + '"';
@@ -20,11 +19,10 @@
                 var options = [
                     ["skip", index],
                     ["limit", numberOfResults > 0 ? numberOfResults : 10]
-                   // ["key", '"' + groundTime + '"']
+                    // ["key", '"' + groundTime + '"']
                 ];
 
                 return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
-
             };
 
             this.getComplaint = function(complaintId, online) {
@@ -34,13 +32,10 @@
             };
 
             this.getComplaintAndItsActions = function(complaintId) {
-
                 var promise = getComplaintAndActions(complaintId);
 
                 return promise;
-
             };
-
 
 
             function getComplaintAndActions(complaintId, online) {
@@ -51,7 +46,6 @@
                 ];
 
                 return storageSrv.select('_design/complaint/_view/complaintandactions', online, options)
-
             };
 
             this.saveComplaint = function(complaint, online) {
@@ -78,18 +72,13 @@
 
             };
 
-
             var ProcessError = function(reason) {
-
                 console.log(reason);
-
             };
 
             this.deleteComplaint = function(complaint, online) {
 
-                var promise = getComplaintAndActions(complaint._id, online);
-                promise.then(ProcessData, ProcessError);
-
+                getComplaintAndActions(complaint._id, online).then(ProcessData, ProcessError);
             };
         }])
 }());
