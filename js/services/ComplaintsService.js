@@ -2,24 +2,24 @@
     angular.module('mrgApp')
         .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', '$rootScope', function($location, ProjectCouch, DateTime, storageSrv, SessionStore, $rootScope) {
 
-            this.getComplaints = function(startKey, numberOfResults, groundTime) {
-                if (online)
+            this.getComplaints = function(startKey, numberOfResults) {
+                if ($rootScope.online)
                     startKey = '"' + startKey + '"';
 
                 var options = [
                     ["startkey", startKey === undefined ? '""' : startKey],
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
-                    ["key", '"' + groundTime + '"']
+                    ["key", '"' + SessionStore.selectedGroundTime() + '"']
                 ];
                 return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
             };
 
-            this.getComplaintsByIndex = function(index, numberOfResults, groundTime) {
+            this.getComplaintsByIndex = function(index, numberOfResults) {
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults : 10]
-                    // ["key", '"' + groundTime + '"']
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10],
+                    ["key", '"' + SessionStore.selectedGroundTime() + '"']
                 ];
 
                 return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
@@ -29,23 +29,6 @@
 
                 return storageSrv.select('_design/complaint/_view/getAll', $rootScope.online, 20, true, complaintId);
 
-            };
-
-            this.getComplaintAndItsActions = function(complaintId) {
-                var promise = getComplaintAndActions(complaintId);
-
-                return promise;
-            };
-
-
-            function getComplaintAndActions(complaintId) {
-
-                var options = [
-                    ["startkey", "[\"" + complaintId + "\"]"],
-                    ["endkey", "[\"" + complaintId + "\",{}]"]
-                ];
-
-                return storageSrv.select('_design/complaint/_view/complaintandactions', $rootScope.online, options)
             };
 
             this.saveComplaint = function(complaint) {
@@ -62,6 +45,16 @@
                 storageSrv.update(complaint, $rootScope.online).then(function() {
                     $location.path('/Complaints');
                 });
+            };
+
+            function getComplaintAndActions(complaintId) {
+
+                var options = [
+                    ["startkey", "[\"" + complaintId + "\"]"],
+                    ["endkey", "[\"" + complaintId + "\",{}]"]
+                ];
+
+                return storageSrv.select('_design/complaint/_view/complaintandactions', $rootScope.online, options)
             };
 
             var ProcessData = function(data) {

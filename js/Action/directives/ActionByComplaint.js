@@ -19,7 +19,7 @@
                 scope.loadData = function() {
                     ActionService.getActionsByComplaintIdByIndex(scope.complaintId, (scope.complaintActionsCurrentPage - 1) * scope.numPerPage, scope.numPerPage).then(function(data) {
                         scope.actions = data.rows;
-                        scope.complaintActionsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
+                        scope.complaintActionsNoOfPages = Math.ceil(data.rows.length / scope.numPerPage);
                     }, function(reason) {
                         console.log(reason);
                     });
