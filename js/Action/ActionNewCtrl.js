@@ -1,52 +1,28 @@
-(function () {
+(function() {
 
-    var app = angular.module("mrgApp");
-
-    var ActionNewCtrl = function ($scope, ProjectCouch, $location, $routeParams, ActionService, DateTime, LocalStore) {
+    angular.module("mrgApp").controller("ActionNewCtrl", ['$scope', '$routeParams', 'ActionService', 'DataService', 'LocalStore', function($scope, $routeParams, ActionService, DataService, LocalStore) {
 
         $scope.complaintId = $routeParams.complaintid;
         $scope.username = getUsername();
-        
-        var promise = ActionService.GetStatuses();
 
-        promise.$promise.then(function (data) {
-            var statusesAction = [];
+        DataService.getActionStatuses().then(function(data) {
+            $scope.statuses = [];
             for (var i = 0; i < data.rows.length; i++)
-                statusesAction.push(data.rows[i].value.name);
-            $scope.statuses = statusesAction;
+                $scope.statuses.push(data.rows[i].value.name);
             if (data.rows.length > 0)
-                $scope.action.status = statusesAction[0];
-
-        }, function (reason) {
-            console.log(JSON.stringify(reason));
+                $scope.action.status = $scope.statuses[0];
+        }, function(reason) {
+            console.log(reason);
         });
 
-
-        $scope.save = function () {
-            $scope.action.changeDate = DateTime.currentDateTime();
-            $scope.action.createDate = DateTime.currentDateTime();
-          
-            ProjectCouch.save($scope.action, function (action) {
-                $location.path('/actions');
-            });
+        $scope.saveAction = function() {
+            ActionService.saveAction($scope.action.value, $scope.online);
         }
 
-        $scope.isClean = function () {
-            return angular.equals(self.original, $scope.action);
-        }
-        
-        function getUsername()
-        {
+        function getUsername() {
             var userInfo = LocalStore.userInfo();
-            if( userInfo != null)
-                return userInfo.username;
-            return "Anonymous";    
+
+            return userInfo != null ? userInfo.username : "Anonymous";
         }
-
-    };
-
-
-
-    app.controller("ActionNewCtrl", ['$scope', 'ProjectCouch', '$location', '$routeParams', 'ActionService', 'DateTime', 'LocalStore', ActionNewCtrl]);
-
+    }]);
 }());

@@ -1,5 +1,5 @@
 (function() {
-    angular.module("mrgApp").directive('complaintActions', ['$rootScope', 'ActionService', function($rootScope, ActionService) {
+    angular.module("mrgApp").directive('complaintActions', ['ActionService', function(ActionService) {
 
         return {
             restrict: 'E',
@@ -17,13 +17,17 @@
                 scope.complaintActionsCurrentPage = 1;
                 
                 scope.loadData = function() {
-                    ActionService.getActionsByComplaintIdByIndex(scope.complaintId, (scope.complaintActionsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, $rootScope.online).then(function(data) {
+                    ActionService.getActionsByComplaintIdByIndex(scope.complaintId, (scope.complaintActionsCurrentPage - 1) * scope.numPerPage, scope.numPerPage).then(function(data) {
                         scope.actions = data.rows;
                         scope.complaintActionsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
                     }, function(reason) {
                         console.log(reason);
                     });
                 }
+                
+                scope.deleteAction = function(action) {
+                    ActionService.deleteAction(action)
+                };
 
                 scope.$watch('complaintActionsCurrentPage', scope.loadData);
             }

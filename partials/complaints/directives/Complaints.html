@@ -1,6 +1,6 @@
 <div class="customContent">
     <div class="customContentTitle">
-        Complaints
+        <span>Complaints</span>
     </div>
     <br/>
     <a class="btn btnCustomContent icon-plus" href="#/Complaint/Add"><span>Add New</span></a>
@@ -30,8 +30,7 @@
                 <td style="width:350px">
                     <a class="btn btnCustomContent icon-arrow-right" href="#/Complaint/{{complaint.value._id}}"><span>Details</span></a>
                     <a class="btn btnCustomContent icon-cog" href="#/Complaint/Edit/{{complaint.value._id}}"><span>Edit</span></a>
-                    <a class="btn btnCustomContent icon-remove" href="#" confirmed-click="deleteComplaint(complaint.doc)" confirm-click="Are you sure you want to delete this Complaint?"><span>Delete</span></a>
-                    <a class="btn btnCustomContent icon-plus" href="#/action/new/{{complaint.value._id}}" ng-show="isAuthorized([userRoles.admin, userRoles.guest] )"><span>Create Action</span></a>
+                    <a class="btn btnCustomContent icon-remove" href="#" confirmed-click="deleteComplaint(complaint.value)" confirm-click="Are you sure you want to delete this Complaint?"><span>Delete</span></a>
                 </td>
                 <td></td>
             </tr>

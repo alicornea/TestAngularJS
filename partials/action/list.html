@@ -15,12 +15,12 @@
                 <th scope="col" class="rounded">Create Date</th>
                 <th scope="col" class="rounded">Change Date</th>
                 <th scope="col" class="rounded">Issue by User</th>
-                <th scope="col" class="rounded">Options</th>
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="action in actions | filter:search | orderBy:'value.complaintId'">
+                <td></td>
                 <td>{{action.value.complaintId}}</td>
                 <td>{{action.value.title}}</td>
                 <td>{{action.value.description}}</td>
@@ -28,14 +28,13 @@
                 <td>{{action.value.createDate}}</td>
                 <td>{{action.value.changeDate}}</td>
                 <td>{{action.value.issueByUser}}</td>
-                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
-                    <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
+                <td></td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 <td class="rounded-foot-left">&nbsp;</td>
-                <td colspan="8">
+                <td colspan="7">
                     <span ng-show="actionsNoOfPages > 0">Page {{actionsCurrentPage}} of {{actionsNoOfPages}}</span>
                     <span ng-hide="actionsNoOfPages > 0">No Actions available</span>
                 </td>

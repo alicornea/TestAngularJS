@@ -1,8 +1,8 @@
 (function() {
     angular.module('mrgApp')
-        .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', function($location, ProjectCouch, DateTime, storageSrv, SessionStore) {
+        .service('ComplaintsService', ['$location', 'ProjectCouch', 'DateTime', 'storageSrv', 'SessionStore', '$rootScope', function($location, ProjectCouch, DateTime, storageSrv, SessionStore, $rootScope) {
 
-            this.getComplaints = function(startKey, numberOfResults, groundTime, online) {
+            this.getComplaints = function(startKey, numberOfResults, groundTime) {
                 if (online)
                     startKey = '"' + startKey + '"';
 
@@ -11,10 +11,10 @@
                     ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
                     ["key", '"' + groundTime + '"']
                 ];
-                return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
+                return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
             };
 
-            this.getComplaintsByIndex = function(index, numberOfResults, groundTime, online) {
+            this.getComplaintsByIndex = function(index, numberOfResults, groundTime) {
 
                 var options = [
                     ["skip", index],
@@ -22,12 +22,12 @@
                     // ["key", '"' + groundTime + '"']
                 ];
 
-                return storageSrv.select('_design/complaint/_view/byGroundTime', online, options, true);
+                return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
             };
 
-            this.getComplaint = function(complaintId, online) {
+            this.getComplaint = function(complaintId) {
 
-                return storageSrv.select('_design/complaint/_view/getAll', online, 20, true, complaintId);
+                return storageSrv.select('_design/complaint/_view/getAll', $rootScope.online, 20, true, complaintId);
 
             };
 
@@ -38,28 +38,28 @@
             };
 
 
-            function getComplaintAndActions(complaintId, online) {
+            function getComplaintAndActions(complaintId) {
 
                 var options = [
                     ["startkey", "[\"" + complaintId + "\"]"],
                     ["endkey", "[\"" + complaintId + "\",{}]"]
                 ];
 
-                return storageSrv.select('_design/complaint/_view/complaintandactions', online, options)
+                return storageSrv.select('_design/complaint/_view/complaintandactions', $rootScope.online, options)
             };
 
-            this.saveComplaint = function(complaint, online) {
+            this.saveComplaint = function(complaint) {
                 complaint.date = DateTime.currentDateTime();
                 complaint.groundTimeId = SessionStore.selectedGroundTime();
 
-                storageSrv.insert(complaint, online).then(function() {
+                storageSrv.insert(complaint, $rootScope.online).then(function() {
                     $location.path('/Complaints');
                 })
             };
 
-            this.updateComplaint = function(complaint, online) {
+            this.updateComplaint = function(complaint) {
                 complaint.date = DateTime.currentDateTime();
-                storageSrv.update(complaint, online).then(function() {
+                storageSrv.update(complaint, $rootScope.online).then(function() {
                     $location.path('/Complaints');
                 });
             };
@@ -76,9 +76,9 @@
                 console.log(reason);
             };
 
-            this.deleteComplaint = function(complaint, online) {
+            this.deleteComplaint = function(complaint) {
 
-                getComplaintAndActions(complaint._id, online).then(ProcessData, ProcessError);
+                getComplaintAndActions(complaint._id, $rootScope.online).then(ProcessData, ProcessError);
             };
         }])
 }());

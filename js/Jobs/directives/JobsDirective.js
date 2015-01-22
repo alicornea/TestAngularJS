@@ -1,5 +1,5 @@
 (function() {
-    angular.module("mrgApp").directive('jobs', ['$rootScope', 'JobsService', function($rootScope, JobsService) {
+    angular.module("mrgApp").directive('jobs', ['JobsService', function(JobsService) {
         return {
             restrict: 'E',
             scope: {
@@ -16,7 +16,7 @@
                 scope.jobsCurrentPage = 1;
 
                 scope.loadData = function() {
-                    JobsService.getJobsByIndex((scope.jobsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, '', $rootScope.online).then(function(data) {
+                    JobsService.getJobsByIndex((scope.jobsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, '').then(function(data) {
                         scope.jobs = data.rows;
                         scope.jobsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
                     }, function(reason) {
@@ -25,7 +25,7 @@
                 }
 
                 scope.deleteJob = function(job) {
-                    JobsService.deleteJob(job, $rootScope.online);
+                    JobsService.deleteJob(job);
                 };
 
                 scope.$watch('jobsCurrentPage', scope.loadData);
