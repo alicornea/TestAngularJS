@@ -23,7 +23,7 @@
 
             //Jobs
             .when("/jobs", {
-                    templateUrl: "partials/Jobs/jobs.html"
+                    templateUrl: "partials/Jobs/jobs.html",
                 })
                 .when("/job/edit/:jobid", {
                     templateUrl: "partials/Jobs/job.html",

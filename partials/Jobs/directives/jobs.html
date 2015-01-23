@@ -11,19 +11,19 @@
             <tr>
                 <th scope="col" class="rounded-header-left"></th>
                 <th scope="col" class="rounded">Job No.</th>
-                <th scope="col" class="rounded">Job Title</th>
-                <th scope="col" class="rounded">Date Created</th>
-                <th scope="col" class="rounded">Ground Time</th>
-                <th scope="col" class="rounded">Created by</th>
-                <th scope="col" class="rounded">Job Description</th>
-                <th scope="col" class="rounded">Profession</th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.title'; ascending = titleSorting; titleSorting = !titleSorting">Job Title <a class="arrow-down" ng-class="{'arrow-down' : titleSorting, 'arrow-up' : !titleSorting }">{{ titleSorting | sortingType }}</a></th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.date'; ascending = dateSorting; dateSorting = !dateSorting">Date Created <a class="arrow-down" ng-class="{'arrow-down' : dateSorting, 'arrow-up' : !dateSorting }">{{ dateSorting | sortingType }}</a></th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.groundTime'; ascending = groundTimeSorting; groundTimeSorting = !groundTimeSorting">Ground Time <a class="arrow-down" ng-class="{'arrow-down' : groundTimeSorting, 'arrow-up' : !groundTimeSorting }">{{ groundTimeSorting | sortingType }}</a></th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.created'; ascending = createdBySorting; createdBySorting = !createdBySorting">Created by <a class="arrow-down" ng-class="{'arrow-down' : createdBySorting, 'arrow-up' : !createdBySorting }">{{ createdBySorting | sortingType }}</a></th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.desc'; ascending = descriptionSorting; descriptionSorting = !descriptionSorting">Job Description <a class="arrow-down" ng-class="{'arrow-down' : descriptionSorting, 'arrow-up' : !descriptionSorting }">{{ descriptionSorting | sortingType }}</a></th>
+                <th scope="col" class="rounded" ng-click="sortBy = 'doc.profession'; ascending = professionSorting; professionSorting = !professionSorting">Profession <a class="arrow-down" ng-class="{'arrow-down' : professionSorting, 'arrow-up' : !professionSorting }">{{ professionSorting | sortingType }}</a></th>
                 <th scope="col" class="rounded">Attachements</th>
-                <th scope="col" class="rounded"></th>
+                <th scope="col" class="rounded"><input type="text" name="searchBox" ng-model="searchString" placeholder="Search job title"/></th>
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="job in jobs">
+        <tbody ng-repeat="job in jobs | orderBy:sortBy:ascending">
+            <tr ng-show="([job.doc.title, searchString] | contains)">
                 <td></td>
                 <td><a href="{{job.doc.no}}">{{job.doc.no}}</a>
                 </td>

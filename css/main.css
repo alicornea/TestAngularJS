@@ -132,6 +132,9 @@ th {
     border: 1px solid blue;
     text-align: center
 }
+thead {
+    white-space: nowrap;
+}
 th {
     background-color: #428bca;
     color: white;
@@ -160,4 +163,19 @@ td {
 }
 .groundTimeBox {
     box-shadow: 1px 1px 1px #000;
+}
+a.arrow-down {
+    text-decoration: none;
+    color: #428bca;
+    cursor: pointer;
+}
+a.arrow-up {
+    text-decoration: none;
+    color: #428bca;
+    cursor: pointer;
+}
+
+#rounded-corner{
+    width: 500px;
+    table-layout: inherit;
 }
