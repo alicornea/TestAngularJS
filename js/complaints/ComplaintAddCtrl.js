@@ -1,5 +1,5 @@
 (function() {
-    angular.module("mrgApp").controller('ComplaintAddCtrl', ["$scope", "ComplaintsService", "DataService", "SessionStore", function($scope, ComplaintsService, DataService, SessionStore) {
+    angular.module("mrgApp").controller('ComplaintAddCtrl', ["$scope", "ComplaintsService", "DataService", function($scope, ComplaintsService, DataService) {
         DataService.getComplaintTypes()
             .then(function(data) {
                 $scope.Types = data.rows;
@@ -16,8 +16,6 @@
             });
 
         $scope.saveComplaint = function() {
-
-            $scope.complaint.value.groundTimeId = SessionStore.selectedGroundTime();
             ComplaintsService.saveComplaint($scope.complaint.value, $scope.online);
         };
     }]);

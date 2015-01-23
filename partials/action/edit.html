@@ -1,52 +1,67 @@
-﻿<div class="container">
-    <form name="ActionForm" ng-submit="save()">
-        <div class="row">
-        <input type="hidden" name="item" ng-model="action.complaintId" ng-init="action.complaintId=complaintId">
-            <div class="form-group col-lg-4">
-                <label for="complaintNo">Complaint Id:</label>
-                <span> {{ action.complaintId }} </span>
-
+<form name="actionForm">
+    <div class="customContentContainer">
+        <div class="customContentTitle">
+            <span ng-hide="action.value._id">New Action</span>
+            <span ng-hide="!action.value._id">Edit Action</span>
+        </div>
+        <input type="hidden" name="item" ng-model="action.value.complaintId" ng-init="action.value.complaintId=complaintId">
+        <input type="hidden" name="issueByUser" ng-model="action.value.issueByUser" ng-init="action.value.issueByUser=username">
+        <div class="customContentDetails">
+            <table>
+                <tr>
+                    <td>
+                        <label class="customContentLabel">Complaint Id</label>
+                    </td>
+                    <td>
+                        <span> {{ action.value.complaintId }} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="customContentLabel">Issue by user</label>
+                    </td>
+                    <td>
+                        <span> {{ action.value.issueByUser }} </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtTitle" class="customContentLabel">Title</label>
+                    </td>
+                    <td>
+                        <input type="text" name="txtTitle" required ng-model="action.value.title" class="customContentInput">
+                        <span ng-show="ActionForm.title.$error.required" class="help-inline">Required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ddlStatus" class="customContentLabel">Status</label>
+                    </td>
+                    <td>
+                        <select name="ddlStatus" ng-init="action.value.status=action.value.status || statuses[0]" ng-model="action.value.status" class="customContentInput">
+                            <option ng-repeat="status in statuses" value="{{status}}">{{status}}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtDescription" class="customContentLabel">Description</label>
+                    </td>
+                    <td>
+                        <textarea name="txtDescription" rows="6" required ng-model="action.value.description" class="customContentInput"></textarea>
+                        <span ng-show="ActionForm.description.$error.required" class="help-inline">Required</span>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" ng-model="action.value.item" ng-init="action.value.item=action.value.item || 'action'">
+            <div style="text-align:center">
+                <button ng-hide="action.value._id" ng-disabled="actionForm.$invalid" ng-click="saveAction()" class="btn btnCustomContent icon-save"><span>Save</span>
+                </button>
+                <button ng-hide="!action.value._id" ng-disabled="isClean() || actionForm.$invalid" ng-click="updateAction()" class="btn btnCustomContent icon-save"><span>Update</span>
+                </button>
+                <a class="btn btnCustomContent icon-arrow-left" href="#/Complaint/{{complaintId}}"><span>Cancel</span></a>
             </div>
         </div>
-       <div class="row">
-              <input type="hidden" name="issueByUser" ng-model="action.issueByUser" ng-init="action.issueByUser=username">
-            <div class="form-group col-lg-4"> 
-                <label for="issueByUser">Issue by user :</label>
-                <span> {{ action.issueByUser }} </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-lg-4">
-                <label for="title">Title</label>
-                <input type="text" name="title" class="form-control" id="title" required ng-model="action.title">
-                <span ng-show="ActionForm.title.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-lg-4">
-                <label for="status">Status</label>
-                <select ng-init="action.status=action.status || statuses[0]" ng-model="action.status" class="form-control">
-                    <option ng-repeat="status in statuses" value="{{status}}">{{status}}
-                    </option>
-                </select>
-        </div>
-
-        </div>
-
-        <input type="hidden" name="item" ng-model="action.item" ng-init="action.item=action.item || 'actions'">
-        <div class="row">
-            <div class="form-group col-lg-12">
-                <label for="description">Description</label>
-                <textarea name="description" class="form-control" rows="6" id="description" required ng-model="action.description"></textarea>
-                <span ng-show="ActionForm.description.$error.required" class="help-inline">
-                    Required
-                </span>
-            </div>
-        </div>
-         <input type="submit" id="submit" value="Submit" ng-disabled="isClean() || ActionForm.$invalid" class="btn btn-primary" />
-       
-    </form>
-    
-</div>
+    </div>
+</form>

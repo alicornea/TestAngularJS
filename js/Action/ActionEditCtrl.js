@@ -1,44 +1,32 @@
-(function () {
+(function() {
+    angular.module("mrgApp").controller("ActionEditCtrl", ['$scope', '$routeParams', 'ActionService', 'DataService', function($scope, $routeParams, ActionService, DataService) {
+        var self = this;
+        $scope.complaintId = $routeParams.complaintid;
 
-    var app = angular.module("mrgApp");
+        DataService.getActionStatuses().then(function(data) {
+            $scope.statuses = [];
+            for (var i = 0; i < data.rows.length; i++)
+                $scope.statuses.push(data.rows[i].value.name);
+            if (data.rows.length > 0)
+                $scope.action.status = $scope.statuses[0];
+        }, function(reason) {
+            console.log(reason);
+        });
 
-    var ActionEditCtrl = function ($scope, ProjectCouch, $location, $routeParams, ActionService, DateTime) {
-         var self = this;
- 
-         var promise = ActionService.GetStatuses();
+        ActionService.getAction($routeParams.actionid, $scope.online).then(function(data) {
+            self.original = data.rows[0];
+            $scope.action = angular.copy(self.original);
 
-         promise.$promise.then(function (data) {
-             var statuses = [];
-             for (i = 0; i < data.rows.length; i++)
-                 statuses.push(data.rows[i].value.name);
+        }, function(reason) {
+            console.log(reason);
+        });
 
-             $scope.statuses = statuses;
-         }, function (reason) {
-             console.log(JSON.stringify(reason));
-         });
+        $scope.isClean = function() {
+            return angular.equals(self.original, $scope.action);
+        }
 
-         ProjectCouch.get({q: $routeParams.actionid}, function(action) {
-            self.original = action;
-            $scope.action = new ProjectCouch(self.original);
-         });
-   
-
-
-          $scope.save = function() {
-            $scope.action.changeDate = DateTime.currentDateTime();
-            $scope.action.update(function() {
-                $location.path('/actions');
-            });
-          };
-
-           $scope.isClean = function () {
-              return angular.equals(self.original, $scope.action);
-          }
-
-    };
-
-
-
-    app.controller("ActionEditCtrl", ['$scope', 'ProjectCouch', '$location', '$routeParams', 'ActionService', 'DateTime', ActionEditCtrl]);
-
+        $scope.updateAction = function() {
+            ActionService.updateAction($scope.action.value, $scope.online);
+        };
+    }]);
 }());

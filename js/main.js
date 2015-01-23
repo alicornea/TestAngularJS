@@ -88,20 +88,20 @@
                     templateUrl: "partials/action/list.html",
                     controller: "ActionListCtrl"
                 })
-                .when("/action/edit/:actionid", {
+                .when("/action/edit/:actionid/:complaintid", {
                     templateUrl: "partials/action/edit.html",
                     controller: "ActionEditCtrl",
-                    authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
+                    /*authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]*/
                 })
                 .when("/action/new/:complaintid", {
                     templateUrl: "partials/action/edit.html",
                     controller: "ActionNewCtrl",
-                    authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
+                    /*authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]*/
                 })
                 .when("/action/delete/:actionid", {
                     templateUrl: "partials/action/delete.html",
                     controller: "ActionDeleteCtrl",
-                    authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]
+                    /*authorizedRoles: [USER_ROLES.guest, USER_ROLES.admin]*/
                 })
 
             // Blog

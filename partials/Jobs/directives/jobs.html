@@ -25,20 +25,19 @@
         <tbody ng-repeat="job in jobs | orderBy:sortBy:ascending">
             <tr ng-show="([job.doc.title, searchString] | contains)">
                 <td></td>
-                <td><a href="{{job.doc.no}}">{{job.doc.no}}</a>
-                </td>
-                <td>{{job.doc.title}}</td>
-                <td>{{job.doc.date}}</td>
-                <td>{{job.doc.groundTime}}</td>
-                <td>{{job.doc.created}}</td>
-                <td>{{job.doc.desc}}</td>
-                <td>{{job.doc.profession}}</td>
+                <td>{{job.value.no}}</td>
+                <td>{{job.value.title}}</td>
+                <td>{{job.value.date}}</td>
+                <td>{{job.value.groundTime}}</td>
+                <td>{{job.value.created}}</td>
+                <td>{{job.value.desc}}</td>
+                <td>{{job.value.profession}}</td>
                 <td>
-                    <a class="btn btnCustomContent icon-cog" href="#/job/attachment/{{job.doc._id}}"><span>Add Attachements</span></a>
+                    <a class="btn btnCustomContent icon-cog" href="#/job/attachment/{{job.value._id}}"><span>Add Attachements</span></a>
                 </td>
                 <td style="width:200px">
-                    <a class="btn btnCustomContent icon-arrow-right" href="#/job/edit/{{job.doc._id}}"><span>Edit</span></a>
-                    <a class="btn btnCustomContent icon-remove" confirmed-click="deleteJob(job.doc)" confirm-click="Are you sure you want to delete this Job?"><span>Delete</span></a>
+                    <a class="btn btnCustomContent icon-arrow-right" href="#/job/edit/{{job.value._id}}"><span>Edit</span></a>
+                    <a class="btn btnCustomContent icon-remove" confirmed-click="deleteJob(job.value)" confirm-click="Are you sure you want to delete this Job?"><span>Delete</span></a>
                 </td>
                 <td></td>
             </tr>

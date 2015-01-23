@@ -29,16 +29,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="groundTime" class="customContentLabel">Ground Time</label>
-                        </td>
-                        <td>
-                            <input type="datetime" name="groundTime" class="customContentInput" id="groundTime" ng-model="job.value.groundTime" required />
-                        </td>
-                        <td><span ng-show="myForm.job.groundTime.$error.required" class="help-inline">Required</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label for="createdBy" class="customContentLabel">Created by</label>
                         </td>
                         <td>
@@ -76,7 +66,7 @@
             <div style="text-align:center">
                 <button ng-hide="job.value._id" ng-click="saveJob()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Save</span>
                 </button>
-                <button ng-hide="!job.value._id" ng-click="updateJob(job)" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Update</span></button>
+                <button ng-hide="!job.value._id" ng-click="updateJob()" ng-disabled="isClean() || myForm.$invalid" class="btn btnCustomContent icon-save"><span>Update</span></button>
                 <a class="btn btnCustomContent icon-arrow-left" href="#/jobs"><span>Cancel</span>
                     </a>
             </div>

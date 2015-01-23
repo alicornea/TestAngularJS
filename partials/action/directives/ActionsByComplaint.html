@@ -2,6 +2,10 @@
     <div class="customContentTitle">
         <span>Complaint actions</span>
     </div>
+    <br/>
+    <a class="btn btnCustomContent icon-plus" href="#/action/new/{{complaintId}}"><span>Add New Action</span></a>
+    <br/>
+    <br/>
     <table id="rounded-corner" summary="Actions">
         <thead>
             <tr>
@@ -19,6 +23,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="action in actions | filter:search | orderBy:'value.title'">
+                <td></td>
                 <td>{{action.value.complaintId}}</td>
                 <td>{{action.value.title}}</td>
                 <td>{{action.value.description}}</td>
@@ -26,8 +31,11 @@
                 <td>{{action.value.createDate}}</td>
                 <td>{{action.value.changeDate}}</td>
                 <td>{{action.value.issueByUser}}</td>
-                <td><a href="#/action/edit/{{action.value._id}}">Edit</a>&nbsp;
-                    <a href="#/action/delete/{{action.value._id}}">Delete</a> </td>
+                <td>
+                    <a href="#/action/edit/{{action.value._id}}/{{complaintId}}"><span>Edit</span></a>
+                    <a href="#" confirmed-click="deleteAction(action.value)" confirm-click="Are you sure you want to delete this Action?"><span>Delete</span></a>
+                </td>
+                <td></td>
             </tr>
         </tbody>
         <tfoot>
