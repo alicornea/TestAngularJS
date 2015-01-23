@@ -174,8 +174,3 @@ a.arrow-up {
     color: #428bca;
     cursor: pointer;
 }
-
-#rounded-corner{
-    width: 500px;
-    table-layout: inherit;
-}
