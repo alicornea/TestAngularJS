@@ -15,8 +15,8 @@
     }]);
     
     app.filter("sortingType", function(){
-        return function(ascending){
-            return ascending ? '\u25B2' : '\u25BC';
+        return function(descending){
+            return descending !== undefined && descending ? '\u25BC' : '\u25B2';
         };
     });
     
