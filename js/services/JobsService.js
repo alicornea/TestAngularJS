@@ -10,9 +10,11 @@
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults : 10],
-                    ["key", '"' + SessionStore.selectedGroundTime() + '"']
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10]
                 ];
+                
+                if(SessionStore.selectedGroundTime() != null)
+                     options.push(["key", '"' + SessionStore.selectedGroundTime() + '"']);
 
                 return storageSrv.select('_design/jobs/_view/getJobsByGroundTime', $rootScope.online, options, true);
             };

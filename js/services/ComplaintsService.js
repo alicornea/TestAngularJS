@@ -8,9 +8,12 @@
 
                 var options = [
                     ["startkey", startKey === undefined ? '""' : startKey],
-                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10],
-                    ["key", '"' + SessionStore.selectedGroundTime() + '"']
-                ];
+                    ["limit", numberOfResults > 0 ? numberOfResults + 1 : 10]
+                    ];
+                    
+                if(SessionStore.selectedGroundTime() != null)
+                     options.push(["key", '"' + SessionStore.selectedGroundTime() + '"']);
+                
                 return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
             };
 
@@ -18,11 +21,26 @@
 
                 var options = [
                     ["skip", index],
-                    ["limit", numberOfResults > 0 ? numberOfResults : 10],
-                    ["key", '"' + SessionStore.selectedGroundTime() + '"']
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10]
                 ];
+                
+                if(SessionStore.selectedGroundTime() != null)
+                     options.push(["key", '"' + SessionStore.selectedGroundTime() + '"']);
 
                 return storageSrv.select('_design/complaint/_view/byGroundTime', $rootScope.online, options, true);
+            };
+            
+            this.getComplaintsByFieldSorted = function(sortingType, index, numberOfResults, descendingSorting){
+                var options = [
+                    ["skip", index],
+                    ["limit", numberOfResults > 0 ? numberOfResults : 10],
+                    ["descending", descendingSorting]
+                ];
+                
+                if(SessionStore.selectedGroundTime() != null)
+                     options.push(["key", '"' + SessionStore.selectedGroundTime() + '"']);
+
+                return storageSrv.select('_design/complaint/_view/' + sortingType, $rootScope.online, options, true);
             };
 
             this.getComplaint = function(complaintId) {

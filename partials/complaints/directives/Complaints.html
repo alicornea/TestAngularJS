@@ -10,11 +10,21 @@
         <thead>
             <tr>
                 <th scope="col" class="rounded-header-left"></th>
-                <th scope="col" class="rounded">Refference Number</th>
-                <th scope="col" class="rounded">Text</th>
-                <th scope="col" class="rounded">Type</th>
-                <th scope="col" class="rounded">Workgroup</th>
-                <th scope="col" class="rounded">Last Modification Date</th>
+                <th scope="col" class="rounded" ng-click="descendingSorting = refNoSorting; refNoSorting = !refNoSorting; getComplaintsByFieldSorted(complaintsSortingTypes.byRefNo, descendingSorting)">
+                    Refference Number <a class="arrow-down" ng-class="{'arrow-down' : refNoSorting, 'arrow-up' : !refNoSorting }">{{ refNoSorting | sortingType }}</a>
+                </th>
+                <th scope="col" class="rounded" ng-click="descendingSorting = textSorting; textSorting = !textSorting; getComplaintsByFieldSorted(complaintsSortingTypes.byText, descendingSorting)">
+                    Text <a class="arrow-down" ng-class="{'arrow-down' : textSorting, 'arrow-up' : !textSorting }">{{ textSorting | sortingType }}</a>
+                </th>
+                <th scope="col" class="rounded" ng-click="descendingSorting = typeSorting; typeSorting = !typeSorting; getComplaintsByFieldSorted(complaintsSortingTypes.byType, descendingSorting)">
+                    Type <a class="arrow-down" ng-class="{'arrow-down' : typeSorting, 'arrow-up' : !typeSorting }">{{ typeSorting | sortingType }}</a>
+                </th>
+                <th scope="col" class="rounded" ng-click="descendingSorting = groupSorting; groupSorting = !groupSorting; getComplaintsByFieldSorted(complaintsSortingTypes.byWorkgroup, descendingSorting)">
+                    Workgroup <a class="arrow-down" ng-class="{'arrow-down' : groupSorting, 'arrow-up' : !groupSorting }">{{ groupSorting | sortingType }}</a>
+                </th>
+                <th scope="col" class="rounded" ng-click="descendingSorting = modificationDateSorting; modificationDateSorting = !modificationDateSorting; getComplaintsByFieldSorted(complaintsSortingTypes.byLastModificationDate, descendingSorting)">
+                    Last Modification Date <a class="arrow-down" ng-class="{'arrow-down' : modificationDateSorting, 'arrow-up' : !modificationDateSorting }">{{ modificationDateSorting | sortingType }}</a> 
+                </th>
                 <th scope="col" class="rounded">Actions</th>
                 <th scope="col" class="rounded-header-right"></th>
             </tr>
