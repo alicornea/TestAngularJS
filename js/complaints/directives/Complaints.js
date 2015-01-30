@@ -11,17 +11,12 @@
                 scope.complaintsSortingTypes = COMPLAINTS_SORTING_TYPES;
                 scope.sortingType = COMPLAINTS_SORTING_TYPES.byGroundTime;
 
-                scope.loadData = function() {
-                    ComplaintsService.getComplaintsByIndex((scope.complaintsCurrentPage - 1) * scope.numPerPage, scope.numPerPage).then(function(data) {
-                        scope.complaints = data.rows;
-                        scope.complaintsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
-                    }, function(reason) {
-                        alert(reason);
-                    });
+                scope.initialLoad = function() {
+                    scope.getComplaintsByFieldSorted(scope.sortingType, false);
                 }
                 
-                scope.getComplaintsByFieldSorted = function (descendingSorting){
-                    ComplaintsService.getComplaintsByFieldSorted(scope.sortingType, (scope.complaintsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, descendingSorting).then(function(data) {
+                scope.getComplaintsByFieldSorted = function (sortingType, descendingSorting){
+                    ComplaintsService.getComplaintsByFieldSorted(sortingType, (scope.complaintsCurrentPage - 1) * scope.numPerPage, scope.numPerPage, descendingSorting).then(function(data) {
                         scope.complaints = data.rows;
                         scope.complaintsNoOfPages = Math.ceil(data.total_rows / scope.numPerPage);
                     }, function(reason) {
@@ -33,7 +28,7 @@
                     ComplaintsService.deleteComplaint(complaint)
                 };
 
-                scope.$watch('complaintsCurrentPage', scope.loadData);
+                scope.$watch('complaintsCurrentPage', scope.initialLoad);
             }
         }
     }]);
